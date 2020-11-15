@@ -4,7 +4,6 @@ import {
   Create,
   SimpleForm,
   TextInput,
-  DateInput,
   CreateProps,
   BooleanInput,
 } from "react-admin";
