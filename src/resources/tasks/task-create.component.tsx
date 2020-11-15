@@ -12,6 +12,7 @@ import {
 export const TasksCreate: FC<CreateProps> = (props) => (
   <Create {...props}>
     <SimpleForm>
+      <TextInput label="Title" source="title" />
       <TextInput label="Description" source="descriptions" />
       <BooleanInput label="Completed" source="completed" />
     </SimpleForm>
