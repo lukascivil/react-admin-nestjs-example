@@ -10,7 +10,7 @@ import { TasksShow } from "resources/tasks/task-show.component";
 import { TasksEdit } from "resources/tasks/task-edit.component";
 
 const dataProvider = simpleRestProvider("http://localhost:3000");
-const App = () => (
+const App: FC<AdminProps> = () => (
   <Admin dataProvider={dataProvider}>
     <Resource
       name="tasks"
