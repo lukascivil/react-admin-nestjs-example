@@ -17,8 +17,8 @@ export const TasksList: FC<ListProps> = (props) => (
       <TextField source="title" />
       <TextField source="description" />
       <BooleanField source="completed" />
-      <DateField source="updated_at" />
-      <DateField source="created_at" />
+      <DateField source="updated_at" showTime />
+      <DateField source="created_at" showTime />
       <ShowButton />
       <EditButton />
     </Datagrid>

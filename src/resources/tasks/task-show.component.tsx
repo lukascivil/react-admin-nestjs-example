@@ -15,8 +15,8 @@ export const TasksShow: FC<ShowProps> = (props) => (
       <TextField source="title" />
       <TextField source="description" />
       <BooleanField source="completed" />
-      <DateField source="updated_at" />
-      <DateField source="created_at" />
+      <DateField source="updated_at" showTime />
+      <DateField source="created_at" showTime />
     </SimpleShowLayout>
   </Show>
 );
