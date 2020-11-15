@@ -5,14 +5,18 @@ import {
   TextField,
   ShowProps,
   BooleanField,
+  DateField,
 } from "react-admin";
 
 export const TasksShow: FC<ShowProps> = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
+      <TextField source="title" />
       <TextField source="description" />
       <BooleanField source="completed" />
+      <DateField source="updated_at" />
+      <DateField source="created_at" />
     </SimpleShowLayout>
   </Show>
 );

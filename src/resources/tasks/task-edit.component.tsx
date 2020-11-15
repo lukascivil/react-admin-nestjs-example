@@ -12,6 +12,7 @@ export const TasksEdit: FC<EditProps> = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
+      <TextInput source="title" />
       <TextInput source="description" />
       <BooleanInput source="completed" />
     </SimpleForm>
