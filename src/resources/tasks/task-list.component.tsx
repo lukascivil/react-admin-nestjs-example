@@ -6,6 +6,7 @@ import {
   ListProps,
   BooleanField,
   ShowButton,
+  EditButton,
 } from "react-admin";
 
 export const TasksList: FC<ListProps> = (props) => (
@@ -15,6 +16,7 @@ export const TasksList: FC<ListProps> = (props) => (
       <TextField source="description" />
       <BooleanField source="completed" />
       <ShowButton />
+      <EditButton />
     </Datagrid>
   </List>
 );
