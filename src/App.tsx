@@ -1,7 +1,6 @@
-import "./App.css";
-
-import React from "react";
-import { Admin, Resource } from "react-admin";
+// Packages
+import React, { FC } from "react";
+import { Admin, AdminProps, Resource } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
 
 // Resources
