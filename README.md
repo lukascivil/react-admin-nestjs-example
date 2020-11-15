@@ -6,7 +6,7 @@
 
 ## Description
 
-Tasker is an application for registering tasks. The client side was created using [React-Admin](https://marmelab.com/react-admin/Readme.html) following the REST pattern on dataproviders. The backend application that will use servers the API was created using [nestjs](https://docs.nestjs.com/) framework.
+Tasker is an application for registering tasks. The client side was created using [React-Admin](https://marmelab.com/react-admin/Readme.html) following the REST pattern on dataproviders. The backend application that will use servers the API was created using [nestjs](https://docs.nestjs.com/) framework. This is a react-admin example application, and its show how powerful the tool is.
 
 ![image](https://user-images.githubusercontent.com/7409802/99199964-6c874180-2781-11eb-932f-2f8fe45c9d93.png)
 
@@ -24,3 +24,7 @@ $ yarn
 # development
 $ yarn start
 ```
+
+## Running the server
+
+Read the docs of Tasker server here: https://github.com/lukascivil/tasker
