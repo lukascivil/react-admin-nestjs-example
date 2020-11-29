@@ -21,7 +21,7 @@ const authProvider: AuthProvider = {
         localStorage.setItem("auth", JSON.stringify(auth));
       })
       .catch(() => {
-        throw new Error("Network error");
+        throw new Error("ra.notification.invalid_email_password");
       });
   },
   checkError: (error) => Promise.resolve(),

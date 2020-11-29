@@ -9386,6 +9386,21 @@ ra-core@^3.10.1:
     query-string "^5.1.1"
     reselect "~3.0.0"
 
+ra-core@^3.10.2:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/ra-core/-/ra-core-3.10.2.tgz#ee9178413a21eca4d4b3e38b4e075b53b0631725"
+  integrity sha512-jkC/6mdL28orhBgBijieOVwzIuyw6Tnm5uYgsgriEYbMIFo8z9ehzRvW4im1ieKTD4ktgXXf7cBX9l5jNE4GDg==
+  dependencies:
+    "@testing-library/react" "^8.0.7"
+    classnames "~2.2.5"
+    date-fns "^1.29.0"
+    eventemitter3 "^3.0.0"
+    inflection "~1.12.0"
+    lodash "~4.17.5"
+    prop-types "^15.6.1"
+    query-string "^5.1.1"
+    reselect "~3.0.0"
+
 ra-data-simple-rest@^3.9.3:
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/ra-data-simple-rest/-/ra-data-simple-rest-3.9.3.tgz#b81d9cff2d5dd2a50519d2a74dbc5ba2cc7c9799"
@@ -9407,6 +9422,13 @@ ra-language-english@^3.10.1:
   integrity sha512-pHCglibD2NLFMPjO1oGzrwZ/EsVTnubpMErqywz151wk+WetEwMVZiZVNDWPcR2sZRCqdyRw2SGpdm2IoL/GNg==
   dependencies:
     ra-core "^3.10.1"
+
+ra-language-english@^3.10.2:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/ra-language-english/-/ra-language-english-3.10.2.tgz#dfdf153e9afd63130351524779f8465f3a8f3544"
+  integrity sha512-gtPrLqem9Li2f858OLgW8CJbg+4twvLMpZlkFlgJwIkb+d/SaD4WDtPVfEyIjZrGSGKdX8GD5y/tx6XOCZq6RA==
+  dependencies:
+    ra-core "^3.10.2"
 
 ra-ui-materialui@^3.10.1:
   version "3.10.1"

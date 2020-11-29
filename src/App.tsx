@@ -1,6 +1,6 @@
 // Packages
 import React, { FC } from "react";
-import { Admin, AdminProps, Resource } from "react-admin";
+import { Admin, Resource, defaultI18nProvider } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
 
 // Resources
@@ -16,11 +16,16 @@ import httpClient from "httpclient";
 import { UsersCreate } from "resources/users/users-create.component";
 import { UsersEdit } from "resources/users/users-edit.component";
 import { UsersShow } from "resources/users/users-show.components";
+import { i18nProvider } from "i18nProvider";
 
 const dataProvider = simpleRestProvider("http://localhost:3000", httpClient);
 
 const App: FC<any> = () => (
-  <Admin dataProvider={dataProvider as any} authProvider={authProvider}>
+  <Admin
+    dataProvider={dataProvider as any}
+    authProvider={authProvider}
+    i18nProvider={i18nProvider}
+  >
     <Resource
       name="tasks"
       list={TasksList}
