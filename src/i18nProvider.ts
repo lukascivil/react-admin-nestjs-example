@@ -15,6 +15,8 @@ const messages = {
   resources: {
     tasks: {
       name: "Tasks",
+      empty: "No registered tasks",
+      invite: "Create new tasks",
       fields: {
         id: "ID",
         name: "Name",
@@ -27,6 +29,8 @@ const messages = {
     },
     users: {
       name: "Users",
+      empty: "No registered users",
+      invite: "Create new users",
       fields: {
         id: "ID",
         name: "Name",
