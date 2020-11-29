@@ -1,3 +1,4 @@
+// Packages
 import { AuthProvider } from "react-admin";
 
 const authProvider: AuthProvider = {
@@ -24,10 +25,31 @@ const authProvider: AuthProvider = {
         throw new Error("ra.notification.invalid_email_password");
       });
   },
-  checkError: (error) => Promise.resolve(),
+  checkError: (error) => {
+    const token = localStorage.getItem("auth");
+    const request = new Request("http://localhost:3000/auth/refresh", {
+      method: "POST",
+      body: JSON.stringify(token),
+      headers: new Headers({ "Content-Type": "application/json" }),
+    });
+
+    return fetch(request)
+      .then((response) => {
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      })
+      .then((auth) => {
+        localStorage.setItem("auth", JSON.stringify(auth));
+      })
+      .catch(() => {
+        throw new Error("ra.notification.invalid_refresh_retry");
+      });
+  },
   checkAuth: (params) => {
     const token = localStorage.getItem("auth");
-    console.log(params);
 
     if (!token) {
       return Promise.reject();
