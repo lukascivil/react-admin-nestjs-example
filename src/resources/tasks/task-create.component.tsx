@@ -6,6 +6,8 @@ import {
   TextInput,
   CreateProps,
   BooleanInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 export const TasksCreate: FC<CreateProps> = (props) => {
@@ -20,6 +22,9 @@ export const TasksCreate: FC<CreateProps> = (props) => {
         <TextInput label="Title" source="title" />
         <TextInput label="Description" source="descriptions" />
         <BooleanInput label="Completed" source="completed" />
+        <ReferenceInput label="Users" source="user_id" reference="users">
+          <SelectInput optionText="name" />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );
