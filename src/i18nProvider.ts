@@ -19,12 +19,11 @@ const messages = {
       invite: "Create new tasks",
       fields: {
         id: "ID",
-        name: "Name",
-        password: "Password",
-        email: "E-mail",
-        birthdate: "Birthdate",
+        title: "Title",
+        description: "Description",
         updated_at: "Updated at",
         created_at: "Created at",
+        completed: "Completed",
       },
     },
     users: {
