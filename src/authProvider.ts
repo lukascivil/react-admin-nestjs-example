@@ -1,6 +1,5 @@
 // Packages
 import { AxiosError } from "axios";
-import { promises } from "fs";
 import { AuthProvider } from "react-admin";
 
 const authProvider: AuthProvider = {
