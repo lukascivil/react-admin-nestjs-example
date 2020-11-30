@@ -1,4 +1,6 @@
 // Packages
+import { AxiosError } from "axios";
+import { promises } from "fs";
 import { AuthProvider } from "react-admin";
 
 const authProvider: AuthProvider = {
@@ -25,7 +27,11 @@ const authProvider: AuthProvider = {
         throw new Error("ra.notification.invalid_email_password");
       });
   },
-  checkError: (error) => {
+  checkError: (error: AxiosError) => {
+    if (error.response?.status !== 401) {
+      return Promise.resolve();
+    }
+
     const token = localStorage.getItem("auth");
     const request = new Request("http://localhost:3000/auth/refresh", {
       method: "POST",
