@@ -6,18 +6,80 @@ import {
   ShowProps,
   BooleanField,
   DateField,
+  ResourceContextProvider,
+  ListBase,
+  Datagrid,
+  ReferenceManyField,
+  useGetList,
 } from "react-admin";
+import { Box, Typography } from "@material-ui/core";
 
-export const UsersShow: FC<ShowProps> = (props) => (
-  <Show {...props}>
-    <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="name" />
-      <TextField source="password" />
-      <TextField source="email" />
-      <DateField source="birthdate" showTime />
-      <DateField source="updated_at" showTime />
-      <DateField source="created_at" showTime />
-    </SimpleShowLayout>
-  </Show>
-);
+export const UsersShow: FC<ShowProps> = (props) => {
+  const currentSort = { field: "created_at", order: "ASC" };
+  const { ids, data, total, loaded } = useGetList(
+    "tasks",
+    { page: 1, perPage: 10 },
+    currentSort,
+    {}
+  );
+
+  return (
+    <Show {...props}>
+      <SimpleShowLayout>
+        <Box pt={2}>
+          <Typography variant="h6">Cadastro</Typography>
+        </Box>
+        <TextField source="id" />
+        <TextField source="name" />
+        <TextField source="password" />
+        <TextField source="email" />
+        <DateField source="birthdate" showTime />
+        <DateField source="updated_at" showTime />
+        <DateField source="created_at" showTime />
+        <Box pt={2}>
+          <Typography variant="h6">Tarefas do usuário - List</Typography>
+        </Box>
+        {/* The reference field makes more sense for this case, however the List component was used for testing, getList with filter */}
+        <ResourceContextProvider value="tasks">
+          <ListBase basePath="/tasks" filter={{ user_id: props.id }}>
+            <Datagrid>
+              <TextField source="title" />
+              <DateField source="created_at" showTime />
+            </Datagrid>
+          </ListBase>
+        </ResourceContextProvider>
+        <Box pt={2}>
+          <Typography variant="h6">
+            Tarefas do usuário - Reference Many Field
+          </Typography>
+        </Box>
+        {/* Reference Many Field, getManyReference with filter of known Ids */}
+        <ReferenceManyField reference="tasks" target="user_id" label="">
+          <Datagrid>
+            <TextField source="title" />
+            <DateField source="created_at" showTime />
+          </Datagrid>
+        </ReferenceManyField>
+        <Box pt={2}>
+          <Typography variant="h6">
+            Tarefas do usuário - Only Datagrid
+          </Typography>
+        </Box>
+        {/* Use datagrid and call programmatically any dataprovider method*/}
+        <Datagrid
+          // @ts-ignore
+          basePath=""
+          currentSort={currentSort}
+          data={data}
+          ids={ids}
+          selectedIds={[]}
+          loaded={loaded}
+          total={total}
+        >
+          <TextField source="title" />
+          <DateField source="created_at" showTime />
+        </Datagrid>
+      </SimpleShowLayout>
+    </Show>
+  );
+};
