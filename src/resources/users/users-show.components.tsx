@@ -11,6 +11,8 @@ import {
   Datagrid,
   ReferenceManyField,
   useGetList,
+  Button,
+  Link,
 } from "react-admin";
 import { Box, Typography } from "@material-ui/core";
 
@@ -79,6 +81,10 @@ export const UsersShow: FC<ShowProps> = (props) => {
           <TextField source="title" />
           <DateField source="created_at" showTime />
         </Datagrid>
+        <Box pt={2}>
+          <Typography variant="h6">Custom Area</Typography>
+          <Button label="abrir Custom Area" component={Link} to="/custom" />
+        </Box>
       </SimpleShowLayout>
     </Show>
   );

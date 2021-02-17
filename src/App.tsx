@@ -1,7 +1,8 @@
 // Packages
 import React, { FC } from "react";
-import { Admin, Resource, defaultI18nProvider } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
+import { Route } from "react-router-dom";
 
 // Resources
 import { TasksList } from "resources/tasks/task-list.component";
@@ -9,6 +10,9 @@ import { TasksCreate } from "resources/tasks/task-create.component";
 import { TasksShow } from "resources/tasks/task-show.component";
 import { TasksEdit } from "resources/tasks/task-edit.component";
 import { UsersList } from "resources/users/users-list.component";
+
+// Custom
+import CustomList from "resources/custom/custom-list.component";
 
 // Providers
 import authProvider from "authProvider";
@@ -25,6 +29,7 @@ const App: FC<any> = () => (
     dataProvider={dataProvider as any}
     authProvider={authProvider}
     i18nProvider={i18nProvider}
+    customRoutes={[<Route exact path="/custom" component={CustomList} />]}
   >
     <Resource
       name="tasks"

@@ -67,7 +67,7 @@ const authProvider: AuthProvider = {
 
     return Promise.resolve();
   },
-  getPermissions: (params) => Promise.resolve(),
+  getPermissions: (params) => Promise.resolve(["n1", "n2", "n3", "n4"]),
 };
 
 export default authProvider;
