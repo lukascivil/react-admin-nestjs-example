@@ -45,13 +45,13 @@ const messages = {
 
 let locale = "en";
 
+const polyglot = new Polyglot({
+  locale,
+  phrases: { "": "", ...messages },
+});
+
 export const i18nProvider: I18nProvider = {
   translate: (key, options) => {
-    const polyglot = new Polyglot({
-      locale,
-      phrases: { "": "", ...messages },
-    });
-
     return polyglot.t(key, options);
   },
   changeLocale: () => {
