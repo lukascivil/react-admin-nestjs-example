@@ -1,7 +1,7 @@
 // Packages
-import lodashGet from "lodash/get";
 import englishMessages from "ra-language-english";
 import { I18nProvider } from "react-admin";
+import Polyglot from "node-polyglot";
 
 const messages = {
   ...englishMessages,
@@ -46,8 +46,15 @@ const messages = {
 let locale = "en";
 
 export const i18nProvider: I18nProvider = {
-  translate: (key) => lodashGet(messages, key, key),
-  changeLocale: (newLocale) => {
+  translate: (key, options) => {
+    const polyglot = new Polyglot({
+      locale,
+      phrases: { "": "", ...messages },
+    });
+
+    return polyglot.t(key, options);
+  },
+  changeLocale: () => {
     return Promise.resolve();
   },
   getLocale: () => locale,
