@@ -226,16 +226,25 @@ const CustomListBase = () => {
       </Box>
       {/* ------------------------------------------ */}
       <Box pt={2}>
-        <Typography variant="h6">Roles from authProvider</Typography>
+        <Typography variant="h6">
+          Roles from authProvider (Stand alone datagrid)
+        </Typography>
       </Box>
       <Datagrid
-        // @ts-ignore
         basePath="/custom"
         currentSort={currentSort}
         data={permissions}
         ids={permissions?.map((_, index) => index) || []}
-        selectedIds={[]}
-        loaded={loaded}
+        loaded={false}
+        total={permissions?.length || 0}
+      >
+        <FunctionField render={(record) => record} />
+      </Datagrid>
+      <Datagrid
+        basePath="/custom"
+        currentSort={currentSort}
+        data={permissions}
+        ids={permissions?.map((_, index) => index) || []}
         total={permissions?.length || 0}
       >
         <FunctionField render={(record) => record} />
