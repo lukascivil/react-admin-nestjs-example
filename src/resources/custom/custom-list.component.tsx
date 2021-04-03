@@ -16,6 +16,8 @@ import {
   RecordContextProvider,
   useGetList,
   List,
+  Filter,
+  TextInput,
 } from "react-admin";
 import {
   Box,
@@ -105,6 +107,12 @@ const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
   );
 };
 
+const TaskListFilter = (props) => (
+  <Filter {...props}>
+    <TextInput label="Title" source="title" size="small" alwaysOn />
+  </Filter>
+);
+
 const CustomListBase = () => {
   useAuthenticated();
   const [selectedRows, setSelectedRows] = useState<Array<any>>([]);
@@ -147,6 +155,7 @@ const CustomListBase = () => {
           actions={false}
           bulkActionButtons={false}
           component="div"
+          filters={<TaskListFilter />}
           aside={
             <SelectionRowListAside
               datas={selectedRows}
@@ -182,6 +191,9 @@ const CustomListBase = () => {
         <Divider />
       </Box>
       {/* ------------------------------------------ */}
+      <Box pt={2}>
+        <Typography variant="h6">List Base</Typography>
+      </Box>
       <ResourceContextProvider value="tasks">
         <ListBase basePath="/tasks" filter={{}}>
           <Datagrid>
