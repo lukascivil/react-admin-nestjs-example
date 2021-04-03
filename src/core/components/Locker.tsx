@@ -1,5 +1,5 @@
 // Packages
-import React, { useMemo, FC, memo, ReactElement } from "react";
+import React, { useMemo, FC, memo, ReactElement, cloneElement } from "react";
 import Typography from "@material-ui/core/Typography";
 import { usePermissions } from "ra-core";
 import { sanitizeFieldRestProps } from "ra-ui-materialui";
@@ -10,7 +10,9 @@ interface Props {
   lock?: Array<Role>;
   unlock?: Array<Role>;
   children: ReactElement;
+  // Extra
   label?: string;
+  value?: string;
 }
 
 const Locker: FC<Props> = memo(
@@ -24,7 +26,7 @@ const Locker: FC<Props> = memo(
     }, [lock, unlock, permissions]);
 
     return authorized ? (
-      children
+      cloneElement(children, rest)
     ) : (
       <Typography
         component="span"

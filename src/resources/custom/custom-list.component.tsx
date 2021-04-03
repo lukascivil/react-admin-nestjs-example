@@ -28,6 +28,8 @@ import {
   ListItemSecondaryAction,
   IconButton,
   Divider,
+  Tab,
+  AppBar,
 } from "@material-ui/core";
 import {
   Add as AddIcon,
@@ -35,6 +37,7 @@ import {
   Delete as DeleteIcon,
 } from "@material-ui/icons";
 import Locker from "core/components/Locker";
+import { TabContext, TabList, TabPanel } from "@material-ui/lab";
 
 const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
   return (
@@ -139,6 +142,7 @@ const CustomListBase = () => {
         <List
           resource="tasks"
           basePath="/tasks"
+          title=" "
           syncWithLocation={false}
           actions={false}
           bulkActionButtons={false}
@@ -287,13 +291,36 @@ const CustomListBase = () => {
 };
 
 const CustomList: FC<any> = () => {
+  const [value, setValue] = useState("1");
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
-    <Card>
-      <Title title="My Page" />
-      <CardContent>
-        <CustomListBase />
-      </CardContent>
-    </Card>
+    <TabContext value={value}>
+      <AppBar position="static">
+        <TabList onChange={handleChange}>
+          <Tab label="Item One" value="1" />
+          <Locker unlock={["n1"]}>
+            <Tab label="Item Two" />
+          </Locker>
+          <Locker unlock={["n4"]} value="3">
+            <Tab label="Item Three" />
+          </Locker>
+        </TabList>
+      </AppBar>
+      <TabPanel value="1">
+        <Card>
+          <Title title="Custom" />
+          <CardContent>
+            <CustomListBase />
+          </CardContent>
+        </Card>
+      </TabPanel>
+      <TabPanel value="2">Item Two</TabPanel>
+      <TabPanel value="3">Item Three</TabPanel>
+    </TabContext>
   );
 };
 
