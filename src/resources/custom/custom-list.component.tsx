@@ -32,6 +32,7 @@ import {
   Divider,
   Tab,
   AppBar,
+  Button,
 } from "@material-ui/core";
 import {
   Add as AddIcon,
@@ -40,6 +41,7 @@ import {
 } from "@material-ui/icons";
 import Locker from "core/components/Locker";
 import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import { Form } from "react-final-form";
 
 const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
   return (
@@ -140,16 +142,21 @@ const CustomListBase = () => {
     setSelectedRows([]);
   };
 
+  const onSubmit = () => {};
+
   return (
     <>
       {/* ------------------------------------------ */}
-      <Box pt={2}>
+      <Box pb={2}>
         <Typography variant="h6">Definir contestação</Typography>
         <Typography variant="subtitle1" color="textSecondary">
           Escolha as tarefas que deseja enviar para contestação.
         </Typography>
       </Box>
       <Box>
+        <Typography variant="subtitle1" gutterBottom>
+          Tarefas
+        </Typography>
         <List
           resource="tasks"
           basePath="/tasks"
@@ -168,8 +175,8 @@ const CustomListBase = () => {
           }
         >
           <Datagrid size="small">
-            <Locker unlock={["n4"]} label="id">
-              <TextField source="id" label="id" />
+            <Locker unlock={["n4"]} label="id" source="id">
+              <TextField source="id" />
             </Locker>
             <TextField source="title" />
             <DateField source="created_at" showTime />
@@ -189,6 +196,45 @@ const CustomListBase = () => {
             />
           </Datagrid>
         </List>
+      </Box>
+      <Box>
+        <Typography variant="subtitle1" gutterBottom>
+          Descrição da Contestação
+        </Typography>
+        <Form
+          onSubmit={onSubmit}
+          debug={(values) => {
+            console.log(values.values);
+          }}
+          initialValues={{
+            selectedRows,
+            internal_reason: "",
+            external_reason: "",
+          }}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <Box>
+                <Box width={0.4}>
+                  <TextInput
+                    source="internal_reason"
+                    label="Motivo Interno"
+                    fullWidth
+                  />
+                </Box>
+                <Box width={0.4}>
+                  <TextInput
+                    source="external_reason"
+                    label="Motivo Externo"
+                    fullWidth
+                  />
+                </Box>
+              </Box>
+              <Button type="submit" color="primary" variant="contained">
+                Enviar
+              </Button>
+            </form>
+          )}
+        />
       </Box>
       <Box py={3}>
         <Divider />
