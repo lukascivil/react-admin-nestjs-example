@@ -84,7 +84,26 @@ const CustomListBase = () => {
           }}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <ListInput source="tasks" />
+              <ListInput
+                listProps={{
+                  resource: "tasks",
+                  basePath: "/tasks",
+                }}
+                selectedItemProps={{
+                  primaryText: (record: any) => record.title,
+                  secondaryText: (record: any) => `${record.id} - `,
+                  tertiaryText: (record: any) => (
+                    <DateField record={record} source="created_at" showTime />
+                  ),
+                }}
+                source="tasks"
+              >
+                <Locker unlock={["n4"]} label="id" source="id">
+                  <TextField source="id" />
+                </Locker>
+                <TextField source="title" />
+                <DateField source="created_at" showTime />
+              </ListInput>
               <Typography variant="subtitle1" gutterBottom>
                 Descrição da Contestação
               </Typography>
