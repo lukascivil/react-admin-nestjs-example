@@ -48,7 +48,7 @@ const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
         <Box pb={1} display="flex">
           <Box flexGrow={1}>
             <Typography component="span" variant="body2" color="textSecondary">
-              {datas?.length} Itens selecionados
+              {datas?.length} Tarefas selecionados
             </Typography>
           </Box>
           <Box>
@@ -144,7 +144,10 @@ const CustomListBase = () => {
     <>
       {/* ------------------------------------------ */}
       <Box pt={2}>
-        <Typography variant="h6">List Way</Typography>
+        <Typography variant="h6">Definir contestação</Typography>
+        <Typography variant="subtitle1" color="textSecondary">
+          Escolha as tarefas que deseja enviar para contestação.
+        </Typography>
       </Box>
       <Box>
         <List
