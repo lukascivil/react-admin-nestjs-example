@@ -34,6 +34,7 @@ import {
   Remove as RemoveIcon,
   Delete as DeleteIcon,
 } from "@material-ui/icons";
+import Locker from "core/components/Locker";
 
 const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
   return (
@@ -79,15 +80,17 @@ const SelectionRowListAside = ({ datas, onRemove, onClear }) => {
                       </>
                     }
                   />
-                  <ListItemSecondaryAction>
-                    <IconButton
-                      size="small"
-                      edge="end"
-                      onClick={() => onRemove(row)}
-                    >
-                      <RemoveIcon fontSize="small" color="error" />
-                    </IconButton>
-                  </ListItemSecondaryAction>
+                  <Locker unlock={["n4"]}>
+                    <ListItemSecondaryAction>
+                      <IconButton
+                        size="small"
+                        edge="end"
+                        onClick={() => onRemove(row)}
+                      >
+                        <RemoveIcon fontSize="small" color="error" />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </Locker>
                 </ListItem>
                 <Divider />
               </Fragment>
@@ -149,7 +152,9 @@ const CustomListBase = () => {
           }
         >
           <Datagrid size="small">
-            <TextField source="id" label="id" />
+            <Locker unlock={["n4"]} label="id">
+              <TextField source="id" label="id" />
+            </Locker>
             <TextField source="title" />
             <DateField source="created_at" showTime />
             <FunctionField
@@ -265,6 +270,9 @@ const CustomListBase = () => {
               <TextField source="id" label="id" />
               <Box>
                 <TextField source="title" label="title" />
+                <Locker unlock={["n4"]}>
+                  <TextField source="title" label="title" />
+                </Locker>
               </Box>
             </Box>
           </Box>
