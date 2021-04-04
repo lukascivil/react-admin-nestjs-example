@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { usePermissions } from "ra-core";
 import { sanitizeFieldRestProps } from "ra-ui-materialui";
 
-type Role = "n1" | "n2" | "n3" | "n4";
+type Role = "n1" | "n2" | "n3" | "n4" | "n5";
 
 interface Props {
   lock?: Array<Role>;

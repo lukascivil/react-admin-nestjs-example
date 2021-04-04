@@ -74,11 +74,11 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
       >
         <Box height={350} style={{ overflowY: "scroll" }}>
           <MuiList dense>
-            {records?.map((row) => (
-              <Fragment key={row.id}>
+            {records?.map((record) => (
+              <Fragment key={record.id}>
                 <ListItem alignItems="flex-start">
                   <ListItemText
-                    primary={primaryText(row)}
+                    primary={primaryText(record)}
                     secondary={
                       <>
                         <Typography
@@ -86,9 +86,9 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
                           variant="body2"
                           color="textPrimary"
                         >
-                          {secondaryText(row)}
+                          {secondaryText(record)}
                         </Typography>
-                        {tertiaryText(row)}
+                        {tertiaryText(record)}
                       </>
                     }
                   />
@@ -96,7 +96,7 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
                     <IconButton
                       size="small"
                       edge="end"
-                      onClick={() => onRemove(row)}
+                      onClick={() => onRemove(record)}
                     >
                       <RemoveIcon fontSize="small" color="error" />
                     </IconButton>

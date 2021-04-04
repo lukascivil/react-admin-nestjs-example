@@ -81,6 +81,7 @@ const CustomListBase = () => {
           initialValues={{
             internal_reason: "",
             external_reason: "",
+            tasks: [],
           }}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -266,7 +267,7 @@ const CustomList: FC<any> = () => {
       <AppBar position="static">
         <TabList onChange={handleChange}>
           <Tab label="Item One" value="1" />
-          <Locker unlock={["n1"]} value="2">
+          <Locker unlock={["n1", "n2", "n3"]} value="2">
             <Tab label="Item Two" />
           </Locker>
           <Locker unlock={["n4"]} value="3">
