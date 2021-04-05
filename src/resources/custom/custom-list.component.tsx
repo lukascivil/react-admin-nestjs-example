@@ -18,6 +18,7 @@ import {
   List,
   Filter,
   TextInput,
+  required,
 } from "react-admin";
 import {
   Box,
@@ -75,9 +76,9 @@ const CustomListBase = () => {
       <Box>
         <Form
           onSubmit={onSubmit}
-          debug={(values) => {
-            console.log(values.values);
-          }}
+          // debug={(values) => {
+          //   console.log(values.values);
+          // }}
           initialValues={{
             internal_reason: "",
             external_reason: "",
@@ -86,18 +87,23 @@ const CustomListBase = () => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <ListInput
-                listProps={{
-                  resource: "tasks",
-                  basePath: "/tasks",
-                }}
-                selectedItemProps={{
-                  primaryText: (record: any) => record.title,
-                  secondaryText: (record: any) => `${record.id} - `,
-                  tertiaryText: (record: any) => (
-                    <DateField record={record} source="created_at" showTime />
-                  ),
-                }}
                 source="tasks"
+                resource="tasks"
+                basePath="/custom"
+                validate={required()}
+                filters={
+                  <TextInput
+                    label="Title"
+                    source="title"
+                    size="small"
+                    alwaysOn
+                  />
+                }
+                primaryText={(record: any) => record.title}
+                secondaryText={(record: any) => `${record.id} - `}
+                tertiaryText={(record: any) => (
+                  <DateField record={record} source="created_at" showTime />
+                )}
               >
                 <Locker unlock={["n4"]} label="id" source="id">
                   <TextField source="id" />
@@ -113,6 +119,7 @@ const CustomListBase = () => {
                   <TextInput
                     source="internal_reason"
                     label="Motivo Interno"
+                    validate={[required()]}
                     fullWidth
                   />
                 </Box>

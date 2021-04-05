@@ -7,15 +7,17 @@ import React, {
   memo,
   ReactNode,
 } from "react";
+import { shallowEqual } from "react-redux";
 import {
   Datagrid,
   FunctionField,
   List,
   Filter,
-  TextInput,
   useInput,
   InputProps,
-  ListProps,
+  Validator,
+  useTranslate,
+  FieldTitle,
 } from "react-admin";
 import {
   Box,
@@ -35,11 +37,16 @@ import {
 
 interface SelectionRowListAsideProps {
   records: Array<any>;
+  touched: boolean;
+  errorMessage: string;
+  isRequired: boolean;
   onRemove: (record: any) => void;
   onClear: () => void;
   primaryText: (record: any) => ReactNode;
   secondaryText: (record: any) => ReactNode;
   tertiaryText: (record: any) => ReactNode;
+  resource?: string;
+  source: string;
 }
 
 const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
@@ -47,16 +54,36 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
   onRemove,
   onClear,
   primaryText,
+  touched,
+  isRequired,
+  errorMessage,
   secondaryText,
   tertiaryText,
+  resource,
+  source,
 }) => {
+  const translate = useTranslate();
+
   return (
     <Box ml={4} width={500}>
       <Box width={1}>
         <Box pb={1} display="flex">
           <Box flexGrow={1}>
-            <Typography component="span" variant="body2" color="textSecondary">
-              {records?.length} Tarefas selecionados
+            <Typography
+              component="span"
+              variant="body2"
+              color={touched && errorMessage ? "error" : "textSecondary"}
+            >
+              {touched && errorMessage ? (
+                translate(errorMessage)
+              ) : (
+                <FieldTitle
+                  label={`${records?.length} Itens selecionados`}
+                  source={source}
+                  resource={resource}
+                  isRequired={isRequired}
+                />
+              )}
             </Typography>
           </Box>
           <Box>
@@ -68,7 +95,7 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
       </Box>
       <Box
         border={1}
-        borderColor="lightgrey"
+        borderColor={touched && errorMessage ? "red" : "lightgrey"}
         borderRadius={6}
         bgcolor="grey.100"
       >
@@ -112,29 +139,57 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
   );
 };
 
-const TaskListFilter = (props) => (
-  <Filter {...props}>
-    <TextInput label="Title" source="title" size="small" alwaysOn />
-  </Filter>
-);
-
 interface Props extends Omit<InputProps, "children"> {
-  listProps: ListProps;
-  selectedItemProps: {
-    primaryText?: (record: any) => ReactNode;
-    secondaryText?: (record: any) => ReactNode;
-    tertiaryText?: (record: any) => ReactNode;
-  };
+  resource: "tasks";
+  basePath: "/custom";
+  filters: ReactNode;
+  validate?: Validator | Array<Validator>;
+  primaryText?: (record: any) => ReactNode;
+  secondaryText?: (record: any) => ReactNode;
+  tertiaryText?: (record: any) => ReactNode;
   children: any;
 }
 
+const isEqual = (prevProps, nextProps) => {
+  const {
+    children: prevChildren,
+    filters: prevFilters,
+    validate: prevValidate,
+    primaryText: prevPrimaryText,
+    secondaryText: prevSecondaryText,
+    tertiaryText: prevTertiaryText,
+    ...restOfPrevProps
+  } = prevProps;
+  const {
+    children: nextChildren,
+    filters: nextFilters,
+    validate: nextValidate,
+    primaryText: nextPrimaryText,
+    secondaryText: nextSecondaryText,
+    tertiaryText: nextTertiaryText,
+    ...restOfNextProps
+  } = nextProps;
+
+  return shallowEqual(restOfPrevProps, restOfNextProps);
+};
+
 const ListInput: FC<Props> = memo<Props>(
-  ({ listProps, selectedItemProps, children, ...rest }) => {
+  ({
+    resource,
+    basePath,
+    filters,
+    children,
+    primaryText,
+    secondaryText,
+    tertiaryText,
+    source,
+    ...rest
+  }) => {
     const {
-      input: { name, onChange, value },
-      meta: { touched, error },
+      input: { onChange, value },
+      meta: { touched, submitError, error },
       isRequired,
-    } = useInput(rest as any);
+    } = useInput({ ...rest, source } as any);
     const [selectedRows, setSelectedRows] = useState<Array<any>>([]);
 
     useEffect(() => {
@@ -161,24 +216,28 @@ const ListInput: FC<Props> = memo<Props>(
 
     return (
       <List
+        resource={resource}
+        basePath={basePath}
         syncWithLocation={false}
         actions={false}
         bulkActionButtons={false}
         component="div"
-        filters={<TaskListFilter />}
+        filters={<Filter>{filters}</Filter>}
         aside={
           <SelectionRowListAside
-            primaryText={selectedItemProps.primaryText || ((value) => value)}
-            secondaryText={
-              selectedItemProps.secondaryText || ((value) => value)
-            }
-            tertiaryText={selectedItemProps.tertiaryText || ((value) => value)}
+            primaryText={primaryText || ((value) => value)}
+            secondaryText={secondaryText || ((value) => value)}
+            tertiaryText={tertiaryText || ((value) => value)}
+            touched={touched || false}
+            isRequired={isRequired}
+            resource={resource}
+            errorMessage={error || submitError}
             records={value || []}
             onRemove={handleRemoveRow}
             onClear={handleClearSelectedRows}
+            source={source}
           />
         }
-        {...listProps}
       >
         <Datagrid size="small">
           {children}
@@ -199,7 +258,8 @@ const ListInput: FC<Props> = memo<Props>(
         </Datagrid>
       </List>
     );
-  }
+  },
+  isEqual
 );
 
 export default ListInput;
