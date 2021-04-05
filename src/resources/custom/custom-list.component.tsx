@@ -1,5 +1,5 @@
 // Packages
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   ResourceContextProvider,
   Datagrid,
@@ -15,8 +15,6 @@ import {
   BooleanField,
   RecordContextProvider,
   useGetList,
-  List,
-  Filter,
   TextInput,
   required,
 } from "react-admin";
@@ -24,26 +22,15 @@ import {
   Box,
   Card,
   CardContent,
-  ListItem,
-  ListItemText,
   Typography,
-  List as MuiList,
-  ListItemSecondaryAction,
-  IconButton,
   Divider,
   Tab,
   AppBar,
   Button,
 } from "@material-ui/core";
-import {
-  Add as AddIcon,
-  Remove as RemoveIcon,
-  Delete as DeleteIcon,
-} from "@material-ui/icons";
-import Locker from "core/components/Locker";
 import { TabContext, TabList, TabPanel } from "@material-ui/lab";
 import { Form } from "react-final-form";
-import ListInput from "core/components/ListInput";
+import { ListInput, Locker } from "core/components";
 
 const CustomListBase = () => {
   useAuthenticated();
