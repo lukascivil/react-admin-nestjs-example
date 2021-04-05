@@ -17,6 +17,8 @@ import {
   useGetList,
   TextInput,
   required,
+  NumberInput,
+  DateInput,
 } from "react-admin";
 import {
   Box,
@@ -78,14 +80,27 @@ const CustomListBase = () => {
                 resource="tasks"
                 basePath="/custom"
                 validate={required()}
-                filters={
+                filters={[
+                  <NumberInput label="Id" source="id" size="small" alwaysOn />,
                   <TextInput
                     label="Title"
                     source="title"
                     size="small"
                     alwaysOn
-                  />
-                }
+                  />,
+                  <DateInput
+                    label="Criado em - Início"
+                    source="created_at_start"
+                    size="small"
+                    alwaysOn
+                  />,
+                  <DateInput
+                    label="Criado em - Fim"
+                    source="created_at_end"
+                    size="small"
+                    alwaysOn
+                  />,
+                ]}
                 primaryText={(record: any) => record.title}
                 secondaryText={(record: any) => `${record.id} - `}
                 tertiaryText={(record: any) => (

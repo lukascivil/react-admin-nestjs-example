@@ -142,7 +142,7 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
 interface Props extends Omit<InputProps, "children"> {
   resource: "tasks";
   basePath: "/custom";
-  filters: ReactNode;
+  filters: Array<ReactNode>;
   validate?: Validator | Array<Validator>;
   primaryText?: (record: any) => ReactNode;
   secondaryText?: (record: any) => ReactNode;
@@ -223,7 +223,7 @@ const ListInput: FC<Props> = memo<Props>(
         actions={false}
         bulkActionButtons={false}
         component="div"
-        filters={<Filter>{filters}</Filter>}
+        filters={<Filter>{filters?.map((input) => input)}</Filter>}
         aside={
           <SelectionRowListAside
             primaryText={primaryText || ((value) => value)}
