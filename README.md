@@ -12,6 +12,9 @@ Tasker is an application for registering tasks. The client side was created usin
 
 ![GIF 15-11-2020 20-29-13](https://user-images.githubusercontent.com/7409802/99199957-5aa59e80-2781-11eb-9bd6-09e14f9c0981.gif)
 
+Example with ListInput component
+![image](https://user-images.githubusercontent.com/7409802/113529471-e6399380-9599-11eb-8664-03c420408860.png)
+
 ## Installation
 
 ```bash
