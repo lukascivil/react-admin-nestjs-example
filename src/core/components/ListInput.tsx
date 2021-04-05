@@ -219,6 +219,7 @@ const ListInput: FC<Props> = memo<Props>(
         resource={resource}
         basePath={basePath}
         syncWithLocation={false}
+        empty={false}
         actions={false}
         bulkActionButtons={false}
         component="div"
