@@ -2200,6 +2200,16 @@
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.1.0.tgz#0e81ce56b4883b4b2a3001ebe1ab298b84237204"
   integrity sha512-afmTuJrylUU/0OtqzaRkbyYFFNgCF73Bvel/sw90pvGrWIZ+vyoIJqA6eMSoA6+nb443kTmulmBtC9NerXboNg==
 
+"@reduxjs/toolkit@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.6.0.tgz#0a17c6941c57341f8b31e982352b495ab69d5add"
+  integrity sha512-eGL50G+Vj5AG5uD0lineb6rRtbs96M8+hxbcwkHpZ8LQcmt0Bm33WyBSnj5AweLkjQ7ZP+KFRDHiLMznljRQ3A==
+  dependencies:
+    immer "^9.0.1"
+    redux "^4.1.0"
+    redux-thunk "^2.3.0"
+    reselect "^4.0.0"
+
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz#80de384edfbd7bfc9101164910f86078151a3eca"
@@ -2526,6 +2536,11 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/lodash@^4.14.170":
+  version "4.14.170"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
+  integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -5912,11 +5927,6 @@ final-form-arrays@^3.0.2:
   resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-3.0.2.tgz#9f3bef778dec61432357744eb6f3abef7e7f3847"
   integrity sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w==
 
-final-form-submit-errors@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/final-form-submit-errors/-/final-form-submit-errors-0.1.2.tgz#1c59d10386d7b5a1a5e89f9389fa7cf85d1255c5"
-  integrity sha512-2EwHSdf9Sy80bnsGRrDKBLp5C2uY7hL65o8tpqK/FWxyBpXtT519SsIZC4etLpGen2kjFCpYrxYkzFUfbIEXsQ==
-
 final-form@^4.20.2:
   version "4.20.2"
   resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.20.2.tgz#c820b37d7ebb73d71169480256a36c7e6e6c9155"
@@ -6646,6 +6656,11 @@ immer@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/immer/-/immer-8.0.1.tgz#9c73db683e2b3975c424fb0572af5889877ae656"
   integrity sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA==
+
+immer@^9.0.1:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.3.tgz#146e2ba8b84d4b1b15378143c2345559915097f4"
+  integrity sha512-mONgeNSMuyjIe0lkQPa9YhdmTv8P19IeHV0biYhcXhbd5dhdB9HSK93zBpyKjp6wersSUgT5QyU0skmejUVP2A==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -10086,6 +10101,20 @@ ra-core@^3.14.2:
     query-string "^5.1.1"
     reselect "~3.0.0"
 
+ra-core@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/ra-core/-/ra-core-3.16.2.tgz#e961b9ac9868164d3813c578e82fce8bee06551f"
+  integrity sha512-akovJTEmWs3+nLALvOveevE5YabOUpTXSTm83HqJAgfl2Z+F+FrqXqr9447D38/p9fmsYJ6BH54GhXDBJtIS3A==
+  dependencies:
+    classnames "~2.2.5"
+    date-fns "^1.29.0"
+    eventemitter3 "^3.0.0"
+    inflection "~1.12.0"
+    lodash "~4.17.5"
+    prop-types "^15.6.1"
+    query-string "^5.1.1"
+    reselect "~3.0.0"
+
 ra-data-simple-rest@^3.13.4:
   version "3.13.4"
   resolved "https://registry.yarnpkg.com/ra-data-simple-rest/-/ra-data-simple-rest-3.13.4.tgz#27f936945234df06c3ccf715d28dd7cfb9e15df6"
@@ -10093,13 +10122,13 @@ ra-data-simple-rest@^3.13.4:
   dependencies:
     query-string "^5.1.1"
 
-ra-i18n-polyglot@^3.14.2:
-  version "3.14.2"
-  resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-3.14.2.tgz#0b9e42f6dda4ed5c0270ada0f1788f89c741433b"
-  integrity sha512-+VLfZYj9zf7SPNWwiXxt7vbIo2CiKcSUsAD/USYI8Af30MLomkuwGJiO//3k7BHJFL0Qa+T4d0KHWI22OdM6YQ==
+ra-i18n-polyglot@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-3.16.2.tgz#84e1a600b5a5a3dc7b80c5551fefb3766346259f"
+  integrity sha512-561FZxP8+pfZ2VeS8hcnecL2Dh+7f25t6s5pWuIdvRk3K3FMcfdTNcsvPgNCTt9FD6HflWaWVXPpHFPnAjGTKA==
   dependencies:
     node-polyglot "^2.2.2"
-    ra-core "^3.14.2"
+    ra-core "^3.16.2"
 
 ra-language-english@^3.14.2:
   version "3.14.2"
@@ -10108,10 +10137,17 @@ ra-language-english@^3.14.2:
   dependencies:
     ra-core "^3.14.2"
 
-ra-ui-materialui@^3.14.2:
-  version "3.14.2"
-  resolved "https://registry.yarnpkg.com/ra-ui-materialui/-/ra-ui-materialui-3.14.2.tgz#4c6e5ba4c134e952318ebb3b3f98802f41ef6f78"
-  integrity sha512-mY8C0NKsb617PWFQrwliUxOIZLavugCBcWo9fPIxpdtJxAjqkaOFPnhmwk4ef0yCl1S7fA2+0HolBBucidMOvg==
+ra-language-english@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/ra-language-english/-/ra-language-english-3.16.2.tgz#87db4504ae3b60ca3a2fc98e356d85fcf93ecc88"
+  integrity sha512-f93kQ3+fxmt9oz06LGvGeBmU0zomiMMxtLTF38fci8n7YfpNO16qrkXeAur9mH/jg6N1gD/40prVZsJ3B/pyrA==
+  dependencies:
+    ra-core "^3.16.2"
+
+ra-ui-materialui@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/ra-ui-materialui/-/ra-ui-materialui-3.16.2.tgz#9fbd1a7104cd1a291801101d01212c47e1a724c6"
+  integrity sha512-OxXYBFETN89thmfqbR0iYWWloMqIO6njHNc47i5CGq5Bd5ZKZv7D87eHJrZ8+c73aczspNc9vBDYxGKv1VS4DQ==
   dependencies:
     autosuggest-highlight "^3.1.1"
     classnames "~2.2.5"
@@ -10163,10 +10199,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-admin@^3.14.2:
-  version "3.14.2"
-  resolved "https://registry.yarnpkg.com/react-admin/-/react-admin-3.14.2.tgz#83529c93cacbe9634cf689bc0de6a851cf7d409a"
-  integrity sha512-7CYtflafEt0mf5dPBVG86E4T5V630TdTcbKUW5OvjQctBbHbXcOxxGdfJojVD1AIq2UCFuLt4DNeJDmXYFVy0g==
+react-admin@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/react-admin/-/react-admin-3.16.2.tgz#0d4fdca5ef7515029ae93716d33db763faba15d9"
+  integrity sha512-CCk8gTBk77MOKSLRjF/4LE+GHhunOCn2aeTjoEzxGR65NifJgfswzBHEUdMdh+hutoiiS1r9Zg8ZPo3ezsDoKA==
   dependencies:
     "@material-ui/core" "^4.11.2"
     "@material-ui/icons" "^4.11.2"
@@ -10174,11 +10210,10 @@ react-admin@^3.14.2:
     connected-react-router "^6.5.2"
     final-form "^4.20.2"
     final-form-arrays "^3.0.2"
-    final-form-submit-errors "^0.1.2"
-    ra-core "^3.14.2"
-    ra-i18n-polyglot "^3.14.2"
-    ra-language-english "^3.14.2"
-    ra-ui-materialui "^3.14.2"
+    ra-core "^3.16.2"
+    ra-i18n-polyglot "^3.16.2"
+    ra-language-english "^3.16.2"
+    ra-ui-materialui "^3.16.2"
     react-final-form "^6.5.2"
     react-final-form-arrays "^3.1.3"
     react-redux "^7.1.0"
@@ -10501,6 +10536,11 @@ redux-saga@^1.0.0:
   dependencies:
     "@redux-saga/core" "^1.1.3"
 
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
+
 "redux@^3.7.2 || ^4.0.3", redux@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
@@ -10508,6 +10548,13 @@ redux-saga@^1.0.0:
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
+
+redux@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
+  integrity sha512-uI2dQN43zqLWCt6B/BMGRMY6db7TTY4qeHHfGeKb3EOhmOKjU3KdWvNLJyqaHRksv/ErdNH7cFZWg9jXtewy4g==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
@@ -10675,6 +10722,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reselect@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 reselect@~3.0.0:
   version "3.0.1"
