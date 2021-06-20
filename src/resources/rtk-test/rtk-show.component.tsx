@@ -21,7 +21,7 @@ export const RtkShow: FC = () => {
   const currentSort = { field: "created_at", order: "ASC" };
   // Simulating optimistic rendering, we dont have to wait for the query
   // React-admin does it out of the box using its ids as keys
-  const { data: cachedUser } = usersApi.endpoints.getUsers.useQueryState({
+  const { data: cachedUsers } = usersApi.endpoints.getUsers.useQueryState({
     filter: {},
     pagination: { page: 1, perPage: 5 },
     sort: currentSort,
@@ -47,7 +47,7 @@ export const RtkShow: FC = () => {
   return (
     <Card>
       <Box m={2}>
-        <RecordContextProvider value={user || cachedUser}>
+        <RecordContextProvider value={user || cachedUsers}>
           <Box pt={2}>
             <Typography variant="h6">Cadastro</Typography>
           </Box>
