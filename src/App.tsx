@@ -25,6 +25,8 @@ import { RtkList } from "resources/rtk-test/rtk-list.component";
 import { createHashHistory } from "history";
 import { Provider } from "react-redux";
 import createAdminStore from "create-admin-store";
+import { RtkShow } from "resources/rtk-test/rtk-show.component";
+import { RtkEdit } from "resources/rtk-test/rtk-edit.component";
 
 const dataProvider = simpleRestProvider("http://localhost:3000", httpClient);
 
@@ -46,6 +48,8 @@ const App: FC<any> = () => (
       customRoutes={[
         <Route exact path="/custom" component={CustomList} />,
         <Route exact path="/rtk" component={RtkList} />,
+        <Route exact path="/rtk/:id" component={RtkShow} />,
+        <Route exact path="/rtk/:id/edit" component={RtkEdit} />,
       ]}
     >
       <Resource

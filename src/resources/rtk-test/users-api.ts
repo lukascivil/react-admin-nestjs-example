@@ -3,7 +3,7 @@ import { httpClientBaseQuery } from "httpclient-adapter";
 import { stringify } from "querystring";
 import { FilterPayload, GetListParams, Identifier } from "react-admin";
 
-interface User {
+export interface User {
   id: Identifier;
 }
 
@@ -31,13 +31,21 @@ export const usersApi = createApi({
   }),
   tagTypes: ["users"],
   endpoints: (build) => ({
-    getUsers: build.query<Array<User>, GetListParams>({
+    getUsers: build.query<{ data: Array<User>; total: number }, GetListParams>({
       query: (getListParams) => ({
         url: `users?${generateListQuery(getListParams)}`,
         method: "GET",
       }),
       providesTags: (result, _error) =>
-        result ? result.map((user) => ({ type: "users", id: user.id })) : [],
+        result
+          ? result.data.map((user) => ({ type: "users", id: user.id }))
+          : [],
+      transformResponse: (
+        response: Array<User>,
+        meta: { contentRange?: number }
+      ) => {
+        return { data: response, total: meta?.contentRange || 0 };
+      },
     }),
     getUser: build.query<User, Identifier>({
       query: (id) => ({
@@ -70,7 +78,7 @@ export const usersApi = createApi({
               sort: { field: "created_at", order: "ASC" },
             },
             (draft) => {
-              const newdraft = draft.map((draftUser) => {
+              const newdraft = draft.data.map((draftUser) => {
                 if (draftUser.id === user.id) {
                   return { ...draftUser, name: "getList() alterado" };
                 }
@@ -78,7 +86,7 @@ export const usersApi = createApi({
                 return draftUser;
               });
 
-              draft = newdraft;
+              draft.data = newdraft;
             }
           )
         );

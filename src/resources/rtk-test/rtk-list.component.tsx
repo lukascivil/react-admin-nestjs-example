@@ -1,50 +1,70 @@
-import React, { FC, useEffect } from "react";
-import { Datagrid } from "react-admin";
+import React, { FC } from "react";
 import {
-  useGetUsersQuery,
-  useGetUserQuery,
-  useUpdateUserMutation,
-} from "./users-api";
-import { isEqual, omit } from "lodash";
+  Datagrid,
+  DateField,
+  TextField,
+  Link,
+  Button,
+  FunctionField,
+} from "react-admin";
+import { useGetUsersQuery, User } from "./users-api";
 
 export const RtkList: FC = () => {
-  const { data: users } = useGetUsersQuery({
-    filter: {},
-    pagination: { page: 1, perPage: 50 },
-    sort: { field: "created_at", order: "ASC" },
-  });
-  const { data: user2 } = useGetUserQuery(2);
-  const { data: user4 } = useGetUserQuery(4);
-  const { data: user5 } = useGetUserQuery(5);
-  const [updateUser, { data: updatedUser }] = useUpdateUserMutation();
+  const currentSort = { field: "created_at", order: "ASC" };
+  const { data } = useGetUsersQuery(
+    {
+      filter: {},
+      pagination: { page: 1, perPage: 5 },
+      sort: currentSort,
+    },
+    { refetchOnMountOrArgChange: 2, pollingInterval: 10000 }
+  );
+  const users = data?.data.reduce((prev, curr, index) => {
+    prev[index] = curr;
 
-  useEffect(() => {
-    const isDifferent = !isEqual(
-      omit(user5, "updated_at"),
-      omit(updatedUser, "updated_at")
-    );
-
-    if (user5 && isDifferent) {
-      console.log({ user5, updatedUser });
-
-      const newUser = { ...user5, name: "cafe novo123" };
-
-      updateUser(newUser);
-    }
-  }, [updateUser, user5]);
+    return prev;
+  }, {});
 
   return (
     <div>
-      {/* <Datagrid
+      <Datagrid
         basePath="/custom"
         currentSort={currentSort}
-        data={permissions}
-        ids={permissions?.map((_, index) => index) || []}
-        loaded={false}
-        total={permissions?.length || 0}
+        data={users}
+        ids={data?.data.map((_, index) => index) || []}
+        loaded={Boolean(users)}
+        total={data?.total || 0}
       >
-        <FunctionField render={(record) => record} />
-      </Datagrid> */}
+        <TextField source="id" />
+        <TextField source="name" />
+        <TextField source="password" />
+        <TextField source="email" />
+        <DateField source="birthdate" showTime />
+        <DateField source="updated_at" showTime />
+        <DateField source="created_at" showTime />
+        <FunctionField<User>
+          render={(record) => {
+            return (
+              <Button
+                label="Visualizar"
+                component={Link}
+                to={`/rtk/${record?.id}`}
+              />
+            );
+          }}
+        />
+        <FunctionField<User>
+          render={(record) => {
+            return (
+              <Button
+                label="Editar"
+                component={Link}
+                to={`/rtk/${record?.id}/edit`}
+              />
+            );
+          }}
+        />
+      </Datagrid>
     </div>
   );
 };

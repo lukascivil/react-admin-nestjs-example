@@ -16,8 +16,6 @@ export const UsersCreate: FC<CreateProps> = (props) => {
   };
 
   const transform = (data) => {
-    console.log(data);
-
     return {
       ...data,
       birthdate: parse(data.birthdate, "yyyy-MM-dd", new Date()),
