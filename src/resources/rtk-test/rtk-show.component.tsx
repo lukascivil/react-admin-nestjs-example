@@ -21,6 +21,7 @@ export const RtkShow: FC = () => {
   const currentSort = { field: "created_at", order: "ASC" };
   // Simulating optimistic rendering, we dont have to wait for the query
   // React-admin does it out of the box using its ids as keys
+  // RA does "data consolidation mechanism" and RTK query and friends not
   const { data: cachedUsers } = usersApi.endpoints.getUsers.useQueryState({
     filter: {},
     pagination: { page: 1, perPage: 5 },
