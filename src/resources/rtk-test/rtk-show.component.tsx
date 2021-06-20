@@ -9,7 +9,7 @@ import {
 import { Box, Card, Typography } from "@material-ui/core";
 import { useGetUserQuery, usersApi } from "./users-api";
 import { useLocation } from "react-router-dom";
-import { shallowEqual, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const RtkShow: FC = () => {
   const location = useLocation();
@@ -26,6 +26,19 @@ export const RtkShow: FC = () => {
     pagination: { page: 1, perPage: 5 },
     sort: currentSort,
   });
+
+  // Another Example
+  // const mapState = (state: RootState) => ({
+  //   users: api.endpoints.getUsers.select(3)(state)
+  // });
+  // const getUsersState = useSelector((state) =>
+  //   usersApi.endpoints.getUsers.select({
+  //     filter: {},
+  //     pagination: { page: 1, perPage: 5 },
+  //     sort: currentSort,
+  //   })(state)
+  // );
+  // console.log({ getUsersState });
 
   useEffect(() => {
     refetch();
