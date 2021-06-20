@@ -2,7 +2,13 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { httpClientBaseQuery } from "httpclient-adapter";
 import { stringify } from "querystring";
-import { FilterPayload, GetListParams, Identifier } from "react-admin";
+import {
+  fetchEnd,
+  fetchStart,
+  FilterPayload,
+  GetListParams,
+  Identifier,
+} from "react-admin";
 
 export interface User {
   id: Identifier;
@@ -47,6 +53,15 @@ export const usersApi = createApi({
       ) => {
         return { data: response, total: meta?.contentRange || 0 };
       },
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        try {
+          dispatch(fetchStart());
+          await queryFulfilled;
+          dispatch(fetchEnd());
+        } catch {
+          dispatch(fetchEnd());
+        }
+      },
     }),
     getUser: build.query<User, Identifier>({
       query: (id) => ({
@@ -68,7 +83,7 @@ export const usersApi = createApi({
         method: "PUT",
         data: { ...user },
       }),
-      async onQueryStarted(user, { dispatch, queryFulfilled }) {
+      onQueryStarted: async (user, { dispatch, queryFulfilled }) => {
         // Optimistic Update getOne
         const patchResultGetUser = dispatch(
           usersApi.util.updateQueryData("getUser", 5, (draft) => {
