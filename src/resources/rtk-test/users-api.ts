@@ -44,9 +44,7 @@ export const usersApi = createApi({
         method: "GET",
       }),
       providesTags: (result, _error) =>
-        result
-          ? result.data.map((user) => ({ type: "users", id: user.id }))
-          : [],
+        result ? [{ type: "users", id: "list" }] : [],
       transformResponse: (
         response: Array<User>,
         meta: { contentRange?: number }
@@ -76,6 +74,7 @@ export const usersApi = createApi({
         method: "POST",
         data: { ...user },
       }),
+      invalidatesTags: () => [{ type: "users", id: "list" }],
     }),
     updateUser: build.mutation<User, User>({
       query: (user) => ({

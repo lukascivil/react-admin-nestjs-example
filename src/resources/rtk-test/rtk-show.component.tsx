@@ -7,8 +7,9 @@ import {
   useVersion,
 } from "react-admin";
 import { Box, Card, Typography } from "@material-ui/core";
-import { useGetUserQuery } from "./users-api";
+import { useGetUserQuery, usersApi } from "./users-api";
 import { useLocation } from "react-router-dom";
+import { shallowEqual, useSelector } from "react-redux";
 
 export const RtkShow: FC = () => {
   const location = useLocation();
@@ -16,6 +17,14 @@ export const RtkShow: FC = () => {
   const id = location.pathname.split("/").reverse()[0];
   const { data: user, refetch } = useGetUserQuery(id, {
     refetchOnMountOrArgChange: true,
+  });
+  const currentSort = { field: "created_at", order: "ASC" };
+  // Simulating optimistic rendering, we dont have to wait for the query
+  // React-admin does it out of the box using its ids as keys
+  const { data: cachedUser } = usersApi.endpoints.getUsers.useQueryState({
+    filter: {},
+    pagination: { page: 1, perPage: 5 },
+    sort: currentSort,
   });
 
   useEffect(() => {
@@ -25,7 +34,7 @@ export const RtkShow: FC = () => {
   return (
     <Card>
       <Box m={2}>
-        <RecordContextProvider value={user}>
+        <RecordContextProvider value={user || cachedUser}>
           <Box pt={2}>
             <Typography variant="h6">Cadastro</Typography>
           </Box>
