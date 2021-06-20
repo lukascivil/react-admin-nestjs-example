@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+// Packages
+import React, { FC, useEffect } from "react";
 import {
   Datagrid,
   DateField,
@@ -6,12 +7,14 @@ import {
   Link,
   Button,
   FunctionField,
+  useVersion,
 } from "react-admin";
 import { useGetUsersQuery, User } from "./users-api";
 
 export const RtkList: FC = () => {
   const currentSort = { field: "created_at", order: "ASC" };
-  const { data } = useGetUsersQuery(
+  const version = useVersion();
+  const { data, refetch, isFetching } = useGetUsersQuery(
     {
       filter: {},
       pagination: { page: 1, perPage: 5 },
@@ -25,6 +28,10 @@ export const RtkList: FC = () => {
     return prev;
   }, {});
 
+  useEffect(() => {
+    refetch();
+  }, [refetch, version]);
+
   return (
     <div>
       <Button label="Criar" component={Link} to={`/rtk/create`} />
@@ -33,7 +40,7 @@ export const RtkList: FC = () => {
         currentSort={currentSort}
         data={users}
         ids={data?.data.map((_, index) => index) || []}
-        loaded={Boolean(users)}
+        loaded={Boolean(users) || !isFetching}
         total={data?.total || 0}
       >
         <TextField source="id" />
