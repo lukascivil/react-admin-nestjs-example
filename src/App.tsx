@@ -27,6 +27,7 @@ import { Provider } from "react-redux";
 import createAdminStore from "create-admin-store";
 import { RtkShow } from "resources/rtk-test/rtk-show.component";
 import { RtkEdit } from "resources/rtk-test/rtk-edit.component";
+import { RtkCreate } from "resources/rtk-test/rtk-create.component";
 
 const dataProvider = simpleRestProvider("http://localhost:3000", httpClient);
 
@@ -48,6 +49,7 @@ const App: FC<any> = () => (
       customRoutes={[
         <Route exact path="/custom" component={CustomList} />,
         <Route exact path="/rtk" component={RtkList} />,
+        <Route exact path="/rtk/create" component={RtkCreate} />,
         <Route exact path="/rtk/:id" component={RtkShow} />,
         <Route exact path="/rtk/:id/edit" component={RtkEdit} />,
       ]}

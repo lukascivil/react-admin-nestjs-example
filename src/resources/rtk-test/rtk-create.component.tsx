@@ -1,21 +1,15 @@
 // Packages
 import React, { FC } from "react";
-import { TextInput, useNotify, useRedirect } from "react-admin";
+import { DateInput, TextInput, useNotify, useRedirect } from "react-admin";
 import { Box, Button, Card } from "@material-ui/core";
-import { useGetUserQuery, useUpdateUserMutation } from "./users-api";
-import { useLocation } from "react-router-dom";
+import { useCreateUserMutation } from "./users-api";
 import { Form } from "react-final-form";
 import { parse } from "date-fns";
 
-export const RtkEdit: FC = () => {
-  const location = useLocation();
-  const id = location.pathname.split("/").reverse()[1];
+export const RtkCreate: FC = () => {
   const notify = useNotify();
+  const [createUser] = useCreateUserMutation();
   const redirect = useRedirect();
-  const [updateUser] = useUpdateUserMutation();
-  const { data: record } = useGetUserQuery(id, {
-    refetchOnMountOrArgChange: true,
-  });
 
   const handleSubmit = (formValues) => {
     const payload = {
@@ -23,14 +17,14 @@ export const RtkEdit: FC = () => {
       birthdate: parse(formValues.birthdate, "yyyy-MM-dd", new Date()),
     };
 
-    updateUser(payload)
+    createUser(payload)
       .unwrap()
       .then(() => {
         redirect("/rtk");
-        notify("Usuário atualizado com sucesso");
+        notify("Usuário criado com sucesso");
       })
       .catch(() => {
-        notify("Erro ao atualizar usuário");
+        notify("Erro ao criar usuário");
       });
   };
 
@@ -38,16 +32,12 @@ export const RtkEdit: FC = () => {
     <Card>
       <Box m={2}>
         <Form
-          initialValues={record}
           onSubmit={handleSubmit}
           keepDirtyOnReinitialize
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <Box>
-                <TextInput disabled source="id" />
-              </Box>
-              <Box>
-                <TextInput disabled source="email" />
+                <TextInput source="email" />
               </Box>
               <Box>
                 <TextInput source="name" />
@@ -56,7 +46,7 @@ export const RtkEdit: FC = () => {
                 <TextInput source="password" />
               </Box>
               <Box>
-                <TextInput source="birthdate" />
+                <DateInput source="birthdate" />
               </Box>
               <Box>
                 <Button type="submit">Salvar</Button>

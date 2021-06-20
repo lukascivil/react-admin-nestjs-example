@@ -27,6 +27,7 @@ export const RtkList: FC = () => {
 
   return (
     <div>
+      <Button label="Criar" component={Link} to={`/rtk/create`} />
       <Datagrid
         basePath="/custom"
         currentSort={currentSort}

@@ -1,3 +1,4 @@
+// Packages
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { httpClientBaseQuery } from "httpclient-adapter";
 import { stringify } from "querystring";
@@ -54,6 +55,13 @@ export const usersApi = createApi({
       }),
       providesTags: (_result, _error, id) => [{ type: "users", id }],
     }),
+    createUser: build.mutation<User, User>({
+      query: (user) => ({
+        url: `users`,
+        method: "POST",
+        data: { ...user },
+      }),
+    }),
     updateUser: build.mutation<User, User>({
       query: (user) => ({
         url: `users/${user.id}`,
@@ -102,5 +110,9 @@ export const usersApi = createApi({
   }),
 });
 
-export const { useGetUserQuery, useUpdateUserMutation, useGetUsersQuery } =
-  usersApi;
+export const {
+  useCreateUserMutation,
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useGetUsersQuery,
+} = usersApi;
