@@ -28,6 +28,7 @@ import createAdminStore from "create-admin-store";
 import { RtkShow } from "resources/rtk-test/rtk-show.component";
 import { RtkEdit } from "resources/rtk-test/rtk-edit.component";
 import { RtkCreate } from "resources/rtk-test/rtk-create.component";
+import { CustomLayout } from "config/layout/custom-layout";
 
 const dataProvider = simpleRestProvider("http://localhost:3000", httpClient);
 
@@ -42,6 +43,7 @@ const App: FC<any> = () => (
     })}
   >
     <Admin
+      layout={CustomLayout}
       dataProvider={dataProvider as any}
       authProvider={authProvider}
       i18nProvider={i18nProvider}
