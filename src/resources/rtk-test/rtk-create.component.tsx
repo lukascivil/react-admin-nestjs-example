@@ -1,32 +1,32 @@
 // Packages
-import React, { FC } from "react";
-import { DateInput, TextInput, useNotify, useRedirect } from "react-admin";
-import { Box, Button, Card } from "@material-ui/core";
-import { useCreateUserMutation } from "./users-api";
-import { Form } from "react-final-form";
-import { parse } from "date-fns";
+import React, { FC } from 'react'
+import { DateInput, TextInput, useNotify, useRedirect } from 'react-admin'
+import { Box, Button, Card } from '@material-ui/core'
+import { useCreateUserMutation } from './users-api'
+import { Form } from 'react-final-form'
+import { parse } from 'date-fns'
 
 export const RtkCreate: FC = () => {
-  const notify = useNotify();
-  const [createUser] = useCreateUserMutation();
-  const redirect = useRedirect();
+  const notify = useNotify()
+  const [createUser] = useCreateUserMutation()
+  const redirect = useRedirect()
 
-  const handleSubmit = (formValues) => {
+  const handleSubmit = formValues => {
     const payload = {
       ...formValues,
-      birthdate: parse(formValues.birthdate, "yyyy-MM-dd", new Date()),
-    };
+      birthdate: parse(formValues.birthdate, 'yyyy-MM-dd', new Date())
+    }
 
     createUser(payload)
       .unwrap()
       .then(() => {
-        redirect("/rtk");
-        notify("Usuário criado com sucesso");
+        redirect('/rtk')
+        notify('Usuário criado com sucesso')
       })
       .catch(() => {
-        notify("Erro ao criar usuário");
-      });
-  };
+        notify('Erro ao criar usuário')
+      })
+  }
 
   return (
     <Card>
@@ -56,5 +56,5 @@ export const RtkCreate: FC = () => {
         />
       </Box>
     </Card>
-  );
-};
+  )
+}

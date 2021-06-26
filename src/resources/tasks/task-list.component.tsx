@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 import {
   List,
   Datagrid,
@@ -8,10 +8,10 @@ import {
   ShowButton,
   EditButton,
   DateField,
-  ReferenceField,
-} from "react-admin";
+  ReferenceField
+} from 'react-admin'
 
-export const TasksList: FC<ListProps> = (props) => (
+export const TasksList: FC<ListProps> = props => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
@@ -27,4 +27,4 @@ export const TasksList: FC<ListProps> = (props) => (
       <EditButton />
     </Datagrid>
   </List>
-);
+)

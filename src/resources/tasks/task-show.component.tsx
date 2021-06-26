@@ -1,14 +1,7 @@
-import React, { FC } from "react";
-import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  ShowProps,
-  BooleanField,
-  DateField,
-} from "react-admin";
+import React, { FC } from 'react'
+import { Show, SimpleShowLayout, TextField, ShowProps, BooleanField, DateField } from 'react-admin'
 
-export const TasksShow: FC<ShowProps> = (props) => (
+export const TasksShow: FC<ShowProps> = props => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
@@ -19,4 +12,4 @@ export const TasksShow: FC<ShowProps> = (props) => (
       <DateField source="created_at" showTime />
     </SimpleShowLayout>
   </Show>
-);
+)

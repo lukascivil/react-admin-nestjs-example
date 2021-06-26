@@ -1,5 +1,5 @@
 // Packages
-import React, { FC, useState } from "react";
+import React, { FC, useState } from 'react'
 import {
   ResourceContextProvider,
   Datagrid,
@@ -18,35 +18,26 @@ import {
   TextInput,
   required,
   NumberInput,
-  DateInput,
-} from "react-admin";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Divider,
-  Tab,
-  AppBar,
-  Button,
-} from "@material-ui/core";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
-import { Form } from "react-final-form";
-import { ListInput, Locker } from "core/components";
+  DateInput
+} from 'react-admin'
+import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@material-ui/core'
+import { TabContext, TabList, TabPanel } from '@material-ui/lab'
+import { Form } from 'react-final-form'
+import { ListInput, Locker } from 'core/components'
 
 const CustomListBase = () => {
-  useAuthenticated();
-  const { authenticated } = useAuthState();
-  const { permissions, loaded } = usePermissions();
+  useAuthenticated()
+  const { authenticated } = useAuthState()
+  const { permissions, loaded } = usePermissions()
   const { data, ids, loading, error } = useGetList(
-    "users",
+    'users',
     { page: 1, perPage: 10 },
-    { field: "created_at", order: "DESC" },
+    { field: 'created_at', order: 'DESC' },
     {}
-  );
-  const currentSort = { field: "created_at", order: "ASC" };
+  )
+  const currentSort = { field: 'created_at', order: 'ASC' }
 
-  const onSubmit = () => {};
+  const onSubmit = () => {}
 
   return (
     <>
@@ -69,9 +60,9 @@ const CustomListBase = () => {
           //   console.log(values.values);
           // }}
           initialValues={{
-            internal_reason: "",
-            external_reason: "",
-            tasks: [],
+            internal_reason: '',
+            external_reason: '',
+            tasks: []
           }}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -82,32 +73,15 @@ const CustomListBase = () => {
                 validate={required()}
                 filters={[
                   <NumberInput label="Id" source="id" size="small" alwaysOn />,
-                  <TextInput
-                    label="Title"
-                    source="title"
-                    size="small"
-                    alwaysOn
-                  />,
-                  <DateInput
-                    label="Criado em - Início"
-                    source="created_at_start"
-                    size="small"
-                    alwaysOn
-                  />,
-                  <DateInput
-                    label="Criado em - Fim"
-                    source="created_at_end"
-                    size="small"
-                    alwaysOn
-                  />,
+                  <TextInput label="Title" source="title" size="small" alwaysOn />,
+                  <DateInput label="Criado em - Início" source="created_at_start" size="small" alwaysOn />,
+                  <DateInput label="Criado em - Fim" source="created_at_end" size="small" alwaysOn />
                 ]}
                 primaryText={(record: any) => record.title}
                 secondaryText={(record: any) => `${record.id} - `}
-                tertiaryText={(record: any) => (
-                  <DateField record={record} source="created_at" showTime />
-                )}
+                tertiaryText={(record: any) => <DateField record={record} source="created_at" showTime />}
               >
-                <Locker unlock={["n4"]} label="id" source="id">
+                <Locker unlock={['n4']} label="id" source="id">
                   <TextField source="id" />
                 </Locker>
                 <TextField source="title" />
@@ -118,19 +92,10 @@ const CustomListBase = () => {
               </Typography>
               <Box>
                 <Box width={0.4}>
-                  <TextInput
-                    source="internal_reason"
-                    label="Motivo Interno"
-                    validate={[required()]}
-                    fullWidth
-                  />
+                  <TextInput source="internal_reason" label="Motivo Interno" validate={[required()]} fullWidth />
                 </Box>
                 <Box width={0.4}>
-                  <TextInput
-                    source="external_reason"
-                    label="Motivo Externo"
-                    fullWidth
-                  />
+                  <TextInput source="external_reason" label="Motivo Externo" fullWidth />
                 </Box>
               </Box>
               <Button type="submit" color="primary" variant="contained">
@@ -159,13 +124,7 @@ const CustomListBase = () => {
         <Divider />
       </Box>
       {/* ------------------------------------------ */}
-      <ReferenceManyField
-        basePath="/custom"
-        resource="custom"
-        reference="tasks"
-        target="user_id"
-        label=""
-      >
+      <ReferenceManyField basePath="/custom" resource="custom" reference="tasks" target="user_id" label="">
         <Datagrid>
           <TextField source="title" />
           <DateField source="created_at" showTime />
@@ -176,9 +135,7 @@ const CustomListBase = () => {
       </Box>
       {/* ------------------------------------------ */}
       <Box pt={2}>
-        <Typography variant="h6">
-          Roles from authProvider (Stand alone datagrid)
-        </Typography>
+        <Typography variant="h6">Roles from authProvider (Stand alone datagrid)</Typography>
       </Box>
       <Datagrid
         basePath="/custom"
@@ -188,7 +145,7 @@ const CustomListBase = () => {
         loaded={false}
         total={permissions?.length || 0}
       >
-        <FunctionField render={(record) => record} />
+        <FunctionField render={record => record} />
       </Datagrid>
       <Datagrid
         basePath="/custom"
@@ -197,7 +154,7 @@ const CustomListBase = () => {
         ids={permissions?.map((_, index) => index) || []}
         total={permissions?.length || 0}
       >
-        <FunctionField render={(record) => record} />
+        <FunctionField render={record => record} />
       </Datagrid>
       <Box py={3}>
         <Divider />
@@ -237,8 +194,8 @@ const CustomListBase = () => {
       <RecordContextProvider
         value={{
           id: 123,
-          url: "http://foo.com/bar.jpg",
-          title: "Hello world!",
+          url: 'http://foo.com/bar.jpg',
+          title: 'Hello world!'
         }}
       >
         <TextField source="url" label="URL" />
@@ -248,7 +205,7 @@ const CustomListBase = () => {
               <TextField source="id" label="id" />
               <Box>
                 <TextField source="title" label="title" />
-                <Locker unlock={["n4"]}>
+                <Locker unlock={['n4']}>
                   <TextField source="title" label="title" />
                 </Locker>
               </Box>
@@ -261,25 +218,26 @@ const CustomListBase = () => {
       </Box>
       {/* ------------------------------------------ */}
     </>
-  );
-};
+  )
+}
 
 const CustomList: FC<any> = () => {
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState('1')
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <TabContext value={value}>
       <AppBar position="static">
         <TabList onChange={handleChange}>
           <Tab label="Item One" value="1" />
-          <Locker unlock={["n1", "n2", "n3"]} value="2">
+          <Locker unlock={['n1', 'n2', 'n3']} value="2">
             <Tab label="Item Two" />
           </Locker>
-          <Locker unlock={["n4"]} value="3">
+          <Locker unlock={['n4']} value="3">
             <Tab label="Item Three" />
           </Locker>
         </TabList>
@@ -295,7 +253,7 @@ const CustomList: FC<any> = () => {
       <TabPanel value="2">Item Two</TabPanel>
       <TabPanel value="3">Item Three</TabPanel>
     </TabContext>
-  );
-};
+  )
+}
 
-export default CustomList;
+export default CustomList

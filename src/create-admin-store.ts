@@ -8,15 +8,12 @@ import { usersApi } from 'resources/rtk-test/users-api'
 import { History } from 'history'
 import { all, fork } from 'redux-saga/effects'
 
-// Stores
-
 interface CreateAdminStore {
   authProvider: AuthProvider
   dataProvider: DataProvider
   history: History
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminStore) => {
   const reducer = combineReducers({
     admin: adminReducer,

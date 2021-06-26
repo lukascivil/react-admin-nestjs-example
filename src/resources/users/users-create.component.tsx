@@ -1,26 +1,20 @@
 // Packages
-import React, { FC } from "react";
-import {
-  Create,
-  SimpleForm,
-  TextInput,
-  CreateProps,
-  DateInput,
-} from "react-admin";
-import { parse } from "date-fns";
+import React, { FC } from 'react'
+import { Create, SimpleForm, TextInput, CreateProps, DateInput } from 'react-admin'
+import { parse } from 'date-fns'
 
-export const UsersCreate: FC<CreateProps> = (props) => {
+export const UsersCreate: FC<CreateProps> = props => {
   const initialValues = {
-    description: "",
-    completed: false,
-  };
+    description: '',
+    completed: false
+  }
 
-  const transform = (data) => {
+  const transform = data => {
     return {
       ...data,
-      birthdate: parse(data.birthdate, "yyyy-MM-dd", new Date()),
-    };
-  };
+      birthdate: parse(data.birthdate, 'yyyy-MM-dd', new Date())
+    }
+  }
 
   return (
     <Create {...props} transform={transform}>
@@ -31,5 +25,5 @@ export const UsersCreate: FC<CreateProps> = (props) => {
         <DateInput source="birthdate" />
       </SimpleForm>
     </Create>
-  );
-};
+  )
+}

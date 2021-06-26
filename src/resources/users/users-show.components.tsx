@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 import {
   Show,
   SimpleShowLayout,
@@ -12,18 +12,13 @@ import {
   ReferenceManyField,
   useGetList,
   Button,
-  Link,
-} from "react-admin";
-import { Box, Typography } from "@material-ui/core";
+  Link
+} from 'react-admin'
+import { Box, Typography } from '@material-ui/core'
 
-export const UsersShow: FC<ShowProps> = (props) => {
-  const currentSort = { field: "created_at", order: "ASC" };
-  const { ids, data, total, loaded } = useGetList(
-    "tasks",
-    { page: 1, perPage: 10 },
-    currentSort,
-    {}
-  );
+export const UsersShow: FC<ShowProps> = props => {
+  const currentSort = { field: 'created_at', order: 'ASC' }
+  const { ids, data, total, loaded } = useGetList('tasks', { page: 1, perPage: 10 }, currentSort, {})
 
   return (
     <Show {...props}>
@@ -51,9 +46,7 @@ export const UsersShow: FC<ShowProps> = (props) => {
           </ListBase>
         </ResourceContextProvider>
         <Box pt={2}>
-          <Typography variant="h6">
-            Tarefas do usuário - Reference Many Field
-          </Typography>
+          <Typography variant="h6">Tarefas do usuário - Reference Many Field</Typography>
         </Box>
         {/* Reference Many Field, getManyReference with filter of known Ids */}
         <ReferenceManyField reference="tasks" target="user_id" label="">
@@ -63,9 +56,7 @@ export const UsersShow: FC<ShowProps> = (props) => {
           </Datagrid>
         </ReferenceManyField>
         <Box pt={2}>
-          <Typography variant="h6">
-            Tarefas do usuário - Only Datagrid
-          </Typography>
+          <Typography variant="h6">Tarefas do usuário - Only Datagrid</Typography>
         </Box>
         {/* Use datagrid and call programmatically any dataprovider method*/}
         <Datagrid
@@ -87,5 +78,5 @@ export const UsersShow: FC<ShowProps> = (props) => {
         </Box>
       </SimpleShowLayout>
     </Show>
-  );
-};
+  )
+}

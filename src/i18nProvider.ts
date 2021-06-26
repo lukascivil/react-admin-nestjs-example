@@ -1,7 +1,7 @@
 // Packages
-import englishMessages from "ra-language-english";
-import { I18nProvider } from "react-admin";
-import Polyglot from "node-polyglot";
+import englishMessages from 'ra-language-english'
+import { I18nProvider } from 'react-admin'
+import Polyglot from 'node-polyglot'
 
 const messages = {
   ...englishMessages,
@@ -9,53 +9,53 @@ const messages = {
     ...englishMessages.ra,
     notification: {
       ...englishMessages.ra.notification,
-      invalid_email_password: "Invalid Email or Password",
-    },
+      invalid_email_password: 'Invalid Email or Password'
+    }
   },
   resources: {
     tasks: {
-      name: "Tasks",
-      empty: "No registered tasks",
-      invite: "Create new tasks",
+      name: 'Tasks',
+      empty: 'No registered tasks',
+      invite: 'Create new tasks',
       fields: {
-        id: "ID",
-        title: "Title",
-        description: "Description",
-        updated_at: "Updated at",
-        created_at: "Created at",
-        completed: "Completed",
-      },
+        id: 'ID',
+        title: 'Title',
+        description: 'Description',
+        updated_at: 'Updated at',
+        created_at: 'Created at',
+        completed: 'Completed'
+      }
     },
     users: {
-      name: "Users",
-      empty: "No registered users",
-      invite: "Create new users",
+      name: 'Users',
+      empty: 'No registered users',
+      invite: 'Create new users',
       fields: {
-        id: "ID",
-        name: "Name",
-        password: "Password",
-        email: "E-mail",
-        birthdate: "Birthdate",
-        updated_at: "Updated at",
-        created_at: "Created at",
-      },
-    },
-  },
-};
+        id: 'ID',
+        name: 'Name',
+        password: 'Password',
+        email: 'E-mail',
+        birthdate: 'Birthdate',
+        updated_at: 'Updated at',
+        created_at: 'Created at'
+      }
+    }
+  }
+}
 
-let locale = "en";
+const locale = 'en'
 
 const polyglot = new Polyglot({
   locale,
-  phrases: { "": "", ...messages },
-});
+  phrases: { '': '', ...messages }
+})
 
 export const i18nProvider: I18nProvider = {
   translate: (key, options) => {
-    return polyglot.t(key, options);
+    return polyglot.t(key, options)
   },
   changeLocale: () => {
-    return Promise.resolve();
+    return Promise.resolve()
   },
-  getLocale: () => locale,
-};
+  getLocale: () => locale
+}

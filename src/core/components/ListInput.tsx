@@ -1,13 +1,6 @@
 // Packages
-import React, {
-  FC,
-  Fragment,
-  useState,
-  useEffect,
-  memo,
-  ReactNode,
-} from "react";
-import { shallowEqual } from "react-redux";
+import React, { FC, Fragment, useState, useEffect, memo, ReactNode } from 'react'
+import { shallowEqual } from 'react-redux'
 import {
   Datagrid,
   FunctionField,
@@ -17,8 +10,8 @@ import {
   InputProps,
   Validator,
   useTranslate,
-  FieldTitle,
-} from "react-admin";
+  FieldTitle
+} from 'react-admin'
 import {
   Box,
   ListItem,
@@ -27,26 +20,22 @@ import {
   List as MuiList,
   ListItemSecondaryAction,
   IconButton,
-  Divider,
-} from "@material-ui/core";
-import {
-  Add as AddIcon,
-  Remove as RemoveIcon,
-  Delete as DeleteIcon,
-} from "@material-ui/icons";
+  Divider
+} from '@material-ui/core'
+import { Add as AddIcon, Remove as RemoveIcon, Delete as DeleteIcon } from '@material-ui/icons'
 
 interface SelectionRowListAsideProps {
-  records: Array<any>;
-  touched: boolean;
-  errorMessage: string;
-  isRequired: boolean;
-  onRemove: (record: any) => void;
-  onClear: () => void;
-  primaryText: (record: any) => ReactNode;
-  secondaryText: (record: any) => ReactNode;
-  tertiaryText: (record: any) => ReactNode;
-  resource?: string;
-  source: string;
+  records: Array<any>
+  touched: boolean
+  errorMessage: string
+  isRequired: boolean
+  onRemove: (record: any) => void
+  onClear: () => void
+  primaryText: (record: any) => ReactNode
+  secondaryText: (record: any) => ReactNode
+  tertiaryText: (record: any) => ReactNode
+  resource?: string
+  source: string
 }
 
 const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
@@ -60,20 +49,16 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
   secondaryText,
   tertiaryText,
   resource,
-  source,
+  source
 }) => {
-  const translate = useTranslate();
+  const translate = useTranslate()
 
   return (
     <Box ml={4} width={500}>
       <Box width={1}>
         <Box pb={1} display="flex">
           <Box flexGrow={1}>
-            <Typography
-              component="span"
-              variant="body2"
-              color={touched && errorMessage ? "error" : "textSecondary"}
-            >
+            <Typography component="span" variant="body2" color={touched && errorMessage ? 'error' : 'textSecondary'}>
               {touched && errorMessage ? (
                 translate(errorMessage)
               ) : (
@@ -93,26 +78,17 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
           </Box>
         </Box>
       </Box>
-      <Box
-        border={1}
-        borderColor={touched && errorMessage ? "red" : "lightgrey"}
-        borderRadius={6}
-        bgcolor="grey.100"
-      >
-        <Box height={350} style={{ overflowY: "scroll" }}>
+      <Box border={1} borderColor={touched && errorMessage ? 'red' : 'lightgrey'} borderRadius={6} bgcolor="grey.100">
+        <Box height={350} style={{ overflowY: 'scroll' }}>
           <MuiList dense>
-            {records?.map((record) => (
+            {records?.map(record => (
               <Fragment key={record.id}>
                 <ListItem alignItems="flex-start">
                   <ListItemText
                     primary={primaryText(record)}
                     secondary={
                       <>
-                        <Typography
-                          component="span"
-                          variant="body2"
-                          color="textPrimary"
-                        >
+                        <Typography component="span" variant="body2" color="textPrimary">
                           {secondaryText(record)}
                         </Typography>
                         {tertiaryText(record)}
@@ -120,11 +96,7 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
                     }
                   />
                   <ListItemSecondaryAction>
-                    <IconButton
-                      size="small"
-                      edge="end"
-                      onClick={() => onRemove(record)}
-                    >
+                    <IconButton size="small" edge="end" onClick={() => onRemove(record)}>
                       <RemoveIcon fontSize="small" color="error" />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -136,18 +108,18 @@ const SelectionRowListAside: FC<SelectionRowListAsideProps> = ({
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-interface Props extends Omit<InputProps, "children"> {
-  resource: "tasks";
-  basePath: "/custom";
-  filters: Array<ReactNode>;
-  validate?: Validator | Array<Validator>;
-  primaryText?: (record: any) => ReactNode;
-  secondaryText?: (record: any) => ReactNode;
-  tertiaryText?: (record: any) => ReactNode;
-  children: any;
+interface Props extends Omit<InputProps, 'children'> {
+  resource: 'tasks'
+  basePath: '/custom'
+  filters: Array<ReactNode>
+  validate?: Validator | Array<Validator>
+  primaryText?: (record: any) => ReactNode
+  secondaryText?: (record: any) => ReactNode
+  tertiaryText?: (record: any) => ReactNode
+  children: any
 }
 
 const isEqual = (prevProps, nextProps) => {
@@ -159,7 +131,7 @@ const isEqual = (prevProps, nextProps) => {
     secondaryText: prevSecondaryText,
     tertiaryText: prevTertiaryText,
     ...restOfPrevProps
-  } = prevProps;
+  } = prevProps
   const {
     children: nextChildren,
     filters: nextFilters,
@@ -168,51 +140,39 @@ const isEqual = (prevProps, nextProps) => {
     secondaryText: nextSecondaryText,
     tertiaryText: nextTertiaryText,
     ...restOfNextProps
-  } = nextProps;
+  } = nextProps
 
-  return shallowEqual(restOfPrevProps, restOfNextProps);
-};
+  return shallowEqual(restOfPrevProps, restOfNextProps)
+}
 
 const ListInput: FC<Props> = memo<Props>(
-  ({
-    resource,
-    basePath,
-    filters,
-    children,
-    primaryText,
-    secondaryText,
-    tertiaryText,
-    source,
-    ...rest
-  }) => {
+  ({ resource, basePath, filters, children, primaryText, secondaryText, tertiaryText, source, ...rest }) => {
     const {
       input: { onChange, value },
       meta: { touched, submitError, error },
-      isRequired,
-    } = useInput({ ...rest, source } as any);
-    const [selectedRows, setSelectedRows] = useState<Array<any>>([]);
+      isRequired
+    } = useInput({ ...rest, source } as any)
+    const [selectedRows, setSelectedRows] = useState<Array<any>>([])
 
     useEffect(() => {
       if (selectedRows) {
-        onChange(selectedRows);
+        onChange(selectedRows)
       }
-    }, [onChange, selectedRows]);
+    }, [onChange, selectedRows])
 
-    const handleAddRow = (record) => {
-      setSelectedRows((state) => [...state, record]);
-    };
+    const handleAddRow = record => {
+      setSelectedRows(state => [...state, record])
+    }
 
-    const handleRemoveRow = (record) => {
-      const newSelectedRows = selectedRows.filter(
-        (row) => row.id !== record.id
-      );
+    const handleRemoveRow = record => {
+      const newSelectedRows = selectedRows.filter(row => row.id !== record.id)
 
-      setSelectedRows(newSelectedRows);
-    };
+      setSelectedRows(newSelectedRows)
+    }
 
     const handleClearSelectedRows = () => {
-      setSelectedRows([]);
-    };
+      setSelectedRows([])
+    }
 
     return (
       <List
@@ -223,12 +183,12 @@ const ListInput: FC<Props> = memo<Props>(
         actions={false}
         bulkActionButtons={false}
         component="div"
-        filters={<Filter>{filters?.map((input) => input)}</Filter>}
+        filters={<Filter>{filters?.map(input => input)}</Filter>}
         aside={
           <SelectionRowListAside
-            primaryText={primaryText || ((value) => value)}
-            secondaryText={secondaryText || ((value) => value)}
-            tertiaryText={tertiaryText || ((value) => value)}
+            primaryText={primaryText || (value => value)}
+            secondaryText={secondaryText || (value => value)}
+            tertiaryText={tertiaryText || (value => value)}
             touched={touched || false}
             isRequired={isRequired}
             resource={resource}
@@ -243,13 +203,13 @@ const ListInput: FC<Props> = memo<Props>(
         <Datagrid size="small">
           {children}
           <FunctionField
-            render={(record) => (
+            render={record => (
               <IconButton
                 size="small"
-                disabled={selectedRows.some((el) => el?.id === record.id)}
+                disabled={selectedRows.some(el => el?.id === record.id)}
                 color="primary"
                 onClick={() => {
-                  handleAddRow(record);
+                  handleAddRow(record)
                 }}
               >
                 <AddIcon fontSize="small" />
@@ -258,9 +218,9 @@ const ListInput: FC<Props> = memo<Props>(
           />
         </Datagrid>
       </List>
-    );
+    )
   },
   isEqual
-);
+)
 
-export default ListInput;
+export default ListInput

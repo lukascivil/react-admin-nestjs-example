@@ -1,38 +1,38 @@
 // Packages
-import React, { FC } from "react";
-import { TextInput, useNotify, useRedirect } from "react-admin";
-import { Box, Button, Card } from "@material-ui/core";
-import { useGetUserQuery, useUpdateUserMutation } from "./users-api";
-import { useLocation } from "react-router-dom";
-import { Form } from "react-final-form";
-import { parse } from "date-fns";
+import React, { FC } from 'react'
+import { TextInput, useNotify, useRedirect } from 'react-admin'
+import { Box, Button, Card } from '@material-ui/core'
+import { useGetUserQuery, useUpdateUserMutation } from './users-api'
+import { useLocation } from 'react-router-dom'
+import { Form } from 'react-final-form'
+import { parse } from 'date-fns'
 
 export const RtkEdit: FC = () => {
-  const location = useLocation();
-  const id = location.pathname.split("/").reverse()[1];
-  const notify = useNotify();
-  const redirect = useRedirect();
-  const [updateUser] = useUpdateUserMutation();
+  const location = useLocation()
+  const id = location.pathname.split('/').reverse()[1]
+  const notify = useNotify()
+  const redirect = useRedirect()
+  const [updateUser] = useUpdateUserMutation()
   const { data: record } = useGetUserQuery(id, {
-    refetchOnMountOrArgChange: true,
-  });
+    refetchOnMountOrArgChange: true
+  })
 
-  const handleSubmit = (formValues) => {
+  const handleSubmit = formValues => {
     const payload = {
       ...formValues,
-      birthdate: parse(formValues.birthdate, "yyyy-MM-dd", new Date()),
-    };
+      birthdate: parse(formValues.birthdate, 'yyyy-MM-dd', new Date())
+    }
 
     updateUser(payload)
       .unwrap()
       .then(() => {
-        redirect("/rtk");
-        notify("Usuário atualizado com sucesso");
+        redirect('/rtk')
+        notify('Usuário atualizado com sucesso')
       })
       .catch(() => {
-        notify("Erro ao atualizar usuário");
-      });
-  };
+        notify('Erro ao atualizar usuário')
+      })
+  }
 
   return (
     <Card>
@@ -66,5 +66,5 @@ export const RtkEdit: FC = () => {
         />
       </Box>
     </Card>
-  );
-};
+  )
+}

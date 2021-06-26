@@ -1,40 +1,37 @@
 // Packages
-import React, { FC, useEffect } from "react";
-import {
-  Datagrid,
-  DateField,
-  TextField,
-  Link,
-  Button,
-  FunctionField,
-  useVersion,
-} from "react-admin";
-import { useGetUsersQuery, User } from "./users-api";
+import React, { FC, useEffect } from 'react'
+import { Datagrid, DateField, TextField, Link, Button, FunctionField, useVersion } from 'react-admin'
+import { useGetUsersQuery, User } from './users-api'
 
 export const RtkList: FC = () => {
-  const currentSort = { field: "created_at", order: "ASC" };
-  const version = useVersion();
+  const currentSort = { field: 'created_at', order: 'ASC' }
+  const version = useVersion()
   const { data, refetch, isFetching } = useGetUsersQuery(
     {
       filter: {},
       pagination: { page: 1, perPage: 5 },
-      sort: currentSort,
+      sort: currentSort
     },
     { refetchOnMountOrArgChange: 2, pollingInterval: 10000 }
-  );
+  )
+  const { data: cafe } = useGetUsersQuery({
+    filter: {},
+    pagination: { page: 2, perPage: 5 },
+    sort: currentSort
+  })
   const users = data?.data.reduce((prev, curr, index) => {
-    prev[index] = curr;
+    prev[index] = curr
 
-    return prev;
-  }, {});
+    return prev
+  }, {})
 
   useEffect(() => {
-    refetch();
-  }, [refetch, version]);
+    refetch()
+  }, [refetch, version])
 
   return (
     <div>
-      <Button label="Criar" component={Link} to={`/rtk/create`} />
+      <Button label="Criar" component={Link} to="/rtk/create" />
       <Datagrid
         basePath="/custom"
         currentSort={currentSort}
@@ -51,28 +48,16 @@ export const RtkList: FC = () => {
         <DateField source="updated_at" showTime />
         <DateField source="created_at" showTime />
         <FunctionField<User>
-          render={(record) => {
-            return (
-              <Button
-                label="Visualizar"
-                component={Link}
-                to={`/rtk/${record?.id}`}
-              />
-            );
+          render={record => {
+            return <Button label="Visualizar" component={Link} to={`/rtk/${record?.id}`} />
           }}
         />
         <FunctionField<User>
-          render={(record) => {
-            return (
-              <Button
-                label="Editar"
-                component={Link}
-                to={`/rtk/${record?.id}/edit`}
-              />
-            );
+          render={record => {
+            return <Button label="Editar" component={Link} to={`/rtk/${record?.id}/edit`} />
           }}
         />
       </Datagrid>
     </div>
-  );
-};
+  )
+}

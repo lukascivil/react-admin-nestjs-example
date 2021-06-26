@@ -1,15 +1,7 @@
-import React, { FC } from "react";
-import {
-  List,
-  Datagrid,
-  TextField,
-  ListProps,
-  ShowButton,
-  EditButton,
-  DateField,
-} from "react-admin";
+import React, { FC } from 'react'
+import { List, Datagrid, TextField, ListProps, ShowButton, EditButton, DateField } from 'react-admin'
 
-export const UsersList: FC<ListProps> = (props) => (
+export const UsersList: FC<ListProps> = props => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
@@ -23,4 +15,4 @@ export const UsersList: FC<ListProps> = (props) => (
       <EditButton />
     </Datagrid>
   </List>
-);
+)

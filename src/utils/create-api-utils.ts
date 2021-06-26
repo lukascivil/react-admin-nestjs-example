@@ -1,7 +1,5 @@
-import { AppState } from 'models/app.model'
-
 export const selectRtkCachedItem = <T = any>(
-  state: AppState,
+  state: any,
   reducerPath: string,
   {
     id,

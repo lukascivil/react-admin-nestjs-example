@@ -1,20 +1,12 @@
 // Packages
-import React, { FC } from "react";
-import {
-  Create,
-  SimpleForm,
-  TextInput,
-  CreateProps,
-  BooleanInput,
-  ReferenceInput,
-  SelectInput,
-} from "react-admin";
+import React, { FC } from 'react'
+import { Create, SimpleForm, TextInput, CreateProps, BooleanInput, ReferenceInput, SelectInput } from 'react-admin'
 
-export const TasksCreate: FC<CreateProps> = (props) => {
+export const TasksCreate: FC<CreateProps> = props => {
   const initialValues = {
-    description: "",
-    completed: false,
-  };
+    description: '',
+    completed: false
+  }
 
   return (
     <Create {...props}>
@@ -27,5 +19,5 @@ export const TasksCreate: FC<CreateProps> = (props) => {
         </ReferenceInput>
       </SimpleForm>
     </Create>
-  );
-};
+  )
+}
