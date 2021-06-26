@@ -1,3 +1,9 @@
+/**
+ *
+ * @param state redux statel
+ * @param reducerPath RTK api reducerPath
+ * @param { id: value to match, target: key to find } Ex: { [target]: id }
+ */
 export const selectRtkCachedItem = <T = any>(
   state: any,
   reducerPath: string,
@@ -5,18 +11,21 @@ export const selectRtkCachedItem = <T = any>(
     id,
     target
   }: {
-    id: number
+    id: number | string
     target?: string
   }
 ): { data: T } => {
-  const currentTarget = 'id' || target
+  const currentTarget = target || 'id'
   const queries = state[reducerPath].queries
   const fulfilledDataQueries = Object.entries(queries)
     .map(el => el[1])
     .filter(el => (el as any).status === 'fulfilled')
-  console.log({ fulfilledDataQueries })
-  const listOfItems = fulfilledDataQueries.flatMap(el => (el as any).data?.data || (el as any).data) || []
-  const value = (listOfItems as any).find(item => item[currentTarget] === id)
+  const listOfItems =
+    fulfilledDataQueries.flatMap(el => (el as any).data?.data || (el as any).data).filter(item => Boolean(item)) || []
+
+  console.log({ fulfilledDataQueries, listOfItems })
+
+  const value = listOfItems.find(item => item[currentTarget] === id) || {}
 
   console.log({ fulfilledDataQueries, listOfItems, value, id, target })
 

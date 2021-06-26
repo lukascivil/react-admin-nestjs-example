@@ -118,7 +118,7 @@ export const usersApi = createApi({
     getLoadedUser: build.query<boolean, { id: number; target?: string }>({
       queryFn: ({ id, target }, api) => {
         const state = api.getState()
-        const cachedItem = selectRtkCachedItem<User>(state, usersApi.reducerPath, { id, target })
+        const cachedItem = selectRtkCachedItem<User>(state, usersApi.reducerPath, { id })
 
         return cachedItem
       }
