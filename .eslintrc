@@ -58,15 +58,15 @@
     "react/prefer-stateless-function": ["error"],
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }]
   },
-  "overrides": [
-    {
-      // enable the rule specifically for TypeScript files
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
-      }
-    }
-  ],
+  // "overrides": [
+  //   {
+  //     // enable the rule specifically for TypeScript files
+  //     "files": ["*.ts", "*.tsx"],
+  //     "rules": {
+  //       "@typescript-eslint/explicit-module-boundary-types": ["error"]
+  //     }
+  //   }
+  // ],
   "globals": {
     "process": true
   },
