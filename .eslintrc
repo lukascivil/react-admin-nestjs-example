@@ -1,0 +1,83 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
+  "extends": ["react-app", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "@typescript-eslint/no-empty-function": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-useless-escape": ["off"],
+    "radix": ["off"],
+    "array-callback-return": ["off"],
+    "no-return-assign": ["off"],
+    "capitalized-comments": ["off"],
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "camelcase": ["off"],
+    "new-cap": ["off"],
+    "func-names": ["off"],
+    "no-prototype-builtins": ["off"],
+    "no-console": ["warn", { "allow": ["error"] }],
+    "eqeqeq": ["error"],
+    "no-duplicate-imports": ["error", { "includeExports": true }],
+    "react/prop-types": ["off"],
+    "react/jsx-key": ["off"],
+    "react/jsx-curly-brace-presence": ["error"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      {
+        "blankLine": "always",
+        "prev": ["const", "let"],
+        "next": ["block-like"]
+      },
+      { "blankLine": "always", "prev": "import", "next": "*" },
+      { "blankLine": "any", "prev": "import", "next": "import" }
+    ],
+    "react/jsx-boolean-value": ["warn"],
+    "import/no-unassigned-import": ["off", { "allow": ["**/*.css"] }],
+    "import/no-unresolved": ["off"],
+    "import/extensions": ["off"],
+    "import/no-extraneous-dependencies": ["off"],
+    "import/order": ["off"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/explicit-function-return-type": ["off"],
+    "@typescript-eslint/camelcase": ["off"],
+    "@typescript-eslint/ban-ts-comment": ["off"],
+    "@typescript-eslint/ban-ts-ignore": ["off"],
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "@typescript-eslint/no-extra-semi": ["off"],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "no-implicit-coercion": ["error"],
+    "react/prefer-stateless-function": ["error"],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }]
+  },
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+      }
+    }
+  ],
+  "globals": {
+    "process": true
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
