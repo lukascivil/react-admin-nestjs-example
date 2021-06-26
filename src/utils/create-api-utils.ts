@@ -1,6 +1,6 @@
 /**
  *
- * @param state redux statel
+ * @param state redux state
  * @param reducerPath RTK api reducerPath
  * @param { id: value to match, target: key to find } Ex: { [target]: id }
  */
