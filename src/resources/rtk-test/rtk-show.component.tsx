@@ -9,7 +9,7 @@ export const RtkShow: FC = () => {
   const location = useLocation()
   const version = useVersion()
   const id = location.pathname.split('/').reverse()[0]
-  const { data: cachedUser } = useGetLoadedUserQuery({ id }, { refetchOnMountOrArgChange: true })
+  const { data: cachedUser } = useGetLoadedUserQuery({ id: parseInt(id) }, { refetchOnMountOrArgChange: true })
   const { data: user, refetch } = useGetUserQuery(id, {
     refetchOnMountOrArgChange: true
   })
