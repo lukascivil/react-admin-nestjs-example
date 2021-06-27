@@ -2,7 +2,7 @@
  *
  * @param state redux state
  * @param reducerPath RTK api reducerPath
- * @param { id: value to match, target: key to find } Ex: { [target]: id }
+ * @param stateParams { id: value to match, target: key to find } Ex: { [target]: id }
  */
 export const selectRtkCachedItem = <T = any>(
   state: any,
