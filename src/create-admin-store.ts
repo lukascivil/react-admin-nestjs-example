@@ -4,7 +4,7 @@ import { connectRouter } from 'connected-react-router'
 import createSagaMiddleware from 'redux-saga'
 import { adminReducer, adminSaga, AuthProvider, DataProvider, USER_LOGOUT } from 'react-admin'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { usersApi } from 'resources/rtk-test/users-api'
+import { usersApi } from 'store/api/users-api'
 import { History } from 'history'
 import { all, fork } from 'redux-saga/effects'
 

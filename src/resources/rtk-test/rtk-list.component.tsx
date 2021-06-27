@@ -1,7 +1,7 @@
 // Packages
 import React, { FC, useEffect } from 'react'
 import { Datagrid, DateField, TextField, Link, Button, FunctionField, useVersion } from 'react-admin'
-import { useGetUsersQuery, User } from './users-api'
+import { useGetUsersQuery, User } from 'store/api/users-api'
 
 export const RtkList: FC = () => {
   const currentSort = { field: 'created_at', order: 'ASC' }

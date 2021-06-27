@@ -2,7 +2,7 @@
 import React, { FC } from 'react'
 import { TextInput, useNotify, useRedirect } from 'react-admin'
 import { Box, Button, Card } from '@material-ui/core'
-import { useGetUserQuery, useUpdateUserMutation } from './users-api'
+import { useGetUserQuery, useUpdateUserMutation } from 'store/api/users-api'
 import { useLocation } from 'react-router-dom'
 import { Form } from 'react-final-form'
 import { parse } from 'date-fns'
