@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">Tasker-<strong>Client</strong>, a task registration application</p>
+<p align="center">(React-Admin and RTK Query Study App)</p>
 
 ## Description
 
