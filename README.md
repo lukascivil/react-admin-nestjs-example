@@ -8,7 +8,9 @@
 
 Tasker is an application for registering tasks. The client side was created using [React-Admin](https://marmelab.com/react-admin/Readme.html) following the REST pattern on dataproviders. The backend application that will use servers the API was created using [nestjs](https://docs.nestjs.com/) framework. This is a react-admin example application, and its show how powerful the tool is.
 
-![image](https://user-images.githubusercontent.com/7409802/99199964-6c874180-2781-11eb-932f-2f8fe45c9d93.png)
+The example project follows the line of being a laboratory for study, therefore tests with [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) are present as well.
+
+![image](https://user-images.githubusercontent.com/7409802/123529179-4e44d500-d6c4-11eb-811b-f2b1406cb58b.png)
 
 ![GIF 15-11-2020 20-29-13](https://user-images.githubusercontent.com/7409802/99199957-5aa59e80-2781-11eb-9bd6-09e14f9c0981.gif)
 
