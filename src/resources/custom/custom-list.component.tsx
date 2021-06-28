@@ -24,6 +24,8 @@ import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from
 import { TabContext, TabList, TabPanel } from '@material-ui/lab'
 import { Form } from 'react-final-form'
 import { ListInput, Locker } from 'core/components'
+import { TabResource } from './tab-resource.component'
+import { TabHealth } from './tab-health.component'
 
 const CustomListBase = () => {
   useAuthenticated()
@@ -233,12 +235,12 @@ const CustomList: FC<any> = () => {
     <TabContext value={value}>
       <AppBar position="static">
         <TabList onChange={handleChange}>
-          <Tab label="Item One" value="1" />
+          <Tab label="Examples" value="1" />
           <Locker unlock={['n1', 'n2', 'n3']} value="2">
-            <Tab label="Item Two" />
+            <Tab label="RTK Query Api Resources" />
           </Locker>
           <Locker unlock={['n4']} value="3">
-            <Tab label="Item Three" />
+            <Tab label="RTK Query Api Health" />
           </Locker>
         </TabList>
       </AppBar>
@@ -250,8 +252,12 @@ const CustomList: FC<any> = () => {
           </CardContent>
         </Card>
       </TabPanel>
-      <TabPanel value="2">Item Two</TabPanel>
-      <TabPanel value="3">Item Three</TabPanel>
+      <TabPanel value="2">
+        <TabResource />
+      </TabPanel>
+      <TabPanel value="3">
+        <TabHealth />
+      </TabPanel>
     </TabContext>
   )
 }

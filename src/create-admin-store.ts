@@ -7,6 +7,8 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { usersApi } from 'store/api/users-api'
 import { History } from 'history'
 import { all, fork } from 'redux-saga/effects'
+import { resourcesApi } from 'store/api/resources-api'
+import { healthApi } from 'store/api/health-api'
 
 interface CreateAdminStore {
   authProvider: AuthProvider
@@ -18,7 +20,9 @@ const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminSt
   const reducer = combineReducers({
     admin: adminReducer,
     router: connectRouter(history),
-    [usersApi.reducerPath]: usersApi.reducer
+    [usersApi.reducerPath]: usersApi.reducer,
+    [resourcesApi.reducerPath]: resourcesApi.reducer,
+    [healthApi.reducerPath]: healthApi.reducer
   })
   const resettableAppReducer = (state, action) => reducer(action.type !== USER_LOGOUT ? state : undefined, action)
 
