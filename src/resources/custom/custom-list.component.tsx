@@ -1,5 +1,5 @@
 // Packages
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useMemo } from 'react'
 import {
   ResourceContextProvider,
   Datagrid,
@@ -18,7 +18,10 @@ import {
   TextInput,
   required,
   NumberInput,
-  DateInput
+  DateInput,
+  useList,
+  ListContextProvider,
+  Pagination
 } from 'react-admin'
 import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@material-ui/core'
 import { TabContext, TabList, TabPanel } from '@material-ui/lab'
@@ -26,11 +29,27 @@ import { Form } from 'react-final-form'
 import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
+import { Whatshot as WhatshotIcon } from '@material-ui/icons'
 
 const CustomListBase = () => {
   useAuthenticated()
   const { authenticated } = useAuthState()
-  const { permissions, loaded } = usePermissions()
+  const { permissions, loaded, loading: loadingPermissions } = usePermissions()
+  const permissionsTest = useMemo(
+    () =>
+      permissions
+        ? [...permissions, ...permissions, ...permissions].map((value, index) => ({ id: index, title: value }))
+        : [],
+    [permissions]
+  )
+  const listContext = useList({
+    ids: permissionsTest?.map(value => value.id) || [],
+    data: permissionsTest,
+    loaded,
+    loading: loadingPermissions,
+    perPage: 5
+  })
+
   const { data, ids, loading, error } = useGetList(
     'users',
     { page: 1, perPage: 10 },
@@ -158,6 +177,29 @@ const CustomListBase = () => {
       >
         <FunctionField render={record => record} />
       </Datagrid>
+      <Box py={3}>
+        <Divider />
+      </Box>
+      {/* ------------------------------------------ */}
+      <Box pt={2}>
+        <Typography variant="h6">
+          Roles from authProvider (UseList + ListContextProvider + Datagrid)
+          <Box color="error.main" display="inline">
+            <WhatshotIcon />
+            <WhatshotIcon />
+            <WhatshotIcon />
+          </Box>
+        </Typography>
+      </Box>
+
+      <ListContextProvider value={{ ...listContext, total: permissionsTest.length }}>
+        <Datagrid>
+          <TextField source="id" label="Id" />
+          <TextField source="title" label="Título" />
+        </Datagrid>
+        <Pagination />
+      </ListContextProvider>
+
       <Box py={3}>
         <Divider />
       </Box>
