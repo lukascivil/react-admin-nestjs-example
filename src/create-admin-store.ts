@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 import createSagaMiddleware from 'redux-saga'
 import { adminReducer, adminSaga, AuthProvider, DataProvider, USER_LOGOUT } from 'react-admin'
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { usersApi } from 'store/api/users-api'
 import { History } from 'history'
 import { all, fork } from 'redux-saga/effects'
@@ -38,7 +38,8 @@ const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminSt
 
   const store = configureStore({
     reducer: resettableAppReducer,
-    middleware: [...getDefaultMiddleware({ serializableCheck: false }), usersApi.middleware, sagaMiddleware],
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({ serializableCheck: false }).concat([usersApi.middleware, sagaMiddleware]),
     devTools: true
   })
 
