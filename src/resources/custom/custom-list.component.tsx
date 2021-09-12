@@ -69,7 +69,7 @@ const CustomListBase = () => {
     [permissions]
   )
   const listContext = useList({
-    ids: permissionsTest?.map(value => value.id) || [],
+    ids: [],
     data: permissionsTest,
     loaded,
     loading: loadingPermissions,
