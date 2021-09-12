@@ -11,6 +11,12 @@ Tasker is an application for registering tasks. The client side was created usin
 
 The example project follows the line of being a laboratory for study, therefore tests with [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) are present as well.
 
+## Live example with codesandbox
+
+[Example](https://codesandbox.io/s/elastic-johnson-veszf?file=/src/resources/custom/custom-list.component.tsx)
+
+## Screenshot
+
 ![image](https://user-images.githubusercontent.com/7409802/123529179-4e44d500-d6c4-11eb-811b-f2b1406cb58b.png)
 
 ![GIF 15-11-2020 20-29-13](https://user-images.githubusercontent.com/7409802/99199957-5aa59e80-2781-11eb-9bd6-09e14f9c0981.gif)
