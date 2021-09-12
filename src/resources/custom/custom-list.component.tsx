@@ -31,6 +31,32 @@ import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@material-ui/icons'
 
+const InfinitDatagrid = () => {
+  const infiniteList = useMemo(() => {
+    const infiniteArray = [...Array(150000)].map((_, index) => ({ id: index, title: index }))
+
+    return infiniteArray
+  }, [])
+
+  const listContextInfinite = useList({
+    ids: [],
+    data: infiniteList,
+    loaded: true,
+    loading: false,
+    perPage: 5
+  })
+
+  return (
+    <ListContextProvider value={{ ...listContextInfinite }}>
+      <Datagrid optimized>
+        <TextField source="id" label="Id" />
+        <TextField source="title" label="Título" sortable={false} />
+      </Datagrid>
+      <Pagination />
+    </ListContextProvider>
+  )
+}
+
 const CustomListBase = () => {
   useAuthenticated()
   const { authenticated } = useAuthState()
@@ -192,13 +218,29 @@ const CustomListBase = () => {
         </Typography>
       </Box>
 
-      <ListContextProvider value={{ ...listContext, total: permissionsTest.length }}>
-        <Datagrid>
+      <ListContextProvider value={listContext}>
+        <Datagrid optimized>
           <TextField source="id" label="Id" />
           <TextField source="title" label="Título" />
         </Datagrid>
         <Pagination />
       </ListContextProvider>
+
+      <Box py={3}>
+        <Divider />
+      </Box>
+      {/* ------------------------------------------ */}
+      <Box pt={2}>
+        <Typography variant="h6">
+          150K itens with useList + datagrid
+          <Box color="error.main" display="inline">
+            <WhatshotIcon />
+            <WhatshotIcon />
+          </Box>
+        </Typography>
+      </Box>
+
+      <InfinitDatagrid />
 
       <Box py={3}>
         <Divider />
