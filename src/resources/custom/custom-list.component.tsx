@@ -30,6 +30,7 @@ import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@material-ui/icons'
+import { TabLocalList } from './tab-local-list'
 
 const InfinitDatagrid = () => {
   const infiniteList = useMemo(() => {
@@ -326,6 +327,7 @@ const CustomList: FC<any> = () => {
           <Locker unlock={['n4']} value="3">
             <Tab label="RTK Query Api Health" />
           </Locker>
+          <Tab label="Local List" value="4" />
         </TabList>
       </AppBar>
       <TabPanel value="1">
@@ -341,6 +343,9 @@ const CustomList: FC<any> = () => {
       </TabPanel>
       <TabPanel value="3">
         <TabHealth />
+      </TabPanel>
+      <TabPanel value="4">
+        <TabLocalList />
       </TabPanel>
     </TabContext>
   )
