@@ -115,14 +115,14 @@ export const usersApi = createApi({
         }
       }
     }),
-    getLoadedUser: build.query<boolean, { id: number; target?: string }>({
+    getLoadedUser: build.query<User, { id: number; target?: string }>({
       queryFn: ({ id, target }, api) => {
         const state = api.getState()
 
         // cachedItem will be used for optimistic rendering
         const cachedItem = selectRtkCachedItem<User>(state, usersApi.reducerPath, { id })
 
-        return cachedItem
+        return cachedItem as { data: User }
       }
     })
   })
