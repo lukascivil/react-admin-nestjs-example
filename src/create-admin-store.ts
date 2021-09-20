@@ -39,7 +39,12 @@ const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminSt
   const store = configureStore({
     reducer: resettableAppReducer,
     middleware: getDefaultMiddleware =>
-      getDefaultMiddleware({ serializableCheck: false }).concat([usersApi.middleware, sagaMiddleware]),
+      getDefaultMiddleware().concat([
+        usersApi.middleware,
+        healthApi.middleware,
+        resourcesApi.middleware,
+        sagaMiddleware
+      ]),
     devTools: true
   })
 
