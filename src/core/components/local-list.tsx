@@ -1,7 +1,7 @@
 // Packages
+import React, { ReactElement, cloneElement, useEffect } from 'react'
 import { Box, Button } from '@material-ui/core'
 import { Config } from 'final-form'
-import { ReactElement, ReactNode, useEffect } from 'react'
 import { ListContextProvider, Pagination, useList, useVersion, SortPayload, FilterPayload } from 'react-admin'
 import { Form } from 'react-final-form'
 
@@ -13,7 +13,7 @@ interface RaRecord {
 interface EssentialParams extends Pick<Config, 'onSubmit'> {
   onRefresh?: () => void
   data?: Array<RaRecord>
-  filters?: Array<ReactNode>
+  filters?: ReactElement | Array<ReactElement>
   perPage?: 5 | 10 | 25
   sort?: SortPayload
   filter?: FilterPayload
@@ -26,6 +26,7 @@ interface Props extends EssentialParams {
 
 const LocalList = (props: Props) => {
   const { children, onRefresh, data, isLoading, filters, onSubmit = () => undefined, perPage = 5, sort, filter } = props
+  const filtersToRender = Array.isArray(filters) ? filters : filters === undefined ? [] : [filters]
   const version = useVersion()
   const listContext = useList({
     ids: [],
@@ -45,14 +46,14 @@ const LocalList = (props: Props) => {
 
   return (
     <Box>
-      {filters && (
+      {filtersToRender && (
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit }) => {
             return (
               <form onSubmit={handleSubmit}>
                 <Box display="flex" alignItems="center">
-                  <Box>{filters}</Box>
+                  <Box>{filtersToRender.map((component, index) => cloneElement(component, { key: index }))}</Box>
                   <Box pl={1}>
                     <Button type="submit" variant="text" color="primary">
                       Pesquisar
