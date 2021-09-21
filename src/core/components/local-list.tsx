@@ -27,14 +27,14 @@ interface EssentialParams extends Pick<Config, 'onSubmit'> {
   sort: SortPayload
   filter?: FilterPayload
   isLoading?: boolean
-  paginationStrategy?: 'local-numbered'
+  paginationStrategy?: 'local'
 }
 
 interface EssentialParams2 extends Omit<EssentialParams, 'paginationStrategy'> {
   paginationStrategy?: 'api-without-total'
   onPageChange?: (value: number) => void
   onSortChange?: (value: SortPayload) => void
-  onPerPageChange?: (value: SortPayload) => void
+  onPerPageChange?: (value: number) => void
 }
 
 interface EssentialParams3 extends Omit<EssentialParams, 'paginationStrategy'> {
@@ -60,7 +60,7 @@ const LocalList = (props: (Props & EssentialParams) | (Props & EssentialParams2)
     perPage = 5,
     sort,
     filter,
-    paginationStrategy = 'local-numbered',
+    paginationStrategy = 'local',
     // @ts-ignore
     total,
     // @ts-ignore
