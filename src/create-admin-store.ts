@@ -9,6 +9,7 @@ import { History } from 'history'
 import { all, fork } from 'redux-saga/effects'
 import { resourcesApi } from 'store/api/resources-api'
 import { healthApi } from 'store/api/health-api'
+import { usersCrudApi } from 'store/api/users-crud-api.rtk'
 
 interface CreateAdminStore {
   authProvider: AuthProvider
@@ -22,7 +23,8 @@ const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminSt
     router: connectRouter(history),
     [usersApi.reducerPath]: usersApi.reducer,
     [resourcesApi.reducerPath]: resourcesApi.reducer,
-    [healthApi.reducerPath]: healthApi.reducer
+    [healthApi.reducerPath]: healthApi.reducer,
+    [usersCrudApi.reducerPath]: usersCrudApi.reducer
   })
   const resettableAppReducer = (state, action) => reducer(action.type !== USER_LOGOUT ? state : undefined, action)
 
@@ -43,6 +45,7 @@ const createAdminStore = ({ authProvider, dataProvider, history }: CreateAdminSt
         usersApi.middleware,
         healthApi.middleware,
         resourcesApi.middleware,
+        usersCrudApi.middleware,
         sagaMiddleware
       ]),
     devTools: true

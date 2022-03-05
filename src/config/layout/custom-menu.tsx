@@ -10,5 +10,6 @@ export const CustomMenu: FC = () => (
     <MenuItemLink to="/users" primaryText="users" leftIcon={<PeopleIcon />} />
     <MenuItemLink to="/custom" primaryText="Custom example" leftIcon={<LabelIcon />} />
     <MenuItemLink to="/rtk" primaryText="RTK Query example" leftIcon={<LabelIcon />} />
+    <MenuItemLink to="/rtk-crud" primaryText="RTK CRUD" leftIcon={<LabelIcon />} />
   </div>
 )
