@@ -1,7 +1,6 @@
 // Packages
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
-import { stringify } from 'querystring'
 import { fetchEnd, fetchStart, FilterPayload, GetListParams, Identifier } from 'react-admin'
 import { selectRtkCachedItem } from 'utils/create-api-utils'
 
@@ -26,7 +25,7 @@ const generateListQuery = (params: GetListParams, filter?: FilterPayload): strin
     })
   }
 
-  return stringify(defaultQuery)
+  return new URLSearchParams(defaultQuery).toString()
 }
 
 export const usersApi = createApi({

@@ -2,7 +2,7 @@
 import React, { useMemo, FC, memo, ReactElement, cloneElement } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { usePermissions } from 'ra-core'
-import { sanitizeFieldRestProps } from 'ra-ui-materialui'
+import { sanitizeFieldRestProps } from 'react-admin'
 
 type Role = 'n1' | 'n2' | 'n3' | 'n4' | 'n5'
 

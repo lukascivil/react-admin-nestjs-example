@@ -28,7 +28,7 @@ const generateListQuery = (params: GetListParams, filter?: FilterPayload): strin
     })
   }
 
-  return stringify(defaultQuery)
+  return new URLSearchParams(defaultQuery).toString()
 }
 
 const usersAdapter = createEntityAdapter<User>()
