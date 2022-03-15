@@ -31,6 +31,7 @@ import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@material-ui/icons'
 import { TabLocalList } from './tab-local-list'
+import { TabLocalListWithApiPagination } from './tab-local-list-with-api-pagination'
 
 const InfinitDatagrid = () => {
   const infiniteList = useMemo(() => {
@@ -328,6 +329,7 @@ const CustomList: FC<any> = () => {
             <Tab label="RTK Query Api Health" />
           </Locker>
           <Tab label="Local List" value="4" />
+          <Tab label="Local List + RTK + API pagination" value="5" />
         </TabList>
       </AppBar>
       <TabPanel value="1">
@@ -346,6 +348,9 @@ const CustomList: FC<any> = () => {
       </TabPanel>
       <TabPanel value="4">
         <TabLocalList />
+      </TabPanel>
+      <TabPanel value="5">
+        <TabLocalListWithApiPagination />
       </TabPanel>
     </TabContext>
   )
