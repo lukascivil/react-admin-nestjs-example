@@ -6,7 +6,7 @@ import { useGetUsersQuery, User } from 'store/api/users-api'
 export const RtkList: FC = () => {
   const currentSort = { field: 'created_at', order: 'ASC' }
   // const version = useVersion()
-  const { data, refetch, isFetching } = useGetUsersQuery(
+  const { data, refetch, isLoading } = useGetUsersQuery(
     {
       filter: {},
       pagination: { page: 1, perPage: 5 },
@@ -19,11 +19,8 @@ export const RtkList: FC = () => {
     pagination: { page: 2, perPage: 5 },
     sort: currentSort
   })
-  const users = data?.data.reduce((prev, curr, index) => {
-    prev[index] = curr
 
-    return prev
-  }, {})
+  console.log({ data })
 
   // useEffect(() => {
   //   refetch()
@@ -32,7 +29,7 @@ export const RtkList: FC = () => {
   return (
     <div>
       <Button label="Criar" component={Link} to="/rtk/create" />
-      <Datagrid sort={currentSort} data={users} isLoading={Boolean(users) || !isFetching} total={data?.total || 0}>
+      <Datagrid sort={currentSort} data={data?.data || []} isLoading={isLoading} total={data?.total || 0}>
         <TextField source="id" />
         <TextField source="name" />
         <TextField source="password" />
