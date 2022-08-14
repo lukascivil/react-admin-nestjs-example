@@ -1,9 +1,8 @@
 // Packages
 import React, { FC } from 'react'
-import { DateInput, TextInput, useNotify, useRedirect } from 'react-admin'
+import { DateInput, TextInput, useNotify, useRedirect, Form } from 'react-admin'
 import { Box, Button, Card } from '@mui/material'
 import { useCreateUserMutation } from 'store/api/users-api'
-import { Form } from 'react-final-form'
 import { parse } from 'date-fns'
 
 export const RtkCreate: FC = () => {
@@ -31,29 +30,25 @@ export const RtkCreate: FC = () => {
   return (
     <Card>
       <Box m={2}>
-        <Form
-          onSubmit={handleSubmit}
-          keepDirtyOnReinitialize
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <Box>
-                <TextInput source="email" />
-              </Box>
-              <Box>
-                <TextInput source="name" />
-              </Box>
-              <Box>
-                <TextInput source="password" />
-              </Box>
-              <Box>
-                <DateInput source="birthdate" />
-              </Box>
-              <Box>
-                <Button type="submit">Salvar</Button>
-              </Box>
-            </form>
-          )}
-        />
+        <Form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <Box>
+              <TextInput source="email" />
+            </Box>
+            <Box>
+              <TextInput source="name" />
+            </Box>
+            <Box>
+              <TextInput source="password" />
+            </Box>
+            <Box>
+              <DateInput source="birthdate" />
+            </Box>
+            <Box>
+              <Button type="submit">Salvar</Button>
+            </Box>
+          </form>
+        </Form>
       </Box>
     </Card>
   )

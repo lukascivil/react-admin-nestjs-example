@@ -2,6 +2,13 @@
   "name": "our-admin",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "upgrade": "yarn upgrade-interactive --latest",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@mui/lab": "^5.0.0-alpha.94",
     "@reduxjs/toolkit": "^1.8.4",
@@ -24,8 +31,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "final-form": "^4.20.2",
-    "final-form-arrays": "^3.0.2",
     "lodash": "^4.17.21",
     "postcss-normalize": "^10.0.1",
     "prettier": "^2.3.2",
@@ -34,18 +39,10 @@
     "react": "^17.0.2",
     "react-admin": "^4.2.7",
     "react-dom": "^17.0.2",
-    "react-final-form": "^6.5.3",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "typescript": "4.4.3",
     "web-vitals": "^1.1.1"
-  },
-  "scripts": {
-    "upgrade": "yarn upgrade-interactive --latest",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

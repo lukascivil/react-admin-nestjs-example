@@ -1,10 +1,9 @@
 // Packages
 import React, { FC } from 'react'
-import { TextInput, useNotify, useRedirect } from 'react-admin'
+import { TextInput, useNotify, useRedirect, Form } from 'react-admin'
 import { Box, Button, Card } from '@mui/material'
 import { useGetUserQuery, useUpdateUserMutation } from 'store/api/users-api'
 import { useLocation } from 'react-router-dom'
-import { Form } from 'react-final-form'
 import { parse } from 'date-fns'
 
 export const RtkEdit: FC = () => {
@@ -37,33 +36,26 @@ export const RtkEdit: FC = () => {
   return (
     <Card>
       <Box m={2}>
-        <Form
-          initialValues={record}
-          onSubmit={handleSubmit}
-          keepDirtyOnReinitialize
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <Box>
-                <TextInput disabled source="id" />
-              </Box>
-              <Box>
-                <TextInput disabled source="email" />
-              </Box>
-              <Box>
-                <TextInput source="name" />
-              </Box>
-              <Box>
-                <TextInput source="password" />
-              </Box>
-              <Box>
-                <TextInput source="birthdate" />
-              </Box>
-              <Box>
-                <Button type="submit">Salvar</Button>
-              </Box>
-            </form>
-          )}
-        />
+        <Form record={record} onSubmit={handleSubmit}>
+          <Box>
+            <TextInput disabled source="id" />
+          </Box>
+          <Box>
+            <TextInput disabled source="email" />
+          </Box>
+          <Box>
+            <TextInput source="name" />
+          </Box>
+          <Box>
+            <TextInput source="password" />
+          </Box>
+          <Box>
+            <TextInput source="birthdate" />
+          </Box>
+          <Box>
+            <Button type="submit">Salvar</Button>
+          </Box>
+        </Form>
       </Box>
     </Card>
   )

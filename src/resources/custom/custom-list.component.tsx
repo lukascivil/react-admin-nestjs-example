@@ -21,11 +21,11 @@ import {
   DateInput,
   useList,
   ListContextProvider,
-  Pagination
+  Pagination,
+  Form
 } from 'react-admin'
 import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { Form } from 'react-final-form'
 import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
@@ -101,51 +101,48 @@ const CustomListBase = () => {
           // debug={(values) => {
           //   console.log(values.values);
           // }}
-          initialValues={{
+          defaultValues={{
             internal_reason: '',
             external_reason: '',
             tasks: []
           }}
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <ListInput
-                source="tasks"
-                resource="tasks"
-                basePath="/custom"
-                validate={required()}
-                filters={[
-                  <NumberInput label="Id" source="id" size="small" alwaysOn />,
-                  <TextInput label="Title" source="title" size="small" alwaysOn />,
-                  <DateInput label="Criado em - Início" source="created_at_start" size="small" alwaysOn />,
-                  <DateInput label="Criado em - Fim" source="created_at_end" size="small" alwaysOn />
-                ]}
-                primaryText={(record: any) => record.title}
-                secondaryText={(record: any) => `${record.id} - `}
-                tertiaryText={(record: any) => <DateField record={record} source="created_at" showTime />}
-              >
-                <Locker unlock={['n4']} label="id" source="id">
-                  <TextField source="id" />
-                </Locker>
-                <TextField source="title" />
-                <DateField source="created_at" showTime />
-              </ListInput>
-              <Typography variant="subtitle1" gutterBottom>
-                Descrição da Contestação
-              </Typography>
-              <Box>
-                <Box width={0.4}>
-                  <TextInput source="internal_reason" label="Motivo Interno" validate={[required()]} fullWidth />
-                </Box>
-                <Box width={0.4}>
-                  <TextInput source="external_reason" label="Motivo Externo" fullWidth />
-                </Box>
-              </Box>
-              <Button type="submit" color="primary" variant="contained">
-                Enviar
-              </Button>
-            </form>
-          )}
-        />
+        >
+          <ListInput
+            source="tasks"
+            resource="tasks"
+            basePath="/custom"
+            validate={required()}
+            filters={[
+              <NumberInput label="Id" source="id" size="small" alwaysOn />,
+              <TextInput label="Title" source="title" size="small" alwaysOn />,
+              <DateInput label="Criado em - Início" source="created_at_start" size="small" alwaysOn />,
+              <DateInput label="Criado em - Fim" source="created_at_end" size="small" alwaysOn />
+            ]}
+            primaryText={(record: any) => record.title}
+            secondaryText={(record: any) => `${record.id} - `}
+            tertiaryText={(record: any) => <DateField record={record} source="created_at" showTime />}
+          >
+            <Locker unlock={['n4']} label="id" source="id">
+              <TextField source="id" />
+            </Locker>
+            <TextField source="title" />
+            <DateField source="created_at" showTime />
+          </ListInput>
+          <Typography variant="subtitle1" gutterBottom>
+            Descrição da Contestação
+          </Typography>
+          <Box>
+            <Box width={0.4}>
+              <TextInput source="internal_reason" label="Motivo Interno" validate={[required()]} fullWidth />
+            </Box>
+            <Box width={0.4}>
+              <TextInput source="external_reason" label="Motivo Externo" fullWidth />
+            </Box>
+          </Box>
+          <Button type="submit" color="primary" variant="contained">
+            Enviar
+          </Button>
+        </Form>
       </Box>
       <Box py={3}>
         <Divider />

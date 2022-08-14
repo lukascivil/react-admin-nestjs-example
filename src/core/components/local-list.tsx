@@ -1,16 +1,14 @@
 // Packages
 import React, { ReactElement, cloneElement, useEffect } from 'react'
 import { Box, Button } from '@mui/material'
-import { Config } from 'final-form'
-import { ListContextProvider, Pagination, useList, SortPayload, FilterPayload } from 'react-admin'
-import { Form } from 'react-final-form'
+import { ListContextProvider, Pagination, useList, SortPayload, FilterPayload, Form } from 'react-admin'
 
 interface RaRecord {
   id: string | number
   [key: string]: any
 }
 
-interface EssentialParams extends Pick<Config, 'onSubmit'> {
+interface EssentialParams {
   onRefresh?: () => void
   data?: Array<RaRecord>
   filters?: ReactElement | Array<ReactElement>
@@ -18,6 +16,7 @@ interface EssentialParams extends Pick<Config, 'onSubmit'> {
   sort?: SortPayload
   filter?: FilterPayload
   isLoading?: boolean
+  onSubmit?: (values: any) => any
 }
 
 interface Props extends EssentialParams {
@@ -45,23 +44,16 @@ const LocalList = (props: Props) => {
   return (
     <Box>
       {filtersToRender && (
-        <Form
-          onSubmit={onSubmit}
-          render={({ handleSubmit }) => {
-            return (
-              <form onSubmit={handleSubmit}>
-                <Box display="flex" alignItems="center">
-                  <Box>{filtersToRender.map((component, index) => cloneElement(component, { key: index }))}</Box>
-                  <Box pl={1}>
-                    <Button type="submit" variant="text" color="primary">
-                      Pesquisar
-                    </Button>
-                  </Box>
-                </Box>
-              </form>
-            )
-          }}
-        />
+        <Form onSubmit={onSubmit}>
+          <Box display="flex" alignItems="center">
+            <Box>{filtersToRender.map((component, index) => cloneElement(component, { key: index }))}</Box>
+            <Box pl={1}>
+              <Button type="submit" variant="text" color="primary">
+                Pesquisar
+              </Button>
+            </Box>
+          </Box>
+        </Form>
       )}
       <ListContextProvider value={listContext}>
         {children}
