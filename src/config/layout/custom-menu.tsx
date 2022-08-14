@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 import { MenuItemLink } from 'react-admin'
-import BookIcon from '@material-ui/icons/Book'
-import PeopleIcon from '@material-ui/icons/People'
-import LabelIcon from '@material-ui/icons/Label'
+import { Label as LabelIcon, People as PeopleIcon, Book as BookIcon } from '@mui/icons-material'
 
 export const CustomMenu: FC = () => (
   <div>

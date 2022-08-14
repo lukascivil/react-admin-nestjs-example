@@ -29,7 +29,7 @@ import { Form } from 'react-final-form'
 import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
-import { Whatshot as WhatshotIcon } from '@material-ui/icons'
+import { Whatshot as WhatshotIcon } from '@mui/icons-material'
 import { TabLocalList } from './tab-local-list'
 
 const InfinitDatagrid = () => {

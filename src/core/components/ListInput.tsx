@@ -22,7 +22,7 @@ import {
   IconButton,
   Divider
 } from '@material-ui/core'
-import { Add as AddIcon, Remove as RemoveIcon, Delete as DeleteIcon } from '@material-ui/icons'
+import { Add as AddIcon, Remove as RemoveIcon, Delete as DeleteIcon } from '@mui/icons-material'
 
 interface SelectionRowListAsideProps {
   records: Array<any>
