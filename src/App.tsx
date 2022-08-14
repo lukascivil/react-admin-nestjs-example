@@ -22,8 +22,6 @@ import { UsersEdit } from 'resources/users/users-edit.component'
 import { UsersShow } from 'resources/users/users-show.components'
 import { i18nProvider } from 'i18nProvider'
 import { RtkList } from 'resources/rtk-test/rtk-list.component'
-import { createHashHistory } from 'history'
-import { Provider } from 'react-redux'
 import createAdminStore from 'create-admin-store'
 import { RtkShow } from 'resources/rtk-test/rtk-show.component'
 import { RtkEdit } from 'resources/rtk-test/rtk-edit.component'
@@ -31,25 +29,17 @@ import { RtkCreate } from 'resources/rtk-test/rtk-create.component'
 import { CustomLayout } from 'config/layout/custom-layout'
 import { RtkCrudList } from 'resources/rtk-crud-users/rtk-crud-list.component'
 import { RtkCrudShow } from 'resources/rtk-crud-users/rtk-crud-show.component'
+import { Provider } from 'react-redux'
 
 const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
 
-const history = createHashHistory()
-
 const App: FC<any> = () => (
-  <Provider
-    store={createAdminStore({
-      authProvider,
-      dataProvider,
-      history
-    })}
-  >
+  <Provider store={createAdminStore()}>
     <Admin
       layout={CustomLayout}
       dataProvider={dataProvider as any}
       authProvider={authProvider}
       i18nProvider={i18nProvider}
-      history={history}
     >
       <CustomRoutes>
         <Route path="/custom" element={<CustomList />} />,
