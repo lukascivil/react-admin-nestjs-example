@@ -21,7 +21,7 @@ import {
   ListItemSecondaryAction,
   IconButton,
   Divider
-} from '@material-ui/core'
+} from '@mui/material'
 import { Add as AddIcon, Remove as RemoveIcon, Delete as DeleteIcon } from '@mui/icons-material'
 
 interface SelectionRowListAsideProps {

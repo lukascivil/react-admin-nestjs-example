@@ -1,6 +1,6 @@
 // Packages
 import React, { ReactElement, cloneElement, useEffect } from 'react'
-import { Box, Button } from '@material-ui/core'
+import { Box, Button } from '@mui/material'
 import { Config } from 'final-form'
 import { ListContextProvider, Pagination, useList, SortPayload, FilterPayload } from 'react-admin'
 import { Form } from 'react-final-form'

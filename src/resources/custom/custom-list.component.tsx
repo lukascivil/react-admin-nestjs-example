@@ -23,8 +23,8 @@ import {
   ListContextProvider,
   Pagination
 } from 'react-admin'
-import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@material-ui/core'
-import { TabContext, TabList, TabPanel } from '@material-ui/lab'
+import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@mui/material'
+import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Form } from 'react-final-form'
 import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'

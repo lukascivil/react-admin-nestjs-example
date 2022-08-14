@@ -1,6 +1,6 @@
 // Packages
 import React, { useMemo, FC, memo, ReactElement, cloneElement } from 'react'
-import Typography from '@material-ui/core/Typography'
+import { Typography } from '@mui/material'
 import { usePermissions } from 'ra-core'
 import { sanitizeFieldRestProps } from 'react-admin'
 

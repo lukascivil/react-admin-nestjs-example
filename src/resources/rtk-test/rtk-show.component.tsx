@@ -1,7 +1,7 @@
 // Packages
 import React, { FC, useEffect } from 'react'
 import { TextField, DateField, RecordContextProvider, SimpleShowLayout } from 'react-admin'
-import { Box, Card, Typography } from '@material-ui/core'
+import { Box, Card, Typography } from '@mui/material'
 import { useGetLoadedUserQuery, useGetUserQuery } from 'store/api/users-api'
 import { useLocation } from 'react-router-dom'
 // import { useAppSelector } from "hooks/use-app-selector";
