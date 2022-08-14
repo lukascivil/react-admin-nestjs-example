@@ -7,7 +7,7 @@ import {
   Link,
   Button,
   FunctionField,
-  useVersion,
+  // useVersion,
   useList,
   ListContextProvider,
   Pagination
@@ -16,24 +16,22 @@ import { useGetUsersCrudQuery, User } from 'store/api/users-crud-api.rtk'
 
 export const RtkCrudList: FC = () => {
   const currentSort = { field: 'created_at', order: 'ASC' }
-  const version = useVersion()
+  // const version = useVersion()
   const { data, refetch, isFetching } = useGetUsersCrudQuery({
     filter: {},
     pagination: { page: 1, perPage: 5 },
     sort: currentSort
   })
 
-  useEffect(() => {
-    refetch()
-  }, [refetch, version])
+  // useEffect(() => {
+  //   refetch()
+  // }, [refetch, version])
 
-  console.log({ data })
+  // console.log({ data })
 
   const listContext = useList({
-    data: data?.data || [],
-    ids: [],
-    loading: isFetching,
-    loaded: !isFetching || Boolean(data?.data)
+    data: data?.data,
+    isLoading: isFetching
   })
 
   return (

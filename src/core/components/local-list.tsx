@@ -2,7 +2,7 @@
 import React, { ReactElement, cloneElement, useEffect } from 'react'
 import { Box, Button } from '@material-ui/core'
 import { Config } from 'final-form'
-import { ListContextProvider, Pagination, useList, useVersion, SortPayload, FilterPayload } from 'react-admin'
+import { ListContextProvider, Pagination, useList, SortPayload, FilterPayload } from 'react-admin'
 import { Form } from 'react-final-form'
 
 interface RaRecord {
@@ -27,22 +27,20 @@ interface Props extends EssentialParams {
 const LocalList = (props: Props) => {
   const { children, onRefresh, data, isLoading, filters, onSubmit = () => undefined, perPage = 5, sort, filter } = props
   const filtersToRender = Array.isArray(filters) ? filters : filters === undefined ? [] : [filters]
-  const version = useVersion()
+  // const version = useVersion()
   const listContext = useList({
-    ids: [],
     data: data || [],
-    loaded: !isLoading,
-    loading: Boolean(isLoading),
+    isLoading: Boolean(isLoading),
     perPage,
     sort,
     filter
   })
 
-  useEffect(() => {
-    if (onRefresh) {
-      onRefresh()
-    }
-  }, [onRefresh, version])
+  // useEffect(() => {
+  //   if (onRefresh) {
+  //     onRefresh()
+  //   }
+  // }, [onRefresh, version])
 
   return (
     <Box>

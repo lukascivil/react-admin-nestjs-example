@@ -1,6 +1,6 @@
 // Packages
 import React, { FC, useEffect } from 'react'
-import { TextField, DateField, RecordContextProvider, SimpleShowLayout, useVersion } from 'react-admin'
+import { TextField, DateField, RecordContextProvider, SimpleShowLayout } from 'react-admin'
 import { Box, Card, Typography } from '@material-ui/core'
 import { useGetLoadedUserQuery, useGetUserQuery } from 'store/api/users-api'
 import { useLocation } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom'
 
 export const RtkShow: FC = () => {
   const location = useLocation()
-  const version = useVersion()
+  // const version = useVersion()
   const id = location.pathname.split('/').reverse()[0]
   const { data: cachedUser } = useGetLoadedUserQuery({ id: parseInt(id) }, { refetchOnMountOrArgChange: true })
   const { data: user, refetch } = useGetUserQuery(id, {
@@ -39,9 +39,9 @@ export const RtkShow: FC = () => {
   // );
   // console.log({ getUsersState });
 
-  useEffect(() => {
-    refetch()
-  }, [refetch, version])
+  // useEffect(() => {
+  //   refetch()
+  // }, [refetch, version])
 
   return (
     <Card>

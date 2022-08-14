@@ -2,7 +2,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
 import { Resource } from 'models/resource.model'
-import { fetchEnd, fetchStart } from 'react-admin'
 
 export const resourcesApi = createApi({
   reducerPath: 'resourcesApi',
@@ -20,10 +19,10 @@ export const resourcesApi = createApi({
       providesTags: (result, _error) => (result ? [{ type: 'resources', id: 'list' }] : []),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
-          dispatch(fetchStart())
+          // dispatch(fetchStart())
           await queryFulfilled
         } finally {
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         }
       }
     })

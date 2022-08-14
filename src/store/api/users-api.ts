@@ -1,7 +1,7 @@
 // Packages
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
-import { fetchEnd, fetchStart, FilterPayload, GetListParams, Identifier } from 'react-admin'
+import { FilterPayload, GetListParams, Identifier } from 'react-admin'
 import { selectRtkCachedItem } from 'utils/create-api-utils'
 
 export interface User {
@@ -46,11 +46,11 @@ export const usersApi = createApi({
       },
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
-          dispatch(fetchStart())
+          // dispatch(fetchStart())
           await queryFulfilled
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         } catch {
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         }
       }
     }),

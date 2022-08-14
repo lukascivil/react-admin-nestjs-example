@@ -18,7 +18,7 @@ import { Box, Typography } from '@material-ui/core'
 
 export const UsersShow: FC<ShowProps> = props => {
   const currentSort = { field: 'created_at', order: 'ASC' }
-  const { ids, data, total, loaded } = useGetList('tasks', { page: 1, perPage: 10 }, currentSort, {})
+  const { data, total, isLoading } = useGetList('tasks', { pagination: { page: 1, perPage: 10 }, sort: currentSort })
 
   return (
     <Show {...props}>
@@ -38,7 +38,7 @@ export const UsersShow: FC<ShowProps> = props => {
         </Box>
         {/* The reference field makes more sense for this case, however the List component was used for testing, getList with filter */}
         <ResourceContextProvider value="tasks">
-          <ListBase basePath="/tasks" filter={{ user_id: props.id }}>
+          <ListBase filter={{ user_id: 'props.id' }}>
             <Datagrid>
               <TextField source="title" />
               <DateField source="created_at" showTime />
@@ -64,9 +64,8 @@ export const UsersShow: FC<ShowProps> = props => {
           basePath=""
           currentSort={currentSort}
           data={data}
-          ids={ids}
           selectedIds={[]}
-          loaded={loaded}
+          loaded={isLoading}
           total={total}
         >
           <TextField source="title" />

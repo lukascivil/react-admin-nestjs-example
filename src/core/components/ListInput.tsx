@@ -148,8 +148,8 @@ const isEqual = (prevProps, nextProps) => {
 const ListInput: FC<Props> = memo<Props>(
   ({ resource, basePath, filters, children, primaryText, secondaryText, tertiaryText, source, ...rest }) => {
     const {
-      input: { onChange, value },
-      meta: { touched, submitError, error },
+      field: { onChange, value },
+      fieldState: { isTouched, error },
       isRequired
     } = useInput({ ...rest, source } as any)
     const [selectedRows, setSelectedRows] = useState<Array<any>>([])
@@ -177,8 +177,7 @@ const ListInput: FC<Props> = memo<Props>(
     return (
       <List
         resource={resource}
-        basePath={basePath}
-        syncWithLocation={false}
+        disableSyncWithLocation
         empty={false}
         actions={false}
         bulkActionButtons={false}
@@ -189,10 +188,10 @@ const ListInput: FC<Props> = memo<Props>(
             primaryText={primaryText || (value => value)}
             secondaryText={secondaryText || (value => value)}
             tertiaryText={tertiaryText || (value => value)}
-            touched={touched || false}
+            touched={isTouched || false}
             isRequired={isRequired}
             resource={resource}
-            errorMessage={error || submitError}
+            errorMessage={error?.message || ''}
             records={value || []}
             onRemove={handleRemoveRow}
             onClear={handleClearSelectedRows}

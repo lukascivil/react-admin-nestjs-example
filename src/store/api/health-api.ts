@@ -2,7 +2,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
 import { Health } from 'models/health.model'
-import { fetchEnd, fetchStart } from 'react-admin'
 
 export const healthApi = createApi({
   reducerPath: 'healthApi',
@@ -20,10 +19,10 @@ export const healthApi = createApi({
       providesTags: (result, _error) => (result ? [{ type: 'health', id: 'list' }] : []),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
-          dispatch(fetchStart())
+          // dispatch(fetchStart())
           await queryFulfilled
         } finally {
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         }
       }
     })

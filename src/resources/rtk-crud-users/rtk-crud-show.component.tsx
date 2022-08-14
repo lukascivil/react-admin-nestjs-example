@@ -1,22 +1,22 @@
 // Packages
 import React, { FC, useEffect } from 'react'
-import { TextField, DateField, RecordContextProvider, SimpleShowLayout, useVersion } from 'react-admin'
+import { TextField, DateField, RecordContextProvider, SimpleShowLayout } from 'react-admin'
 import { Box, Card, Typography } from '@material-ui/core'
 import { useLocation } from 'react-router-dom'
 import { useGetUserCrudQuery } from 'store/api/users-crud-api.rtk'
 
 export const RtkCrudShow: FC = () => {
   const location = useLocation()
-  const version = useVersion()
+  // const version = useVersion()
   const id = location.pathname.split('/').reverse()[0]
   const { data: user, refetch, isFetching } = useGetUserCrudQuery(id)
   const { data: user2 } = useGetUserCrudQuery('55')
 
   console.log({ user, isFetching })
 
-  useEffect(() => {
-    refetch()
-  }, [refetch, version])
+  // useEffect(() => {
+  //   refetch()
+  // }, [refetch, version])
 
   return (
     <Card>

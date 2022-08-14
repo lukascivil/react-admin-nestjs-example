@@ -10,7 +10,7 @@ export const TasksCreate: FC<CreateProps> = props => {
 
   return (
     <Create {...props}>
-      <SimpleForm initialValues={initialValues}>
+      <SimpleForm defaultValues={initialValues}>
         <TextInput label="Title" source="title" />
         <TextInput label="Description" source="descriptions" />
         <BooleanInput label="Completed" source="completed" />

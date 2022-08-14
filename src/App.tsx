@@ -1,6 +1,6 @@
 // Packages
 import React, { FC } from 'react'
-import { Admin, Resource } from 'react-admin'
+import { Admin, CustomRoutes, Resource } from 'react-admin'
 import simpleRestProvider from 'ra-data-simple-rest'
 import { Route } from 'react-router-dom'
 
@@ -50,16 +50,16 @@ const App: FC<any> = () => (
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       history={history}
-      customRoutes={[
-        <Route exact path="/custom" component={CustomList} />,
-        <Route exact path="/rtk-crud" component={RtkCrudList} />,
-        <Route exact path="/rtk-crud/:id" component={RtkCrudShow} />,
-        <Route exact path="/rtk" component={RtkList} />,
-        <Route exact path="/rtk/create" component={RtkCreate} />,
-        <Route exact path="/rtk/:id" component={RtkShow} />,
-        <Route exact path="/rtk/:id/edit" component={RtkEdit} />
-      ]}
     >
+      <CustomRoutes>
+        <Route path="/custom" element={<CustomList />} />,
+        <Route path="/rtk-crud" element={<RtkCrudList />} />,
+        <Route path="/rtk-crud/:id" element={<RtkCrudShow />} />,
+        <Route path="/rtk" element={<RtkList />} />,
+        <Route path="/rtk/create" element={<RtkCreate />} />,
+        <Route path="/rtk/:id" element={<RtkShow />} />,
+        <Route path="/rtk/:id/edit" element={<RtkEdit />} />
+      </CustomRoutes>
       <Resource name="tasks" list={TasksList} create={TasksCreate} show={TasksShow} edit={TasksEdit} />
       <Resource name="users" list={UsersList} create={UsersCreate} show={UsersShow} edit={UsersEdit} />
     </Admin>

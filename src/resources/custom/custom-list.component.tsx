@@ -40,10 +40,8 @@ const InfinitDatagrid = () => {
   }, [])
 
   const listContextInfinite = useList({
-    ids: [],
     data: infiniteList,
-    loaded: true,
-    loading: false,
+    isLoading: false,
     perPage: 5
   })
 
@@ -61,7 +59,7 @@ const InfinitDatagrid = () => {
 const CustomListBase = () => {
   useAuthenticated()
   const { authenticated } = useAuthState()
-  const { permissions, loaded, loading: loadingPermissions } = usePermissions()
+  const { permissions, isLoading: loadingPermissions } = usePermissions()
   const permissionsTest = useMemo(
     () =>
       permissions
@@ -70,19 +68,15 @@ const CustomListBase = () => {
     [permissions]
   )
   const listContext = useList({
-    ids: [],
     data: permissionsTest,
-    loaded,
-    loading: loadingPermissions,
+    isLoading: loadingPermissions,
     perPage: 5
   })
 
-  const { data, ids, loading, error } = useGetList(
-    'users',
-    { page: 1, perPage: 10 },
-    { field: 'created_at', order: 'DESC' },
-    {}
-  )
+  const { data, isLoading, error } = useGetList('users', {
+    pagination: { page: 1, perPage: 10 },
+    sort: { field: 'created_at', order: 'DESC' }
+  })
   const currentSort = { field: 'created_at', order: 'ASC' }
 
   const onSubmit = () => {}
@@ -161,7 +155,7 @@ const CustomListBase = () => {
         <Typography variant="h6">List Base</Typography>
       </Box>
       <ResourceContextProvider value="tasks">
-        <ListBase basePath="/tasks" filter={{}}>
+        <ListBase filter={{}}>
           <Datagrid>
             <TextField source="title" />
             <DateField source="created_at" showTime />
@@ -172,7 +166,7 @@ const CustomListBase = () => {
         <Divider />
       </Box>
       {/* ------------------------------------------ */}
-      <ReferenceManyField basePath="/custom" resource="custom" reference="tasks" target="user_id" label="">
+      <ReferenceManyField resource="custom" reference="tasks" target="user_id" label="">
         <Datagrid>
           <TextField source="title" />
           <DateField source="created_at" showTime />
@@ -185,23 +179,10 @@ const CustomListBase = () => {
       <Box pt={2}>
         <Typography variant="h6">Roles from authProvider (Stand alone datagrid)</Typography>
       </Box>
-      <Datagrid
-        basePath="/custom"
-        currentSort={currentSort}
-        data={permissions}
-        ids={permissions?.map((_, index) => index) || []}
-        loaded={false}
-        total={permissions?.length || 0}
-      >
+      <Datagrid sort={currentSort} data={permissions} isLoading={false} total={permissions?.length || 0}>
         <FunctionField render={record => record} />
       </Datagrid>
-      <Datagrid
-        basePath="/custom"
-        currentSort={currentSort}
-        data={permissions}
-        ids={permissions?.map((_, index) => index) || []}
-        total={permissions?.length || 0}
-      >
+      <Datagrid sort={currentSort} data={permissions} total={permissions?.length || 0}>
         <FunctionField render={record => record} />
       </Datagrid>
       <Box py={3}>

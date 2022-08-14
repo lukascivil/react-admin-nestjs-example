@@ -3,7 +3,7 @@ import { createEntityAdapter } from '@reduxjs/toolkit'
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
 import { stringify } from 'querystring'
-import { fetchEnd, fetchStart, FilterPayload, GetListParams, Identifier } from 'react-admin'
+import { FilterPayload, GetListParams, Identifier } from 'react-admin'
 import { selectRtkCachedItem } from 'utils/create-api-utils'
 import { resourcesApi } from './resources-api'
 
@@ -60,11 +60,11 @@ export const usersCrudApi = createApi({
         console.log({ useQueryResult })
 
         try {
-          dispatch(fetchStart())
+          // dispatch(fetchStart())
           await queryFulfilled
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         } catch {
-          dispatch(fetchEnd())
+          // dispatch(fetchEnd())
         }
       }
     }),

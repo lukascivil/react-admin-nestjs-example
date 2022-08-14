@@ -18,7 +18,7 @@ export const UsersCreate: FC<CreateProps> = props => {
 
   return (
     <Create {...props} transform={transform}>
-      <SimpleForm initialValues={initialValues}>
+      <SimpleForm defaultValues={initialValues}>
         <TextInput source="email" />
         <TextInput source="name" />
         <TextInput source="password" />

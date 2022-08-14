@@ -1,11 +1,11 @@
 // Packages
 import React, { FC, useEffect } from 'react'
-import { Datagrid, DateField, TextField, Link, Button, FunctionField, useVersion } from 'react-admin'
+import { Datagrid, DateField, TextField, Link, Button, FunctionField } from 'react-admin'
 import { useGetUsersQuery, User } from 'store/api/users-api'
 
 export const RtkList: FC = () => {
   const currentSort = { field: 'created_at', order: 'ASC' }
-  const version = useVersion()
+  // const version = useVersion()
   const { data, refetch, isFetching } = useGetUsersQuery(
     {
       filter: {},
@@ -25,21 +25,14 @@ export const RtkList: FC = () => {
     return prev
   }, {})
 
-  useEffect(() => {
-    refetch()
-  }, [refetch, version])
+  // useEffect(() => {
+  //   refetch()
+  // }, [refetch, version])
 
   return (
     <div>
       <Button label="Criar" component={Link} to="/rtk/create" />
-      <Datagrid
-        basePath="/custom"
-        currentSort={currentSort}
-        data={users}
-        ids={data?.data.map((_, index) => index) || []}
-        loaded={Boolean(users) || !isFetching}
-        total={data?.total || 0}
-      >
+      <Datagrid sort={currentSort} data={users} isLoading={Boolean(users) || !isFetching} total={data?.total || 0}>
         <TextField source="id" />
         <TextField source="name" />
         <TextField source="password" />
