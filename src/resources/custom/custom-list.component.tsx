@@ -34,19 +34,19 @@ import { TabLocalList } from './tab-local-list'
 
 const InfinitDatagrid = () => {
   const infiniteList = useMemo(() => {
-    const infiniteArray = [...Array(150000)].map((_, index) => ({ id: index, title: index }))
+    const infiniteArray = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
 
     return infiniteArray
   }, [])
 
   const listContextInfinite = useList({
     data: infiniteList,
-    isLoading: false,
+    isLoading: !Boolean(infiniteList),
     perPage: 5
   })
 
   return (
-    <ListContextProvider value={{ ...listContextInfinite }}>
+    <ListContextProvider value={listContextInfinite}>
       <Datagrid optimized>
         <TextField source="id" label="Id" />
         <TextField source="title" label="Título" sortable={false} />
@@ -107,7 +107,7 @@ const CustomListBase = () => {
             tasks: []
           }}
         >
-          <ListInput
+          {/* <ListInput
             source="tasks"
             resource="tasks"
             basePath="/custom"
@@ -127,7 +127,7 @@ const CustomListBase = () => {
             </Locker>
             <TextField source="title" />
             <DateField source="created_at" showTime />
-          </ListInput>
+          </ListInput> */}
           <Typography variant="subtitle1" gutterBottom>
             Descrição da Contestação
           </Typography>
@@ -189,10 +189,10 @@ const CustomListBase = () => {
       <Box pt={2}>
         <Typography variant="h6">
           Roles from authProvider (UseList + ListContextProvider + Datagrid)
-          <Box color="error.main" display="inline">
-            <WhatshotIcon />
-            <WhatshotIcon />
-            <WhatshotIcon />
+          <Box display="inline">
+            <WhatshotIcon color="error" />
+            <WhatshotIcon color="error" />
+            <WhatshotIcon color="error" />
           </Box>
         </Typography>
       </Box>
@@ -212,9 +212,9 @@ const CustomListBase = () => {
       <Box pt={2}>
         <Typography variant="h6">
           150K itens with useList + datagrid
-          <Box color="error.main" display="inline">
-            <WhatshotIcon />
-            <WhatshotIcon />
+          <Box display="inline">
+            <WhatshotIcon color="error" />
+            <WhatshotIcon color="error" />
           </Box>
         </Typography>
       </Box>
