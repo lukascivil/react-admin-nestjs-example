@@ -32,18 +32,18 @@ import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@mui/icons-material'
 import { TabLocalList } from './tab-local-list'
 
-const infiniteList = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
+const largeList = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
 
-const InfinitDatagrid = () => {
+const LargeDatagrid = () => {
   const listContextInfinite = useList({
-    data: infiniteList,
+    data: largeList,
     isLoading: false,
     perPage: 5
   })
 
   return (
     <ListContextProvider value={listContextInfinite}>
-      <Datagrid optimized>
+      <Datagrid>
         <TextField source="id" label="Id" />
         <TextField source="title" label="Título" sortable={false} />
       </Datagrid>
@@ -215,7 +215,7 @@ const CustomListBase = () => {
         </Typography>
       </Box>
 
-      <InfinitDatagrid />
+      <LargeDatagrid />
 
       <Box py={3}>
         <Divider />
