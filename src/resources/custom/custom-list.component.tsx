@@ -32,16 +32,12 @@ import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@mui/icons-material'
 import { TabLocalList } from './tab-local-list'
 
+const infiniteList = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
+
 const InfinitDatagrid = () => {
-  const infiniteList = useMemo(() => {
-    const infiniteArray = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
-
-    return infiniteArray
-  }, [])
-
   const listContextInfinite = useList({
     data: infiniteList,
-    isLoading: !Boolean(infiniteList),
+    isLoading: false,
     perPage: 5
   })
 
@@ -176,10 +172,10 @@ const CustomListBase = () => {
       <Box pt={2}>
         <Typography variant="h6">Roles from authProvider (Stand alone datagrid)</Typography>
       </Box>
-      <Datagrid sort={currentSort} data={permissions} isLoading={false} total={permissions?.length || 0}>
+      <Datagrid sort={currentSort} data={permissions || []} isLoading={false}>
         <FunctionField render={record => record} />
       </Datagrid>
-      <Datagrid sort={currentSort} data={permissions} total={permissions?.length || 0}>
+      <Datagrid sort={currentSort} data={permissions || []}>
         <FunctionField render={record => record} />
       </Datagrid>
       <Box py={3}>
