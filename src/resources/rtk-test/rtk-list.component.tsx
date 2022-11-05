@@ -1,12 +1,12 @@
 // Packages
-import React, { FC, useEffect } from 'react'
-import { Datagrid, DateField, TextField, Link, Button, FunctionField } from 'react-admin'
+import { FC } from 'react'
+import { Datagrid, DateField, TextField, Link, FunctionField, ListContextProvider, useList } from 'react-admin'
 import { useGetUsersQuery, User } from 'store/api/users-api'
+import { Stack, Box, Button } from '@mui/material'
 
 export const RtkList: FC = () => {
   const currentSort = { field: 'created_at', order: 'ASC' }
-  // const version = useVersion()
-  const { data, refetch, isLoading } = useGetUsersQuery(
+  const { data, isLoading } = useGetUsersQuery(
     {
       filter: {},
       pagination: { page: 1, perPage: 5 },
@@ -14,40 +14,46 @@ export const RtkList: FC = () => {
     },
     { refetchOnMountOrArgChange: 2, pollingInterval: 10000 }
   )
-  const { data: cafe } = useGetUsersQuery({
-    filter: {},
-    pagination: { page: 2, perPage: 5 },
-    sort: currentSort
-  })
-
-  console.log({ data })
-
-  // useEffect(() => {
-  //   refetch()
-  // }, [refetch, version])
+  const listContext = useList({ data: data?.data, isLoading, sort: currentSort })
 
   return (
-    <div>
-      <Button label="Criar" component={Link} to="/rtk/create" />
-      <Datagrid sort={currentSort} data={data?.data || []} isLoading={isLoading} total={data?.total || 0}>
-        <TextField source="id" />
-        <TextField source="name" />
-        <TextField source="password" />
-        <TextField source="email" />
-        <DateField source="birthdate" showTime />
-        <DateField source="updated_at" showTime />
-        <DateField source="created_at" showTime />
-        <FunctionField<User>
-          render={record => {
-            return <Button label="Visualizar" component={Link} to={`/rtk/${record?.id}`} />
-          }}
-        />
-        <FunctionField<User>
-          render={record => {
-            return <Button label="Editar" component={Link} to={`/rtk/${record?.id}/edit`} />
-          }}
-        />
-      </Datagrid>
-    </div>
+    <Box sx={{ pt: 2 }}>
+      <Stack direction="row" justifyContent="flex-end" alignItems="center">
+        <Button component={Link} to="/rtk/create">
+          Criar
+        </Button>
+      </Stack>
+      <Box sx={{ pt: 1 }}>
+        <ListContextProvider value={listContext}>
+          <Datagrid>
+            <TextField source="id" />
+            <TextField source="name" />
+            <TextField source="password" />
+            <TextField source="email" />
+            <DateField source="birthdate" showTime />
+            <DateField source="updated_at" showTime />
+            <DateField source="created_at" showTime />
+            <FunctionField<User>
+              render={record => {
+                return (
+                  <Button component={Link} to={`/rtk/${record?.id}`}>
+                    Visualizar
+                  </Button>
+                )
+              }}
+            />
+            <FunctionField<User>
+              render={record => {
+                return (
+                  <Button component={Link} to={`/rtk/${record?.id}/edit`}>
+                    Editar
+                  </Button>
+                )
+              }}
+            />
+          </Datagrid>
+        </ListContextProvider>
+      </Box>
+    </Box>
   )
 }

@@ -2,7 +2,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { httpClientBaseQuery } from 'httpclient-adapter'
 import { FilterPayload, GetListParams, Identifier } from 'react-admin'
-import { selectRtkCachedItem } from 'utils/create-api-utils'
 
 export interface User {
   id: Identifier
@@ -44,13 +43,14 @@ export const usersApi = createApi({
       transformResponse: (response: Array<User>, meta: { contentRange?: number }) => {
         return { data: response, total: meta?.contentRange || 0 }
       },
-      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+
+      onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         try {
-          // dispatch(fetchStart())
-          await queryFulfilled
-          // dispatch(fetchEnd())
+          ;(await cacheDataLoaded).data.data.forEach(user => {
+            dispatch(usersApi.util.upsertQueryData('getUser', user.id, user))
+          })
         } catch {
-          // dispatch(fetchEnd())
+          console.error('error')
         }
       }
     }),
@@ -113,24 +113,8 @@ export const usersApi = createApi({
           patchResultGetUsers.undo()
         }
       }
-    }),
-    getLoadedUser: build.query<User, { id: number; target?: string }>({
-      queryFn: ({ id, target }, api) => {
-        const state = api.getState()
-
-        // cachedItem will be used for optimistic rendering
-        const cachedItem = selectRtkCachedItem<User>(state, usersApi.reducerPath, { id })
-
-        return cachedItem as { data: User }
-      }
     })
   })
 })
 
-export const {
-  useCreateUserMutation,
-  useGetUserQuery,
-  useUpdateUserMutation,
-  useGetUsersQuery,
-  useGetLoadedUserQuery
-} = usersApi
+export const { useCreateUserMutation, useGetUserQuery, useUpdateUserMutation, useGetUsersQuery } = usersApi
