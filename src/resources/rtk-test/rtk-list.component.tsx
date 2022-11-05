@@ -1,20 +1,37 @@
 // Packages
-import { FC } from 'react'
-import { Datagrid, DateField, TextField, Link, FunctionField, ListContextProvider, useList } from 'react-admin'
+import { FC, useMemo } from 'react'
+import {
+  Datagrid,
+  DateField,
+  TextField,
+  Link,
+  FunctionField,
+  ListContextProvider,
+  useList,
+  Pagination,
+  TextInput,
+  GetListParams
+} from 'react-admin'
 import { useGetUsersQuery, User } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
+import { useForm, FormProvider } from 'react-hook-form'
+
+type FormValues = GetListParams
 
 export const RtkList: FC = () => {
-  const currentSort = { field: 'created_at', order: 'ASC' }
-  const { data, isLoading } = useGetUsersQuery(
-    {
-      filter: {},
+  const methods = useForm<FormValues>({
+    mode: 'all',
+    defaultValues: {
+      filter: { name: '' },
       pagination: { page: 1, perPage: 5 },
-      sort: currentSort
-    },
-    { refetchOnMountOrArgChange: 2, pollingInterval: 10000 }
-  )
-  const listContext = useList({ data: data?.data, isLoading, sort: currentSort })
+      sort: { field: 'created_at', order: 'ASC' }
+    }
+  })
+  const { watch } = methods
+  const payload = watch()
+  const payload2 = useMemo(() => JSON.parse(JSON.stringify(payload)), [payload])
+  const { data, isLoading } = useGetUsersQuery(payload2)
+  const listContext = useList({ data: data?.data, isLoading })
 
   return (
     <Box sx={{ pt: 2 }}>
@@ -24,6 +41,9 @@ export const RtkList: FC = () => {
         </Button>
       </Stack>
       <Box sx={{ pt: 1 }}>
+        <FormProvider {...methods}>
+          <TextInput source="filter.name" format={value => value ?? ''} />
+        </FormProvider>
         <ListContextProvider value={listContext}>
           <Datagrid>
             <TextField source="id" />
@@ -52,6 +72,7 @@ export const RtkList: FC = () => {
               }}
             />
           </Datagrid>
+          <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />
         </ListContextProvider>
       </Box>
     </Box>
