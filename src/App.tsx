@@ -27,8 +27,6 @@ import { RtkShow } from 'resources/rtk-test/rtk-show.component'
 import { RtkEdit } from 'resources/rtk-test/rtk-edit.component'
 import { RtkCreate } from 'resources/rtk-test/rtk-create.component'
 import { CustomLayout } from 'config/layout/custom-layout'
-import { RtkCrudList } from 'resources/rtk-crud-users/rtk-crud-list.component'
-import { RtkCrudShow } from 'resources/rtk-crud-users/rtk-crud-show.component'
 import { Provider } from 'react-redux'
 
 const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
@@ -43,8 +41,6 @@ const App: FC<any> = () => (
     >
       <CustomRoutes>
         <Route path="/custom" element={<CustomList />} />,
-        <Route path="/rtk-crud" element={<RtkCrudList />} />,
-        <Route path="/rtk-crud/:id" element={<RtkCrudShow />} />,
         <Route path="/rtk" element={<RtkList />} />,
         <Route path="/rtk/create" element={<RtkCreate />} />,
         <Route path="/rtk/:id" element={<RtkShow />} />,
