@@ -10,7 +10,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@mui/lab": "^5.0.0-alpha.94",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/lab": "^5.0.0-alpha.106",
+    "@mui/material": "^5.10.12",
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -36,9 +39,9 @@
     "prettier": "^2.3.2",
     "ra-data-simple-rest": "^4.2.7",
     "ra-language-english": "^4.2.7",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-admin": "^4.5.0",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "typescript": "4.4.3",
@@ -65,7 +68,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
-    "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.8"
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8"
   }
 }
