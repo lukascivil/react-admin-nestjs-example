@@ -1,5 +1,5 @@
 // Packages
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { TextInput, useNotify, useRedirect, Form } from 'react-admin'
 import { Box, Button, Card } from '@mui/material'
 import { useGetUserQuery, useUpdateUserMutation } from 'store/api/users-api'
@@ -8,7 +8,7 @@ import { parse } from 'date-fns'
 
 export const RtkEdit: FC = () => {
   const location = useLocation()
-  const id = location.pathname.split('/').reverse()[1]
+  const id = parseInt(location.pathname.split('/').reverse()[1])
   const notify = useNotify()
   const redirect = useRedirect()
   const [updateUser] = useUpdateUserMutation()

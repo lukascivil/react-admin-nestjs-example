@@ -31,23 +31,21 @@ export const RtkCreate: FC = () => {
     <Card>
       <Box m={2}>
         <Form onSubmit={handleSubmit}>
-          <form onSubmit={handleSubmit}>
-            <Box>
-              <TextInput source="email" />
-            </Box>
-            <Box>
-              <TextInput source="name" />
-            </Box>
-            <Box>
-              <TextInput source="password" />
-            </Box>
-            <Box>
-              <DateInput source="birthdate" />
-            </Box>
-            <Box>
-              <Button type="submit">Salvar</Button>
-            </Box>
-          </form>
+          <Box>
+            <TextInput source="email" />
+          </Box>
+          <Box>
+            <TextInput source="name" />
+          </Box>
+          <Box>
+            <TextInput source="password" />
+          </Box>
+          <Box>
+            <DateInput source="birthdate" />
+          </Box>
+          <Box>
+            <Button type="submit">Salvar</Button>
+          </Box>
         </Form>
       </Box>
     </Card>
