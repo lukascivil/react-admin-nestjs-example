@@ -43,7 +43,6 @@ export const usersApi = createApi({
       transformResponse: (response: Array<User>, meta: { contentRange?: number }) => {
         return { data: response, total: meta?.contentRange || 0 }
       },
-
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         try {
           ;(await cacheDataLoaded).data.data.forEach(user => {
