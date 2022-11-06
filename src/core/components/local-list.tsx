@@ -40,6 +40,7 @@ import { LoadingButton } from '@mui/lab'
 
 // Icons
 import { FilterList as ContentFilter, HighlightOff as ActionHide, GetApp as DownloadIcon } from '@mui/icons-material'
+import PaginationWithoutPageNumbers from './pagination-without-page-numbers'
 
 interface ClientSideParams {
   data?: Array<RaRecord>
@@ -139,17 +140,20 @@ const LocalListDatagrid = (
     onSortChange(listContext.sort)
   }, [listContext.sort, onSortChange])
 
-  const handleNextPage = (): void => {
+  const handleNextPage = useCallback((): void => {
     setPage(state => state + 1)
-  }
+    onPageChange(page + 1)
+  }, [onPageChange, page])
 
-  const handlePreviousAllPage = (): void => {
+  const handlePreviousAllPage = useCallback((): void => {
     setPage(1)
-  }
+    onPageChange(1)
+  }, [onPageChange])
 
-  const handlePreviousPage = (): void => {
+  const handlePreviousPage = useCallback((): void => {
     setPage(state => state - 1)
-  }
+    onPageChange(page - 1)
+  }, [onPageChange, page])
 
   const totalPages = useMemo(() => Math.ceil(count / perPage) || 1, [perPage, count])
 
@@ -207,15 +211,14 @@ const LocalListDatagrid = (
               <div>{emptyMessage}</div>
             )
           ) : (
-            <></>
-            // <PaginationWithoutPageNumbers
-            //   page={page}
-            //   hasPreviousPage={hasPreviousPage || page > 1}
-            //   hasNextPage={hasNextPage}
-            //   onNext={handleNextPage}
-            //   onPrevious={handlePreviousPage}
-            //   onPreviousAll={handlePreviousAllPage}
-            // />
+            <PaginationWithoutPageNumbers
+              page={page}
+              hasPreviousPage={hasPreviousPage || page > 1}
+              hasNextPage={hasNextPage}
+              onNext={handleNextPage}
+              onPrevious={handlePreviousPage}
+              onPreviousAll={handlePreviousAllPage}
+            />
           )
         ) : paginationStrategy === 'server-side-with-total' ? (
           !total || total < 0 || page < 1 || page > totalPages ? (
