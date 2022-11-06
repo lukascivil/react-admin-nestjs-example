@@ -30,7 +30,8 @@ import { ListInput, Locker } from 'core/components'
 import { TabResource } from './tab-resource.component'
 import { TabHealth } from './tab-health.component'
 import { Whatshot as WhatshotIcon } from '@mui/icons-material'
-import { TabLocalList } from './tab-local-list'
+import { ServerSideWithTotal } from './tab-local-list-server-side-with-total-'
+import { ServerSideWithoutTotal } from './tab-local-list-server-side-without-total'
 
 const largeList = [...Array(1500)].map((_, index) => ({ id: index, title: index }))
 
@@ -301,7 +302,8 @@ const CustomList: FC<any> = () => {
           <Locker unlock={['n4']} value="3">
             <Tab label="RTK Query Api Health" />
           </Locker>
-          <Tab label="Local List" value="4" />
+          <Tab label="Server Side With Total" value="4" />
+          <Tab label="Server Side Without Total" value="5" />
         </TabList>
       </AppBar>
       <TabPanel value="1">
@@ -319,7 +321,10 @@ const CustomList: FC<any> = () => {
         <TabHealth />
       </TabPanel>
       <TabPanel value="4">
-        <TabLocalList />
+        <ServerSideWithTotal />
+      </TabPanel>
+      <TabPanel value="5">
+        <ServerSideWithoutTotal />
       </TabPanel>
     </TabContext>
   )

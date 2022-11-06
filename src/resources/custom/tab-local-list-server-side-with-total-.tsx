@@ -4,7 +4,7 @@ import { TextField, Datagrid, TextInput, GetListParams } from 'react-admin'
 import { useGetUsersQuery } from 'store/api/users-api'
 import LocalList from 'core/components/local-list'
 
-export const TabLocalList: FC = () => {
+export const ServerSideWithTotal: FC = () => {
   // RA GetList Params
   const [getListParams, setGetListParams] = useState<GetListParams>({
     filter: { email: '' },
