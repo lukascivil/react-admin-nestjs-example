@@ -126,10 +126,6 @@ const LocalListDatagrid = (
   })
 
   useEffect(() => {
-    onPageChange(page)
-  }, [page, onPageChange])
-
-  useEffect(() => {
     setPage(initialPage)
   }, [initialPage])
 
@@ -170,8 +166,9 @@ const LocalListDatagrid = (
       }
 
       setPage(value + 1)
+      onPageChange(value + 1)
     },
-    [totalPages, translate]
+    [totalPages, translate, onPageChange]
   )
 
   const handlePerPageChange = useCallback(
