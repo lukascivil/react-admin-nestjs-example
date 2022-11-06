@@ -31,7 +31,8 @@ import {
   useList,
   PaginationActions,
   RecordContextProvider,
-  Button
+  Button,
+  GetListParams
 } from 'react-admin'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { omit } from 'lodash'
@@ -72,6 +73,7 @@ interface ServerSideWithTotalParams extends Omit<ClientSideParams, 'paginationSt
   onSortChange?: (value: SortPayload) => void
   onPerPageChange?: (value: number) => void
   total: number | undefined
+  onGetListParamsChange?: (value: GetListParams) => void
 }
 
 interface Props {
