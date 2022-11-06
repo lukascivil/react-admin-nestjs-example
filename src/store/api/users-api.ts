@@ -51,7 +51,8 @@ export const usersApi = createApi({
         } catch {
           console.error('error')
         }
-      }
+      },
+      keepUnusedDataFor: 3
     }),
     getUser: build.query<User, Identifier>({
       query: id => ({
