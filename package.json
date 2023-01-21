@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/lab": "^5.0.0-alpha.106",
     "@mui/material": "^5.10.12",
-    "@reduxjs/toolkit": "^1.9.1",
+    "@reduxjs/toolkit": "2.0.0-alpha.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.7.1",
