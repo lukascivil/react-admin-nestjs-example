@@ -1,10 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Show,
   SimpleShowLayout,
   TextField,
   ShowProps,
-  BooleanField,
   DateField,
   ResourceContextProvider,
   ListBase,
@@ -15,6 +14,8 @@ import {
   Link
 } from 'react-admin'
 import { Box, Typography } from '@mui/material'
+
+const sort = { field: 'id', order: 'DESC' }
 
 export const UsersShow: FC<ShowProps> = props => {
   const currentSort = { field: 'created_at', order: 'ASC' }
@@ -56,17 +57,16 @@ export const UsersShow: FC<ShowProps> = props => {
           </Datagrid>
         </ReferenceManyField>
         <Box pt={2}>
-          <Typography variant="h6">Tarefas do usuário - Only Datagrid</Typography>
+          <Typography variant="h6">Tarefas do usuário - Only StandAlone Datagrid</Typography>
         </Box>
         {/* Use datagrid and call programmatically any dataprovider method*/}
         <Datagrid
-          // @ts-ignore
-          basePath=""
-          currentSort={currentSort}
           data={data}
+          sort={sort}
           selectedIds={[]}
-          loaded={isLoading}
-          total={total}
+          isLoading={isLoading}
+          total={total || 0}
+          bulkActionButtons={false}
         >
           <TextField source="title" />
           <DateField source="created_at" showTime />
