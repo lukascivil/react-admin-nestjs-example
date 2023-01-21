@@ -1,5 +1,5 @@
 // Packages
-import { RichTextInput } from 'ra-input-rich-text/dist/cjs/RichTextInput'
+import { RichTextInput } from 'ra-input-rich-text'
 import { FC } from 'react'
 import { Edit, SimpleForm, TextInput, BooleanInput, EditProps } from 'react-admin'
 
