@@ -1,6 +1,6 @@
 // Packages
 import React, { FC, Suspense } from 'react'
-import { Admin, CustomRoutes, Resource } from 'react-admin'
+import { Admin, CustomRoutes, Resource, useResourceContext } from 'react-admin'
 import simpleRestProvider from 'ra-data-simple-rest'
 import { Route } from 'react-router-dom'
 
@@ -32,6 +32,12 @@ const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
 
 const RtkList = React.lazy(() => import('./resources/rtk-test/rtk-list.component'))
 
+const ResourceName = () => {
+  const resource = useResourceContext()
+
+  return <>{resource}</>
+}
+
 const App: FC<any> = () => (
   <Provider store={createAdminStore()}>
     <Admin
@@ -55,7 +61,21 @@ const App: FC<any> = () => (
         <Route path="/rtk/:id" element={<RtkShow />} />,
         <Route path="/rtk/:id/edit" element={<RtkEdit />} />
       </CustomRoutes>
-      <Resource name="tasks" list={TasksList} create={TasksCreate} show={TasksShow} edit={TasksEdit} />
+      <Resource name="tasks" list={TasksList} create={TasksCreate} show={TasksShow} edit={TasksEdit}>
+        <Route
+          path="/subroute"
+          element={
+            <>
+              <div>
+                <ResourceName />
+                <br />
+                subroute
+              </div>
+            </>
+          }
+        />
+        ,
+      </Resource>
       <Resource name="users" list={UsersList} create={UsersCreate} show={UsersShow} edit={UsersEdit} />
     </Admin>
   </Provider>
