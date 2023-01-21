@@ -18,7 +18,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 
 type FormValues = GetListParams
 
-export const RtkList: FC = () => {
+const RtkList: FC = () => {
   const methods = useForm<FormValues>({
     mode: 'all',
     defaultValues: {
@@ -78,3 +78,5 @@ export const RtkList: FC = () => {
     </Box>
   )
 }
+
+export default RtkList

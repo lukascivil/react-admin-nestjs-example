@@ -1,5 +1,5 @@
 // Packages
-import React, { FC } from 'react'
+import React, { FC, Suspense } from 'react'
 import { Admin, CustomRoutes, Resource } from 'react-admin'
 import simpleRestProvider from 'ra-data-simple-rest'
 import { Route } from 'react-router-dom'
@@ -21,7 +21,6 @@ import { UsersCreate } from 'resources/users/users-create.component'
 import { UsersEdit } from 'resources/users/users-edit.component'
 import { UsersShow } from 'resources/users/users-show.components'
 import { i18nProvider } from 'i18nProvider'
-import { RtkList } from 'resources/rtk-test/rtk-list.component'
 import createAdminStore from 'create-admin-store'
 import { RtkShow } from 'resources/rtk-test/rtk-show.component'
 import { RtkEdit } from 'resources/rtk-test/rtk-edit.component'
@@ -30,6 +29,8 @@ import { CustomLayout } from 'config/layout/custom-layout'
 import { Provider } from 'react-redux'
 
 const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
+
+const RtkList = React.lazy(() => import('./resources/rtk-test/rtk-list.component'))
 
 const App: FC<any> = () => (
   <Provider store={createAdminStore()}>
@@ -41,7 +42,15 @@ const App: FC<any> = () => (
     >
       <CustomRoutes>
         <Route path="/custom" element={<CustomList />} />,
-        <Route path="/rtk" element={<RtkList />} />,
+        <Route
+          path="/rtk"
+          element={
+            <Suspense fallback={<>carregando...</>}>
+              <RtkList />
+            </Suspense>
+          }
+        />
+        ,
         <Route path="/rtk/create" element={<RtkCreate />} />,
         <Route path="/rtk/:id" element={<RtkShow />} />,
         <Route path="/rtk/:id/edit" element={<RtkEdit />} />
