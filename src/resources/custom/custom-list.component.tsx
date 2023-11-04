@@ -22,7 +22,8 @@ import {
   useList,
   ListContextProvider,
   Pagination,
-  Form
+  Form,
+  SortPayload
 } from 'react-admin'
 import { Box, Card, CardContent, Typography, Divider, Tab, AppBar, Button } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
@@ -74,7 +75,7 @@ const CustomListBase = () => {
     pagination: { page: 1, perPage: 10 },
     sort: { field: 'created_at', order: 'DESC' }
   })
-  const currentSort = { field: 'created_at', order: 'ASC' }
+  const currentSort: SortPayload = { field: 'created_at', order: 'ASC' }
 
   const onSubmit = () => {}
 

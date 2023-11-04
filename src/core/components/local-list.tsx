@@ -32,7 +32,8 @@ import {
   PaginationActions,
   RecordContextProvider,
   Button,
-  GetListParams
+  GetListParams,
+  PaginationPayload
 } from 'react-admin'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { omit } from 'lodash'
@@ -109,6 +110,8 @@ const LocalListDatagrid = (
     onSortChange = () => undefined,
     // @ts-ignore
     onPerPageChange = () => undefined,
+    // @ts-ignore
+    onGetListParamsChange = () => undefined,
     isDisablePagination = false,
     emptyMessage
   } = props
@@ -136,24 +139,62 @@ const LocalListDatagrid = (
     }
   }, [page, paginationStrategy, listContext])
 
-  useEffect(() => {
-    onSortChange(listContext.sort)
-  }, [listContext.sort, onSortChange])
+  const handleGetListParamsChange = useCallback(
+    ({
+      modifiedFilter,
+      modifiedPage,
+      modifiedPerPage,
+      modifiedSort
+    }: {
+      modifiedFilter?: FilterPayload
+      modifiedPage?: PaginationPayload['page']
+      modifiedPerPage?: PaginationPayload['perPage']
+      modifiedSort?: SortPayload
+    }): void => {
+      const getListParams: GetListParams = {
+        filter: modifiedFilter || filter,
+        pagination: { page: modifiedPage || page, perPage: modifiedPerPage || perPage },
+        sort: modifiedSort || sort
+      }
+
+      onGetListParamsChange(getListParams)
+    },
+    [filter, onGetListParamsChange, page, perPage, sort]
+  )
+
+  const handleSortChange = useCallback(
+    (sort: SortPayload): void => {
+      onSortChange(sort)
+      handleGetListParamsChange({ modifiedSort: sort })
+    },
+    [onSortChange, handleGetListParamsChange]
+  )
+
+  const handleFilter = useCallback(
+    (filter: FilterPayload): void => {
+      console.log({ filter })
+      handleGetListParamsChange({ modifiedFilter: filter })
+    },
+    [handleGetListParamsChange]
+  )
 
   const handleNextPage = useCallback((): void => {
     setPage(state => state + 1)
     onPageChange(page + 1)
-  }, [onPageChange, page])
+    handleGetListParamsChange({ modifiedPage: page + 1 })
+  }, [onPageChange, page, handleGetListParamsChange])
 
   const handlePreviousAllPage = useCallback((): void => {
     setPage(1)
     onPageChange(1)
-  }, [onPageChange])
+    handleGetListParamsChange({ modifiedPage: 1 })
+  }, [onPageChange, handleGetListParamsChange])
 
   const handlePreviousPage = useCallback((): void => {
     setPage(state => state - 1)
     onPageChange(page - 1)
-  }, [onPageChange, page])
+    handleGetListParamsChange({ modifiedPage: page - 1 })
+  }, [onPageChange, page, handleGetListParamsChange])
 
   const totalPages = useMemo(() => Math.ceil(count / perPage) || 1, [perPage, count])
 
@@ -171,15 +212,17 @@ const LocalListDatagrid = (
 
       setPage(value + 1)
       onPageChange(value + 1)
+      handleGetListParamsChange({ modifiedPage: value + 1 })
     },
-    [totalPages, translate, onPageChange]
+    [totalPages, translate, onPageChange, handleGetListParamsChange]
   )
 
   const handlePerPageChange = useCallback(
     (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
       onPerPageChange(event.target.value)
+      handleGetListParamsChange({ modifiedPerPage: parseInt(event.target.value, 10) })
     },
-    [onPerPageChange]
+    [onPerPageChange, handleGetListParamsChange]
   )
 
   const labelDisplayedRows = useCallback(
@@ -196,6 +239,14 @@ const LocalListDatagrid = (
     <ListContextProvider
       value={{
         ...listContext,
+        setFilters: (filters, displayedFilters, debounce) => {
+          handleFilter(filters)
+          listContext.setFilters(filters, displayedFilters, debounce)
+        },
+        setSort: sort => {
+          handleSortChange(sort)
+          listContext.setSort(sort)
+        },
         setPage: (page: number) => {
           setPage(page)
         }
@@ -330,6 +381,11 @@ const LocalList = (props: Props & LocalListProps): ReactElement => {
   const beforeSubmit = useCallback(
     (data: Record<string, string | Array<string> | number>): void => {
       const sanitizedData = Object.fromEntries(Object.entries(data).filter(entry => entry[1] !== ''))
+
+      // Need some logic
+      // if (props.paginationStrategy === 'server-side-with-total') {
+      //   props.onGetListParamsChange()
+      // }
 
       onSubmit(sanitizedData)
     },

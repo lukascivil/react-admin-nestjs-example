@@ -1,20 +1,14 @@
 // Packages
 import { FC, useState } from 'react'
-import { TextField, Datagrid, TextInput, GetListParams } from 'react-admin'
+import { TextField, Datagrid, TextInput, GetListParams, SortPayload } from 'react-admin'
 import { useGetUsersQuery } from 'store/api/users-api'
 import LocalList from 'core/components/local-list'
 
 export const ServerSideWithoutTotal: FC = () => {
   // RA GetList Params
-  const [getListParams, setGetListParams] = useState<GetListParams>({
-    filter: { email: '' },
-    pagination: { page: 1, perPage: 5 },
-    sort: { field: 'created_at', order: 'ASC' }
-  })
-  // RA GetList Params
   const [filter, setFilter] = useState({ email: '' })
   const [pagination, setPagination] = useState({ page: 1, perPage: 5 })
-  const [sort, setSort] = useState({ field: 'created_at', order: 'ASC' })
+  const [sort, setSort] = useState<SortPayload>({ field: 'created_at', order: 'ASC' })
   // RTK
   const { isFetching, data } = useGetUsersQuery({
     filter,

@@ -11,14 +11,15 @@ import {
   ReferenceManyField,
   useGetList,
   Button,
-  Link
+  Link,
+  SortPayload
 } from 'react-admin'
 import { Box, Typography } from '@mui/material'
 
-const sort = { field: 'id', order: 'DESC' }
+const sort: SortPayload = { field: 'id', order: 'DESC' }
 
 export const UsersShow: FC<ShowProps> = props => {
-  const currentSort = { field: 'created_at', order: 'ASC' }
+  const currentSort: SortPayload = { field: 'created_at', order: 'ASC' }
   const { data, total, isLoading } = useGetList('tasks', { pagination: { page: 1, perPage: 10 }, sort: currentSort })
 
   return (
