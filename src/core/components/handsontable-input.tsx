@@ -69,7 +69,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
   })
 
   const handleAfterChange = (): void => {
-    field.onChange(hotTableData)
+    field.onChange(hotTableData.current)
 
     if (onChange) {
       onChange(hotTableData.current)
