@@ -6,15 +6,31 @@ import { useController, useFormContext } from 'react-hook-form'
 import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material'
 import { composeValidators, isRequired, useGetValidationErrorMessage, InputHelperText, InputProps } from 'react-admin'
 
-type ExcelInputProps<A> = Pick<
+interface RendererBase {
+  td: HTMLElement
+  row: number
+  col: number
+  prop: string | number
+  value: any
+  cellProperties: GridSettings
+}
+
+export interface ExcelInputColumnSettings {
+  title: string
+  type: 'text' | 'numeric' | 'date' | 'checkbox'
+}
+
+export type ExcelInputProps<A> = Pick<
   InputProps,
   'label' | 'validate' | 'isRequired' | 'helperText' | 'disabled' | 'source'
 > & {
   defaultValue?: A
   onChange?: <T extends A>(value: T) => void
-  columns?: GridSettings['columns']
+  columns?: Array<ExcelInputColumnSettings>
+  colHeaders?: Handsontable.GridSettings['colHeaders']
   rows?: number
   fullWidth?: boolean
+  renderer?: (RendererBase: RendererBase) => HTMLElement
 }
 
 export const HandsontableInput = <A extends Array<Array<number | string | null>>>(
@@ -31,9 +47,10 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
     helperText,
     isRequired: isRequiredOption,
     label,
-    validate = []
+    validate = [],
+    colHeaders = [],
+    renderer
   } = props
-  const columnsRef = useRef(columns)
   const memoizedDefaultValue = useMemo(
     () => defaultValue || (Handsontable.helper.createEmptySpreadsheetData(rows, columns?.length || 3) as A),
     [columns?.length, defaultValue, rows]
@@ -68,6 +85,26 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
     }
   })
 
+  const preparedRenderer = (
+    _instance: Handsontable.plugins.DataManager['hot'],
+    td: RendererBase['td'],
+    row: RendererBase['row'],
+    col: RendererBase['col'],
+    prop: RendererBase['prop'],
+    value: RendererBase['value'],
+    cellProperties: RendererBase['cellProperties']
+  ): HTMLElement | undefined =>
+    typeof renderer === 'function'
+      ? renderer({
+          td,
+          row,
+          col,
+          prop,
+          value,
+          cellProperties
+        })
+      : undefined
+
   const handleAfterChange = (): void => {
     field.onChange(hotTableData.current)
 
@@ -97,7 +134,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
         <HotTable
           ref={hotTableRef}
           data={hotTableData.current}
-          colHeaders
+          colHeaders={colHeaders}
           rowHeaders
           width={isFullWidth ? undefined : 500}
           height={300}
@@ -111,9 +148,9 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
           maxRows={rows}
           observeChanges
           manualColumnResize
-          columns={columnsRef.current}
           afterBeginEditing={handleCellFocus}
           afterDeselect={handleCellBlur}
+          renderer={preparedRenderer as any}
         />
       </Box>
       <FormHelperText>
