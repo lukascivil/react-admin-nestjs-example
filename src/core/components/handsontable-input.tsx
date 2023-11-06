@@ -6,20 +6,18 @@ import { useController, useFormContext } from 'react-hook-form'
 import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material'
 import { composeValidators, isRequired, useGetValidationErrorMessage, InputHelperText, InputProps } from 'react-admin'
 
-type ExcelInputProps = Omit<InputProps, 'alwaysOn' | 'resource'> & {
-  source: string
-  defaultValue?: Array<Record<string, number | string>>
-  onChange?: <T extends Array<Record<string, number | string>>>(value: T) => void
-  disabled?: boolean
+type ExcelInputProps<A> = Pick<
+  InputProps,
+  'label' | 'validate' | 'isRequired' | 'helperText' | 'disabled' | 'source'
+> & {
+  defaultValue?: A
+  onChange?: <T extends A>(value: T) => void
   columns?: GridSettings['columns']
   rows?: number
   fullWidth?: boolean
-  helperText?: string
-  isRequired?: boolean
-  label?: string
 }
 
-export const HandsontableInput = (props: ExcelInputProps): ReactElement => {
+export const HandsontableInput = <A extends Array<Array<number | string | null>>>(props: ExcelInputProps<A>) => {
   const {
     source,
     disabled = false,
@@ -35,7 +33,7 @@ export const HandsontableInput = (props: ExcelInputProps): ReactElement => {
   } = props
   const columnsRef = useRef(columns)
   const memoizedDefaultValue = useMemo(
-    () => defaultValue || Handsontable.helper.createEmptySpreadsheetData(rows, columns?.length || 3),
+    () => defaultValue || (Handsontable.helper.createEmptySpreadsheetData(rows, columns?.length || 3) as A),
     [columns?.length, defaultValue, rows]
   )
   const sanitizedValidate = Array.isArray(validate) ? composeValidators(validate) : validate
