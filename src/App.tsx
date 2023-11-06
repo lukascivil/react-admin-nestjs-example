@@ -27,6 +27,7 @@ import { RtkEdit } from 'resources/rtk-test/rtk-edit.component'
 import { RtkCreate } from 'resources/rtk-test/rtk-create.component'
 import { CustomLayout } from 'config/layout/custom-layout'
 import { Provider } from 'react-redux'
+import { ExcelInputValidation } from 'resources/custom/excel-input-validation'
 
 const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
 
@@ -60,6 +61,7 @@ const App: FC<any> = () => (
         <Route path="/rtk/create" element={<RtkCreate />} />,
         <Route path="/rtk/:id" element={<RtkShow />} />,
         <Route path="/rtk/:id/edit" element={<RtkEdit />} />
+        <Route path="/ExcelInputValidation" element={<ExcelInputValidation />} />
       </CustomRoutes>
       <Resource name="tasks" list={TasksList} create={TasksCreate} show={TasksShow} edit={TasksEdit}>
         <Route

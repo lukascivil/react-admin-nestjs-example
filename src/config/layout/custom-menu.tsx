@@ -9,5 +9,6 @@ export const CustomMenu: FC = () => (
     {/* Outside RA resource pattern */}
     <MenuItemLink to="/custom" primaryText="Custom example" leftIcon={<LabelIcon />} />
     <MenuItemLink to="/rtk" primaryText="RTK Query example" leftIcon={<LabelIcon />} />
+    <MenuItemLink to="/ExcelInputValidation" primaryText="Excel Input" leftIcon={<LabelIcon />} />
   </div>
 )
