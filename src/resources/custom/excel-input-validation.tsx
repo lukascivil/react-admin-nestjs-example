@@ -25,7 +25,7 @@ export const ExcelInputValidation: FC = () => {
             console.log(cafe)
             console.log(formMethods.getValues())
           }}
-          rows={1000}
+          rows={100}
         />
       </FormProvider>
     </Box>

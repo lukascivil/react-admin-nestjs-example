@@ -17,7 +17,9 @@ type ExcelInputProps<A> = Pick<
   fullWidth?: boolean
 }
 
-export const HandsontableInput = <A extends Array<Array<number | string | null>>>(props: ExcelInputProps<A>) => {
+export const HandsontableInput = <A extends Array<Array<number | string | null>>>(
+  props: ExcelInputProps<A>
+): ReactElement => {
   const {
     source,
     disabled = false,
@@ -74,7 +76,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
     }
   }
 
-  const handleCellBlur = () => {
+  const handleCellBlur = (): void => {
     field.onBlur()
     setIsFocused(false)
   }
