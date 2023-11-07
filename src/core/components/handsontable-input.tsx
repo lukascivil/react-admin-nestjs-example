@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react'
 import { HotTable } from '@handsontable/react'
 import 'handsontable/dist/handsontable.full.min.css'
 import Handsontable, { GridSettings } from 'handsontable'
@@ -7,6 +7,7 @@ import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material'
 import { composeValidators, isRequired, useGetValidationErrorMessage, InputHelperText, InputProps } from 'react-admin'
 
 interface RendererBase {
+  instance: Handsontable.plugins.DataManager['hot']
   td: HTMLElement
   row: number
   col: number
@@ -16,8 +17,7 @@ interface RendererBase {
 }
 
 export interface ExcelInputColumnSettings {
-  title: string
-  type: 'text' | 'numeric' | 'date' | 'checkbox'
+  data: string
 }
 
 export type ExcelInputProps<A> = Pick<
@@ -33,7 +33,49 @@ export type ExcelInputProps<A> = Pick<
   renderer?: (RendererBase: RendererBase) => HTMLElement
 }
 
-export const HandsontableInput = <A extends Array<Array<number | string | null>>>(
+/**
+ * HandsontableInput is a component handles large lists of data in a table format. It's based on Handsontable library.
+ *
+ * Props:
+ *  - columns: Array of objects with data property to fill cell with a value from fieldState. Only use this property if your fieldState is an Array<object>.
+ *  - rows: Number of rows to be rendered.
+ *  - renderer: Function invoked every time a cell is rendered. It will be useful to customize cell style or add some behavior.
+ *
+ * @example Use HandsontableInput in a complex example
+ *  const formMethods = useForm({ defaultValues: { content: '{ "cafe": "cafe" }' }, mode: 'all' })
+ *
+ * const renderer: ExcelInputProps<any>['renderer'] = ({ td, value, col, cellProperties }) => {
+ *  if (value && col === 3) {
+ *    cellProperties.readOnly = true
+ *  }
+ *
+ *  if (value && col === 2) {
+ *     if (value && value.includes('error')) {
+ *       td.style.background = 'rgb(255, 76, 66)'
+ *       td.style.color = '#000000'
+ *     }
+ *
+ *     if (value && value.includes('success')) {
+ *       td.style.background = 'rgba(76, 175, 80, 0.7)'
+ *       td.style.color = '#000000'
+ *     }
+ *  }
+ *
+ *   td.innerText = value
+ *
+ *   return td
+ * }
+ *
+ * <HandsontableInput
+ *    source="example"
+ *    colHeaders={['A', 'B', '<strong>C</strong>']}
+ *    renderer={renderer}
+ *    rows={100}
+ * />
+ */
+export const HandsontableInput = <
+  A extends Array<Array<number | string | null> | Record<string, number | string | null>>
+>(
   props: ExcelInputProps<A>
 ): ReactElement => {
   const {
@@ -86,7 +128,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
   })
 
   const preparedRenderer = (
-    _instance: Handsontable.plugins.DataManager['hot'],
+    instance: RendererBase['instance'],
     td: RendererBase['td'],
     row: RendererBase['row'],
     col: RendererBase['col'],
@@ -96,6 +138,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
   ): HTMLElement | undefined =>
     typeof renderer === 'function'
       ? renderer({
+          instance,
           td,
           row,
           col,
@@ -121,6 +164,20 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
   const handleCellFocus = () => {
     setIsFocused(true)
   }
+
+  useEffect(() => {
+    const isColumnsArrayOfObjects = columns && columns.every(column => typeof column === 'object')
+    const isFieldValueArrayOfObjects =
+      Array.isArray(memoizedDefaultValue) && memoizedDefaultValue.every(value => typeof value === 'object')
+
+    if (isColumnsArrayOfObjects && !isFieldValueArrayOfObjects) {
+      throw new Error(
+        `For the handsontable-input to work properly, "columns" must be an array of objects
+        with "data" property to fill cell with a value from fieldState.
+        If your fieldState is not an Array<object>, you should not use "columns" property`
+      )
+    }
+  }, [columns, memoizedDefaultValue])
 
   return (
     <FormControl
@@ -151,6 +208,7 @@ export const HandsontableInput = <A extends Array<Array<number | string | null>>
           afterBeginEditing={handleCellFocus}
           afterDeselect={handleCellBlur}
           renderer={preparedRenderer as any}
+          columns={columns}
         />
       </Box>
       <FormHelperText>
