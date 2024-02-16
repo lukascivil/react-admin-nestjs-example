@@ -6309,12 +6309,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.19.0, date-fns@npm:^2.30.0":
+"date-fns@npm:^2.19.0":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:
     "@babel/runtime": "npm:^7.21.0"
   checksum: e4b521fbf22bc8c3db332bbfb7b094fd3e7627de0259a9d17c7551e2d2702608a7307a449206065916538e384f37b181565447ce2637ae09828427aed9cb5581
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "date-fns@npm:3.3.1"
+  checksum: e04ff79244010e03b912d791cd3250af5f18866ce868604958d76bd87e5fb0b79f0a810b8e7066248452b41779b288c4fd21de1cac2cd4b6d384e9dd931c9674
   languageName: node
   linkType: hard
 
@@ -11258,7 +11265,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^4.8.2"
     "@typescript-eslint/parser": "npm:^4.8.2"
     axios: "npm:^0.21.4"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^3.3.1"
     eslint: "npm:^7.29.0"
     eslint-config-prettier: "npm:^8.3.0"
     eslint-config-react-app: "npm:^6.0.0"
@@ -11272,18 +11279,18 @@ __metadata:
     handsontable: "npm:6.2.2"
     lodash: "npm:^4.17.21"
     postcss-normalize: "npm:^10.0.1"
-    prettier: "npm:^2.8.3"
-    ra-data-simple-rest: "npm:^4.15.2"
-    ra-input-rich-text: "npm:^4.15.3"
-    ra-language-english: "npm:^4.15.2"
-    ra-ui-materialui: "npm:^4.15.3"
+    prettier: "npm:^3.2.5"
+    ra-data-simple-rest: "npm:^4.16.11"
+    ra-input-rich-text: "npm:^4.16.11"
+    ra-language-english: "npm:^4.16.11"
+    ra-ui-materialui: "npm:^4.16.11"
     react: "npm:^18.2.0"
-    react-admin: "npm:^4.15.3"
+    react-admin: "npm:^4.16.11"
     react-dom: "npm:^18.2.0"
     react-redux: "npm:^8.0.5"
     react-scripts: "npm:5.0.1"
-    typescript: "npm:4.9.5"
-    web-vitals: "npm:^3.5.0"
+    typescript: "npm:5.3.3"
+    web-vitals: "npm:^3.5.2"
   languageName: unknown
   linkType: soft
 
@@ -12408,12 +12415,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.3":
-  version: 2.8.8
-  resolution: "prettier@npm:2.8.8"
+"prettier@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "prettier@npm:3.2.5"
   bin:
-    prettier: bin-prettier.js
-  checksum: 463ea8f9a0946cd5b828d8cf27bd8b567345cf02f56562d5ecde198b91f47a76b7ac9eae0facd247ace70e927143af6135e8cf411986b8cb8478784a4d6d724a
+    prettier: bin/prettier.cjs
+  checksum: ea327f37a7d46f2324a34ad35292af2ad4c4c3c3355da07313339d7e554320f66f65f91e856add8530157a733c6c4a897dc41b577056be5c24c40f739f5ee8c6
   languageName: node
   linkType: hard
 
@@ -12801,9 +12808,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-core@npm:^4.15.2":
-  version: 4.15.2
-  resolution: "ra-core@npm:4.15.2"
+"ra-core@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-core@npm:4.16.11"
   dependencies:
     clsx: "npm:^1.1.1"
     date-fns: "npm:^2.19.0"
@@ -12822,34 +12829,34 @@ __metadata:
     react-hook-form: ^7.43.9
     react-router: ^6.1.0
     react-router-dom: ^6.1.0
-  checksum: 0a5f30b499dfcca0ff35565f2d2aec7a22f956a26730f5a5ad61317915b7609a89cdcaa6b09636024c431e0348797195397b9d13a30329802a3fc04d5bb4928b
+  checksum: b36187ac111ae3b5033d27501079e79d21872e684715e6f6c1a4e76bde3429b0ec5f405ba52ac2e98d70ad4fc11866c0f7374084c753b48b0c5a1986b3f279ff
   languageName: node
   linkType: hard
 
-"ra-data-simple-rest@npm:^4.15.2":
-  version: 4.15.2
-  resolution: "ra-data-simple-rest@npm:4.15.2"
+"ra-data-simple-rest@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-data-simple-rest@npm:4.16.11"
   dependencies:
     query-string: "npm:^7.1.1"
   peerDependencies:
     ra-core: ^4.0.0
-  checksum: 83a7f30fb6df4406ab03b16d95465cf67b9bf96a5b42ba6c7784061f597a0277f56f974df76e13a3c591b5e1380ea484cfc1cf546a06f1aa3508cc69822a78e9
+  checksum: cf03830f1c018d026ac4a5c67d49122b18e9b079e795b2d2c259d12e973ed53531558ac9baa3572c86abf1f79a04e5dad03544f80dfaa9316e9043503da55079
   languageName: node
   linkType: hard
 
-"ra-i18n-polyglot@npm:^4.15.2":
-  version: 4.15.2
-  resolution: "ra-i18n-polyglot@npm:4.15.2"
+"ra-i18n-polyglot@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-i18n-polyglot@npm:4.16.11"
   dependencies:
     node-polyglot: "npm:^2.2.2"
-    ra-core: "npm:^4.15.2"
-  checksum: 99eb306059af72f11e9e8e331e8e2ad5a66b2ee07a150ecee81d80e5cb0aeed7d29d2205611de0c778c13764c4c79d923370a6599849071c99840283733f0c37
+    ra-core: "npm:^4.16.11"
+  checksum: d3021e45c375d6e80b9da4f06235f8dbd48db1dfa7dd3bd41d63d0e62c77230b25527bbd3b33f3e0a8e1459219090897fc0c6522bb6c4b81b8435e98e221d34c
   languageName: node
   linkType: hard
 
-"ra-input-rich-text@npm:^4.15.3":
-  version: 4.15.3
-  resolution: "ra-input-rich-text@npm:4.15.3"
+"ra-input-rich-text@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-input-rich-text@npm:4.16.11"
   dependencies:
     "@tiptap/core": "npm:^2.0.3"
     "@tiptap/extension-color": "npm:^2.0.3"
@@ -12871,22 +12878,22 @@ __metadata:
     ra-ui-materialui: ^4.0.0
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: ef64653661c79f68e4517dbddc3eff4f8ef468cdc08b8ec5588347a9f0438b9bc168e7ff3609820426ed6d945e5ece343f89ee3c31fd0afc61852f576685e819
+  checksum: 84d192301d13e8a80f867552a584472ed65b51b774fbfa34a167da7ac77a5b28c2c8ba44446290d8d03ba3a0f6779913aa2d9cf60ee127e65669c2d5fd0c031f
   languageName: node
   linkType: hard
 
-"ra-language-english@npm:^4.15.2":
-  version: 4.15.2
-  resolution: "ra-language-english@npm:4.15.2"
+"ra-language-english@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-language-english@npm:4.16.11"
   dependencies:
-    ra-core: "npm:^4.15.2"
-  checksum: 87f8bcb1f23a7fa2f64f407d55b2f94cc0f53a9f23046a7ebf24d69c15c02e6ac9787c9ae876aa9e0ebb9895ed583ef41ac5103b8ffe1d34ded6b95c25f3bada
+    ra-core: "npm:^4.16.11"
+  checksum: 91b5b99f8531527ae92edae1525fac61cd61ee035f71190829de09a27aec272b16504a0b460c8a8bc56d4a118f789e15c32eca94768c9e0400bb6cc53927aa13
   languageName: node
   linkType: hard
 
-"ra-ui-materialui@npm:^4.15.3":
-  version: 4.15.3
-  resolution: "ra-ui-materialui@npm:4.15.3"
+"ra-ui-materialui@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "ra-ui-materialui@npm:4.16.11"
   dependencies:
     autosuggest-highlight: "npm:^3.1.1"
     clsx: "npm:^1.1.1"
@@ -12912,7 +12919,7 @@ __metadata:
     react-is: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-router: ^6.1.0
     react-router-dom: ^6.1.0
-  checksum: 2959588e3002d5671a1ab3e7d9b4bece67cc975628dad6d5f0f331e9044b17d1780d92a1324a295db6925b3462815af7188e7cceba52e51d0aacd605e1e6fb4f
+  checksum: 546493b6f514d2407d2dfb6d7015c65430f558cd448ee87d06f370e964029fc101f7d2e3401dcf0a860f815e3126ec5c5ebc0f22c479256ac483ba1daf58c06a
   languageName: node
   linkType: hard
 
@@ -12953,26 +12960,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-admin@npm:^4.15.3":
-  version: 4.15.3
-  resolution: "react-admin@npm:4.15.3"
+"react-admin@npm:^4.16.11":
+  version: 4.16.11
+  resolution: "react-admin@npm:4.16.11"
   dependencies:
     "@emotion/react": "npm:^11.4.1"
     "@emotion/styled": "npm:^11.3.0"
     "@mui/icons-material": "npm:^5.0.1"
     "@mui/material": "npm:^5.0.2"
     history: "npm:^5.1.0"
-    ra-core: "npm:^4.15.2"
-    ra-i18n-polyglot: "npm:^4.15.2"
-    ra-language-english: "npm:^4.15.2"
-    ra-ui-materialui: "npm:^4.15.3"
+    ra-core: "npm:^4.16.11"
+    ra-i18n-polyglot: "npm:^4.16.11"
+    ra-language-english: "npm:^4.16.11"
+    ra-ui-materialui: "npm:^4.16.11"
     react-hook-form: "npm:^7.43.9"
     react-router: "npm:^6.1.0"
     react-router-dom: "npm:^6.1.0"
   peerDependencies:
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: 3c194b46f1ed1b8178e608e39000802af2cdcd3f62e6c58bccdbf967d6d39f418396a626cda8dca9015c2a5d0ba2e0de3f32c1beacfc656f2c3fde08087d8fa4
+  checksum: c03fe0d5b14ce8bb2868596a8c90717cc219ec502de625010f97d44c7a988c33dd1afe8b33c61dc07c84c2c564b34df9d007e587f642ac110e37af88e61ec87b
   languageName: node
   linkType: hard
 
@@ -15043,23 +15050,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:5.3.3":
+  version: 5.3.3
+  resolution: "typescript@npm:5.3.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5f6cad2e728a8a063521328e612d7876e12f0d8a8390d3b3aaa452a6a65e24e9ac8ea22beb72a924fd96ea0a49ea63bb4e251fb922b12eedfb7f7a26475e5c56
+  checksum: e33cef99d82573624fc0f854a2980322714986bc35b9cb4d1ce736ed182aeab78e2cb32b385efa493b2a976ef52c53e20d6c6918312353a91850e2b76f1ea44f
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
+"typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>":
+  version: 5.3.3
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=29ae49"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: e3333f887c6829dfe0ab6c1dbe0dd1e3e2aeb56c66460cb85c5440c566f900c833d370ca34eb47558c0c69e78ced4bfe09b8f4f98b6de7afed9b84b8d1dd06a1
+  checksum: e22df47df9b2b2f2617b8bf511a29aea3d177f9f7a0756818230a76b01cbd7da988bf55f9463aaa1a4c1ff90b80f8dc5676460d4e9dfc010572cbba59b822b0c
   languageName: node
   linkType: hard
 
@@ -15370,10 +15377,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-vitals@npm:^3.5.0":
-  version: 3.5.0
-  resolution: "web-vitals@npm:3.5.0"
-  checksum: 9409011cf6cf405796aba919cd0f6957eb59f1170481f948e4f70e34a0cc461103accc8ce80fa0ceaf3c68d4c8d2b92788454323cfda08722eaa1ec9c36159d5
+"web-vitals@npm:^3.5.2":
+  version: 3.5.2
+  resolution: "web-vitals@npm:3.5.2"
+  checksum: 662b385d6e96a18677cf8726454b65f3aecfdca330df72a82f73f293a5708ba9d191964649f8d363a1e64062a826a99805ade8c573a6492b91e02275b6860308
   languageName: node
   linkType: hard
 
