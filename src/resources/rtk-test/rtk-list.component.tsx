@@ -10,7 +10,9 @@ import {
   useList,
   Pagination,
   TextInput,
-  GetListParams
+  GetListParams,
+  RecordContextProvider,
+  ResourceContextProvider
 } from 'react-admin'
 import { useGetUsersQuery, User } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
@@ -44,36 +46,40 @@ const RtkList: FC = () => {
         <FormProvider {...methods}>
           <TextInput source="filter.name" format={value => value ?? ''} />
         </FormProvider>
-        <ListContextProvider value={listContext}>
-          <Datagrid>
-            <TextField source="id" />
-            <TextField source="name" />
-            <TextField source="password" />
-            <TextField source="email" />
-            <DateField source="birthdate" showTime />
-            <DateField source="updated_at" showTime />
-            <DateField source="created_at" showTime />
-            <FunctionField<User>
-              render={record => {
-                return (
-                  <Button component={Link} to={`/rtk/${record?.id}`}>
-                    Visualizar
-                  </Button>
-                )
-              }}
-            />
-            <FunctionField<User>
-              render={record => {
-                return (
-                  <Button component={Link} to={`/rtk/${record?.id}/edit`}>
-                    Editar
-                  </Button>
-                )
-              }}
-            />
-          </Datagrid>
-          <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />
-        </ListContextProvider>
+        <ResourceContextProvider value="postss">
+          <RecordContextProvider value={data}>
+            <ListContextProvider value={listContext}>
+              <Datagrid>
+                <TextField source="id" />
+                <TextField source="name" />
+                <TextField source="password" />
+                <TextField source="email" />
+                <DateField source="birthdate" showTime />
+                <DateField source="updated_at" showTime />
+                <DateField source="created_at" showTime />
+                <FunctionField<User>
+                  render={record => {
+                    return (
+                      <Button component={Link} to={`/rtk/${record?.id}`}>
+                        Visualizar
+                      </Button>
+                    )
+                  }}
+                />
+                <FunctionField<User>
+                  render={record => {
+                    return (
+                      <Button component={Link} to={`/rtk/${record?.id}/edit`}>
+                        Editar
+                      </Button>
+                    )
+                  }}
+                />
+              </Datagrid>
+              <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />
+            </ListContextProvider>
+          </RecordContextProvider>
+        </ResourceContextProvider>
       </Box>
     </Box>
   )

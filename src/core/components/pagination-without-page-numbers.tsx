@@ -18,7 +18,7 @@ interface Props {
 const PaginationWithoutPageNumbers = (props: Props): ReactElement => {
   const { page, hasPreviousPage, hasNextPage, onPreviousAll, onPrevious, onNext } = props
   const { data, isLoading } = useListContext()
-  const listLength = data.length
+  const listLength = data?.length || 0
 
   return (
     <Toolbar>

@@ -44,13 +44,15 @@ const LargeDatagrid = () => {
   })
 
   return (
-    <ListContextProvider value={listContextInfinite}>
-      <Datagrid>
-        <TextField source="id" label="Id" />
-        <TextField source="title" label="Título" sortable={false} />
-      </Datagrid>
-      <Pagination />
-    </ListContextProvider>
+    <ResourceContextProvider value="large-list">
+      <ListContextProvider value={listContextInfinite}>
+        <Datagrid>
+          <TextField source="id" label="Id" />
+          <TextField source="title" label="Título" sortable={false} />
+        </Datagrid>
+        <Pagination />
+      </ListContextProvider>
+    </ResourceContextProvider>
   )
 }
 
@@ -105,7 +107,7 @@ const CustomListBase = () => {
             tasks: []
           }}
         >
-          {/* <ListInput
+          <ListInput
             source="tasks"
             resource="tasks"
             basePath="/custom"
@@ -125,7 +127,7 @@ const CustomListBase = () => {
             </Locker>
             <TextField source="title" />
             <DateField source="created_at" showTime />
-          </ListInput> */}
+          </ListInput>
           <Typography variant="subtitle1" gutterBottom>
             Descrição da Contestação
           </Typography>
@@ -151,10 +153,12 @@ const CustomListBase = () => {
       </Box>
       <ResourceContextProvider value="tasks">
         <ListBase filter={{}}>
-          <Datagrid>
-            <TextField source="title" />
-            <DateField source="created_at" showTime />
-          </Datagrid>
+          <RecordContextProvider value={data}>
+            <Datagrid>
+              <TextField source="title" />
+              <DateField source="created_at" showTime />
+            </Datagrid>
+          </RecordContextProvider>
         </ListBase>
       </ResourceContextProvider>
       <Box py={3}>
@@ -174,12 +178,20 @@ const CustomListBase = () => {
       <Box pt={2}>
         <Typography variant="h6">Roles from authProvider (Stand alone datagrid)</Typography>
       </Box>
-      <Datagrid sort={currentSort} data={permissions || []} isLoading={false}>
-        <FunctionField render={record => record} />
-      </Datagrid>
-      <Datagrid sort={currentSort} data={permissions || []}>
-        <FunctionField render={record => record} />
-      </Datagrid>
+      <ResourceContextProvider value="teste4">
+        <RecordContextProvider value={permissions || []}>
+          <Datagrid sort={currentSort} isLoading={false}>
+            <FunctionField render={record => record} />
+          </Datagrid>
+        </RecordContextProvider>
+      </ResourceContextProvider>
+      <ResourceContextProvider value="teste3">
+        <RecordContextProvider value={permissions || []}>
+          <Datagrid sort={currentSort}>
+            <FunctionField render={record => record} />
+          </Datagrid>
+        </RecordContextProvider>
+      </ResourceContextProvider>
       <Box py={3}>
         <Divider />
       </Box>
@@ -195,13 +207,15 @@ const CustomListBase = () => {
         </Typography>
       </Box>
 
-      <ListContextProvider value={listContext}>
-        <Datagrid optimized>
-          <TextField source="id" label="Id" />
-          <TextField source="title" label="Título" />
-        </Datagrid>
-        <Pagination />
-      </ListContextProvider>
+      <ResourceContextProvider value="teste2">
+        <ListContextProvider value={listContext}>
+          <Datagrid optimized>
+            <TextField source="id" label="Id" />
+            <TextField source="title" label="Título" />
+          </Datagrid>
+          <Pagination />
+        </ListContextProvider>
+      </ResourceContextProvider>
 
       <Box py={3}>
         <Divider />

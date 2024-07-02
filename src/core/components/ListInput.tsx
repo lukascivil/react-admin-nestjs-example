@@ -180,7 +180,6 @@ const ListInput: FC<Props> = memo<Props>(
         disableSyncWithLocation
         empty={false}
         actions={false}
-        bulkActionButtons={false}
         component="div"
         filters={<Filter>{filters?.map(input => input)}</Filter>}
         aside={
@@ -199,7 +198,7 @@ const ListInput: FC<Props> = memo<Props>(
           />
         }
       >
-        <Datagrid size="small">
+        <Datagrid size="small" bulkActionButtons={false}>
           {children}
           <FunctionField
             render={record => (
