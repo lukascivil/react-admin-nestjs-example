@@ -39,8 +39,10 @@ const ResourceName = () => {
   return <>{resource}</>
 }
 
+const store = createAdminStore()
+
 const App: FC<any> = () => (
-  <Provider store={createAdminStore()}>
+  <Provider store={store}>
     <Admin
       layout={CustomLayout}
       dataProvider={dataProvider as any}

@@ -1,5 +1,7 @@
 // Packages
 import { AppState } from 'models/app.model'
-import {  useSelector } from 'react-redux'
+import { useSelector, TypedUseSelectorHook } from 'react-redux'
 
-export const useAppSelector = useSelector.withTypes<AppState>()
+// export const useAppSelector = useSelector.withTypes<AppState>()
+
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector

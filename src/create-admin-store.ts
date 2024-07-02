@@ -1,6 +1,5 @@
 // Packages
-import { combineReducers } from 'redux'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { usersApi } from 'store/api/users-api'
 import { resourcesApi } from 'store/api/resources-api'
 import { healthApi } from 'store/api/health-api'
