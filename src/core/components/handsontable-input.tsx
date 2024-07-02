@@ -212,7 +212,7 @@ export const HandsontableInput = <
         />
       </Box>
       <FormHelperText>
-        {(isTouched || isSubmitted) && <InputHelperText error={error?.message} helperText={helperText} />}
+        <InputHelperText error={error?.message} helperText={helperText} />
       </FormHelperText>
     </FormControl>
   )
