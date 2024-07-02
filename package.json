@@ -1,10 +1,10 @@
 {
-  "name": "react-admin-nestjs",
+  "name": "react-admin-nestjs-example",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "up": "yarn upgrade-interactive",
-    "start": "yarn workspaces foreach --all --parallel run start"
+    "start": "yarn workspaces foreach --all --parallel --verbose --exclude 'react-admin-nestjs-example:.' run start"
   },
   "eslintConfig": {
     "extends": [

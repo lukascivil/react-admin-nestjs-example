@@ -5771,37 +5771,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-admin-nestjs@workspace:.":
+"react-admin-example@workspace:apps/react-admin-example":
   version: 0.0.0-use.local
-  resolution: "react-admin-nestjs@workspace:."
-  languageName: unknown
-  linkType: soft
-
-"react-admin@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "react-admin@npm:5.0.3"
-  dependencies:
-    "@emotion/react": "npm:^11.4.1"
-    "@emotion/styled": "npm:^11.3.0"
-    "@mui/icons-material": "npm:^5.15.20"
-    "@mui/material": "npm:^5.15.20"
-    ra-core: "npm:^5.0.3"
-    ra-i18n-polyglot: "npm:^5.0.3"
-    ra-language-english: "npm:^5.0.3"
-    ra-ui-materialui: "npm:^5.0.3"
-    react-hook-form: "npm:^7.52.0"
-    react-router: "npm:^6.22.0"
-    react-router-dom: "npm:^6.22.0"
-  peerDependencies:
-    react: ^18.0.0 || ^19.0.0
-    react-dom: ^18.0.0 || ^19.0.0
-  checksum: 10c0/f2bc38a63bb645d0c62560092919db28d4941df3436fdfd4238f4fb1778489af703cbe757729dbc636c5fc822d94561ec9c989e68d7601e3f14c41bb2b0af457
-  languageName: node
-  linkType: hard
-
-"react-admin@workspace:apps/react-admin":
-  version: 0.0.0-use.local
-  resolution: "react-admin@workspace:apps/react-admin"
+  resolution: "react-admin-example@workspace:apps/react-admin-example"
   dependencies:
     "@babel/polyfill": "npm:^7.12.1"
     "@emotion/react": "npm:^11.10.5"
@@ -5854,6 +5826,34 @@ __metadata:
     web-vitals: "npm:^4.2.1"
   languageName: unknown
   linkType: soft
+
+"react-admin-nestjs-example@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "react-admin-nestjs-example@workspace:."
+  languageName: unknown
+  linkType: soft
+
+"react-admin@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "react-admin@npm:5.0.3"
+  dependencies:
+    "@emotion/react": "npm:^11.4.1"
+    "@emotion/styled": "npm:^11.3.0"
+    "@mui/icons-material": "npm:^5.15.20"
+    "@mui/material": "npm:^5.15.20"
+    ra-core: "npm:^5.0.3"
+    ra-i18n-polyglot: "npm:^5.0.3"
+    ra-language-english: "npm:^5.0.3"
+    ra-ui-materialui: "npm:^5.0.3"
+    react-hook-form: "npm:^7.52.0"
+    react-router: "npm:^6.22.0"
+    react-router-dom: "npm:^6.22.0"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/f2bc38a63bb645d0c62560092919db28d4941df3436fdfd4238f4fb1778489af703cbe757729dbc636c5fc822d94561ec9c989e68d7601e3f14c41bb2b0af457
+  languageName: node
+  linkType: hard
 
 "react-dom@npm:18.3.1":
   version: 18.3.1
