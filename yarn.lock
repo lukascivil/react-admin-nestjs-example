@@ -5198,62 +5198,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"our-admin@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "our-admin@workspace:."
-  dependencies:
-    "@babel/polyfill": "npm:^7.12.1"
-    "@emotion/react": "npm:^11.10.5"
-    "@emotion/styled": "npm:^11.10.5"
-    "@handsontable/react": "npm:2.1.0"
-    "@mui/icons-material": "npm:^5.15.21"
-    "@mui/lab": "npm:^5.0.0-alpha.106"
-    "@mui/material": "npm:^5.10.12"
-    "@reduxjs/toolkit": "npm:2.2.6"
-    "@testing-library/jest-dom": "npm:^5.11.10"
-    "@testing-library/react": "npm:^11.2.6"
-    "@testing-library/user-event": "npm:^12.7.1"
-    "@types/jest": "npm:^26.0.22"
-    "@types/lodash": "npm:^4.17.6"
-    "@types/node": "npm:^14.14.37"
-    "@types/react": "npm:^18.3.3"
-    "@types/react-dom": "npm:18.3.0"
-    "@types/react-redux": "npm:^7.1.33"
-    "@typescript-eslint/eslint-plugin": "npm:^4.8.2"
-    "@typescript-eslint/parser": "npm:^4.8.2"
-    "@vitejs/plugin-react": "npm:^4.3.1"
-    axios: "npm:^0.21.4"
-    date-fns: "npm:^3.6.0"
-    eslint: "npm:^7.29.0"
-    eslint-config-prettier: "npm:^8.3.0"
-    eslint-config-react-app: "npm:^6.0.0"
-    eslint-plugin-flowtype: "npm:^8.0.3"
-    eslint-plugin-import: "npm:^2.23.4"
-    eslint-plugin-jest: "npm:^24.3.6"
-    eslint-plugin-jsx-a11y: "npm:^6.5.1"
-    eslint-plugin-prettier: "npm:^3.4.0"
-    eslint-plugin-react: "npm:^7.24.0"
-    eslint-plugin-react-hooks: "npm:^4.2.0"
-    handsontable: "npm:6.2.2"
-    lodash: "npm:^4.17.21"
-    postcss-normalize: "npm:^10.0.1"
-    prettier: "npm:^3.3.2"
-    ra-core: "npm:^5.0.3"
-    ra-data-simple-rest: "npm:^5.0.2"
-    ra-input-rich-text: "npm:^5.0.2"
-    ra-language-english: "npm:^5.0.2"
-    ra-ui-materialui: "npm:^5.0.3"
-    react: "npm:18.3.1"
-    react-admin: "npm:^5.0.3"
-    react-dom: "npm:18.3.1"
-    react-redux: "npm:^9.1.2"
-    typescript: "npm:5.3.3"
-    vite: "npm:^5.3.2"
-    vite-tsconfig-paths: "npm:^4.3.2"
-    web-vitals: "npm:^4.2.1"
-  languageName: unknown
-  linkType: soft
-
 "p-map@npm:^4.0.0":
   version: 4.0.0
   resolution: "p-map@npm:4.0.0"
@@ -5827,6 +5771,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-admin-nestjs@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "react-admin-nestjs@workspace:."
+  languageName: unknown
+  linkType: soft
+
 "react-admin@npm:^5.0.3":
   version: 5.0.3
   resolution: "react-admin@npm:5.0.3"
@@ -5848,6 +5798,62 @@ __metadata:
   checksum: 10c0/f2bc38a63bb645d0c62560092919db28d4941df3436fdfd4238f4fb1778489af703cbe757729dbc636c5fc822d94561ec9c989e68d7601e3f14c41bb2b0af457
   languageName: node
   linkType: hard
+
+"react-admin@workspace:apps/react-admin":
+  version: 0.0.0-use.local
+  resolution: "react-admin@workspace:apps/react-admin"
+  dependencies:
+    "@babel/polyfill": "npm:^7.12.1"
+    "@emotion/react": "npm:^11.10.5"
+    "@emotion/styled": "npm:^11.10.5"
+    "@handsontable/react": "npm:2.1.0"
+    "@mui/icons-material": "npm:^5.15.21"
+    "@mui/lab": "npm:^5.0.0-alpha.106"
+    "@mui/material": "npm:^5.10.12"
+    "@reduxjs/toolkit": "npm:2.2.6"
+    "@testing-library/jest-dom": "npm:^5.11.10"
+    "@testing-library/react": "npm:^11.2.6"
+    "@testing-library/user-event": "npm:^12.7.1"
+    "@types/jest": "npm:^26.0.22"
+    "@types/lodash": "npm:^4.17.6"
+    "@types/node": "npm:^14.14.37"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:18.3.0"
+    "@types/react-redux": "npm:^7.1.33"
+    "@typescript-eslint/eslint-plugin": "npm:^4.8.2"
+    "@typescript-eslint/parser": "npm:^4.8.2"
+    "@vitejs/plugin-react": "npm:^4.3.1"
+    axios: "npm:^0.21.4"
+    date-fns: "npm:^3.6.0"
+    eslint: "npm:^7.29.0"
+    eslint-config-prettier: "npm:^8.3.0"
+    eslint-config-react-app: "npm:^6.0.0"
+    eslint-plugin-flowtype: "npm:^8.0.3"
+    eslint-plugin-import: "npm:^2.23.4"
+    eslint-plugin-jest: "npm:^24.3.6"
+    eslint-plugin-jsx-a11y: "npm:^6.5.1"
+    eslint-plugin-prettier: "npm:^3.4.0"
+    eslint-plugin-react: "npm:^7.24.0"
+    eslint-plugin-react-hooks: "npm:^4.2.0"
+    handsontable: "npm:6.2.2"
+    lodash: "npm:^4.17.21"
+    postcss-normalize: "npm:^10.0.1"
+    prettier: "npm:^3.3.2"
+    ra-core: "npm:^5.0.3"
+    ra-data-simple-rest: "npm:^5.0.2"
+    ra-input-rich-text: "npm:^5.0.2"
+    ra-language-english: "npm:^5.0.2"
+    ra-ui-materialui: "npm:^5.0.3"
+    react: "npm:18.3.1"
+    react-admin: "npm:^5.0.3"
+    react-dom: "npm:18.3.1"
+    react-redux: "npm:^9.1.2"
+    typescript: "npm:5.3.3"
+    vite: "npm:^5.3.2"
+    vite-tsconfig-paths: "npm:^4.3.2"
+    web-vitals: "npm:^4.2.1"
+  languageName: unknown
+  linkType: soft
 
 "react-dom@npm:18.3.1":
   version: 18.3.1
