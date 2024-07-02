@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  id: Float!
+  name: String!
+  birthdate: String!
+  email: String!
+  password: String!
+  created_at: String!
+  updated_at: String!
+}
+
+type Query {
+  getAvailableResources: [String!]!
+  getList: [UserEntity!]!
+  getOne(id: Float!): UserEntity!
+}
