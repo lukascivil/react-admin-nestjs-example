@@ -15,11 +15,11 @@
     "@handsontable/react": "2.1.0",
     "@mui/lab": "^5.0.0-alpha.106",
     "@mui/material": "^5.10.12",
-    "@reduxjs/toolkit": "2.2.1",
+    "@reduxjs/toolkit": "2.2.6",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.7.1",
-    "@types/lodash": "^4.14.191",
+    "@types/lodash": "^4.17.6",
     "@types/react-redux": "^7.1.25",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
@@ -38,18 +38,18 @@
     "handsontable": "6.2.2",
     "lodash": "^4.17.21",
     "postcss-normalize": "^10.0.1",
-    "prettier": "^3.2.5",
-    "ra-data-simple-rest": "^4.16.11",
-    "ra-input-rich-text": "^4.16.11",
-    "ra-language-english": "^4.16.11",
-    "ra-ui-materialui": "^4.16.11",
+    "prettier": "^3.3.2",
+    "ra-data-simple-rest": "^4.16.19",
+    "ra-input-rich-text": "^4.16.19",
+    "ra-language-english": "^4.16.19",
+    "ra-ui-materialui": "^4.16.19",
     "react": "^18.2.0",
-    "react-admin": "^4.16.11",
+    "react-admin": "^4.16.19",
     "react-dom": "^18.2.0",
-    "react-redux": "^9.1.0",
+    "react-redux": "^9.1.2",
     "react-scripts": "5.0.1",
     "typescript": "5.3.3",
-    "web-vitals": "^3.5.2"
+    "web-vitals": "^4.2.1"
   },
   "eslintConfig": {
     "extends": [
@@ -75,5 +75,5 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.3.1"
 }
