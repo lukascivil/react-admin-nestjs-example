@@ -24,7 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "axios": "^0.21.4",
-    "date-fns": "^3.3.1",
+    "date-fns": "^3.6.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
@@ -39,13 +39,13 @@
     "lodash": "^4.17.21",
     "postcss-normalize": "^10.0.1",
     "prettier": "^3.3.2",
-    "ra-data-simple-rest": "^4.16.19",
-    "ra-input-rich-text": "^4.16.19",
-    "ra-language-english": "^4.16.19",
+    "ra-data-simple-rest": "^5.0.2",
+    "ra-input-rich-text": "^5.0.2",
+    "ra-language-english": "^5.0.2",
     "ra-ui-materialui": "^4.16.19",
-    "react": "17.0.2",
-    "react-admin": "^4.16.19",
-    "react-dom": "17.0.2",
+    "react": "18.3.1",
+    "react-admin": "^5.0.2",
+    "react-dom": "18.3.1",
     "react-redux": "8.1.3",
     "react-scripts": "5.0.1",
     "typescript": "5.3.3",
@@ -72,8 +72,8 @@
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "17.0.25"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "18.3.0"
   },
   "packageManager": "yarn@4.3.1"
 }
