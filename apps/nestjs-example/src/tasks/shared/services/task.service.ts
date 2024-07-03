@@ -27,7 +27,7 @@ export class TaskService {
 
   getList(getListQuery: GetListQuery): Observable<GetListResult<TaskEntity>> {
     const query: FindManyOptions<TaskEntity> = {
-      where: { ...getListQuery.filter },
+      where: { ...(getListQuery.filter as any) },
       take: getListQuery.range[1] - getListQuery.range[0] + 1,
       skip: getListQuery.range[0] === 0 ? 1 : getListQuery.range[0],
       order: { [getListQuery.sort[0]]: getListQuery.sort[1] }

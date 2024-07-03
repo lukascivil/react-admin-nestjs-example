@@ -20,11 +20,11 @@ import { AuthModule } from './auth/auth.module';
     TerminusModule,
     HealthModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: 'localhost',
-      port: 3306,
-      username: '',
-      password: '',
+      port: 5432,
+      username: 'cafe',
+      password: 'cafe',
       database: 'test',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true

@@ -32,7 +32,7 @@ export class UsersService {
   @Query(() => [UserEntity])
   getList(getListQuery: GetListQuery): Observable<GetListResult<UserEntity>> {
     const query: FindManyOptions<UserEntity> = {
-      where: { ...getListQuery.filter },
+      where: { ...(getListQuery.filter as any) },
       take: getListQuery.range[1] - getListQuery.range[0] + 1,
       skip: getListQuery.range[0] === 0 ? 1 : getListQuery.range[0],
       order: { [getListQuery.sort[0]]: getListQuery.sort[1] }

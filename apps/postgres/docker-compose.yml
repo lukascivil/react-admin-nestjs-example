@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: cafe
+      POSTGRES_PASSWORD: cafe
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+    driver: local
