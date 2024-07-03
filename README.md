@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">Tasker-<strong>Client</strong>, a task registration application</p>
-<p align="center">(Example of React-Admin and RTK Query + nestjs + postgress)</p>
+<p align="center">(CRUD example of React-Admin and RTK Query + nestjs + postgress)</p>
 
 ## Description
 
