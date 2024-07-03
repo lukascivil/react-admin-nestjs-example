@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-example",
+  "name": "tasker",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -23,17 +23,18 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@compodoc/compodoc": "^1.1.11",
-    "@nestjs/common": "^7.6.15",
-    "@nestjs/core": "^7.6.15",
-    "@nestjs/graphql": "^7.10.3",
-    "@nestjs/jwt": "^7.2.0",
-    "@nestjs/passport": "^7.1.5",
-    "@nestjs/platform-express": "^7.6.15",
-    "@nestjs/swagger": "^4.8.0",
-    "@nestjs/terminus": "^7.1.1",
-    "@nestjs/typeorm": "^7.1.4",
-    "apollo-server-express": "^2.23.0",
+    "@compodoc/compodoc": "^1.1.25",
+    "@nestjs/common": "^9.4.3",
+    "@nestjs/core": "^9.4.3",
+    "@nestjs/graphql": "^9.1.2",
+    "@nestjs/jwt": "^9.0.0",
+    "@nestjs/passport": "8.2.2",
+    "@nestjs/platform-express": "^9.4.3",
+    "@nestjs/swagger": "^6.3.0",
+    "@nestjs/terminus": "^9.2.2",
+    "@nestjs/typeorm": "^9.0.1",
+    "apollo-server-express": "^3.13.0",
+    "axios": "^1.7.2",
     "date-fns": "^2.19.0",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.4",
@@ -43,14 +44,14 @@
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.8.1",
     "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.32"
   },
   "devDependencies": {
-    "@nestjs/cli": "^7.6.0",
-    "@nestjs/schematics": "^7.3.1",
-    "@nestjs/testing": "^7.6.15",
+    "@nestjs/cli": "^9.5.0",
+    "@nestjs/schematics": "^9.2.0",
+    "@nestjs/testing": "^9.4.3",
     "@types/express": "^4.17.11",
     "@types/jest": "26.0.22",
     "@types/node": "^13.9.1",
@@ -71,7 +72,7 @@
     "ts-loader": "^6.2.1",
     "ts-node": "9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.4"
+    "typescript": "5.3.3"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -86,6 +87,5 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "packageManager": "yarn@4.3.1"
+  }
 }
