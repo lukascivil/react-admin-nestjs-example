@@ -20,7 +20,7 @@ export class UserEntity {
   id?: number;
 
   @Field()
-  @Column({ type: 'longtext', default: '' })
+  @Column({ type: 'text', default: '' })
   @ApiProperty({
     example: 'Working on a project with react-admin and nestjs',
     description: 'The Task description'
@@ -28,7 +28,7 @@ export class UserEntity {
   name: string;
 
   @Field()
-  @Column({ type: 'datetime', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()' })
   @ApiProperty({
     example: 28,
     description: 'User age'
@@ -52,7 +52,7 @@ export class UserEntity {
   password: string;
 
   @Field()
-  @Column({ type: 'datetime', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()' })
   @ApiProperty({
     example: 'YYYY-MM-DD HH-MM-SS',
     description: 'when this user was created'
@@ -60,7 +60,7 @@ export class UserEntity {
   created_at: string;
 
   @Field()
-  @Column({ type: 'datetime', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()' })
   @ApiProperty({
     example: 'YYYY-MM-DD HH-MM-SS',
     description: 'when this user was updated'

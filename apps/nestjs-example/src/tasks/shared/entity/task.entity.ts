@@ -27,7 +27,7 @@ export class TaskEntity {
   @Column({ nullable: false })
   updated_by: number;
 
-  @Column({ type: 'longtext', default: '' })
+  @Column({ type: 'text', default: '' })
   @ApiProperty({
     example: 'Working on a project with react-admin and nestjs',
     description: 'The Task description'
@@ -48,14 +48,14 @@ export class TaskEntity {
   })
   title: string;
 
-  @Column({ type: 'datetime', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()' })
   @ApiProperty({
     example: 'YYYY-MM-DD HH-MM-SS',
     description: 'when this task was created'
   })
   created_at: string;
 
-  @Column({ type: 'datetime', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()' })
   @ApiProperty({
     example: 'YYYY-MM-DD HH-MM-SS',
     description: 'when this task was updated'

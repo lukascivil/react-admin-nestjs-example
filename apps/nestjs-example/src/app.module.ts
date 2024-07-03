@@ -21,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
     HealthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 5432,
       username: 'cafe',
       password: 'cafe',
