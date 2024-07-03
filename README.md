@@ -41,3 +41,25 @@ $ yarn start
 // Its recommended to use https://www.heidisql.com/ but feel free to decide.
 INSERT INTO "public"."user" ("id", "name", "email", "password") VALUES (1, 'admin', 'admin@gmail.com', "admin");
 ```
+
+## Project (nestjs server) Architecture Documentation
+
+```bash
+
+# Docs with compodoc
+$ yarn compodoc
+
+open http://localhost:8080/
+```
+
+![image](https://user-images.githubusercontent.com/7409802/99883854-b43a1d00-2c08-11eb-9e3d-0242c5098e2f.png)
+
+## Project (nestjs server) Health
+
+```bash
+# Health API with Terminus
+open http://localhost:3000/health
+```
+
+If you want to view the tables in the DBMS and the documents created, you can use a graphical tool to access.
+[HeidiSQL](https://www.heidisql.com/) is a free and powerful client for MariaDB, MySQL, Microsoft SQL Server, PostgreSQL and SQLite.
