@@ -39,5 +39,5 @@ $ yarn start
 ```bash
 // You need a client to connect to postgres on 127.0.0.1:5432
 // Its recommended to use https://www.heidisql.com/ but feel free to decide.
-INSERT INTO "public"."user" ("id", "name", "email", "password") VALUES (2, 'cafe', 'admin1@gmail.com', "admin1");
+INSERT INTO "public"."user" ("id", "name", "email", "password") VALUES (1, 'admin', 'admin@gmail.com', "admin");
 ```
