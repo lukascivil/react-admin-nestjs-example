@@ -6,6 +6,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TerminusModule } from '@nestjs/terminus';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ConfigModule } from '@nestjs/config';
 
 // Pipes
 import { ParseListQueryPipe } from './shared/pipes/parse-list-query.pipe';
@@ -14,6 +15,8 @@ import { UsersModule } from './users/users.module';
 // Health
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
+
+ConfigModule.forRoot();
 
 @Module({
   imports: [
