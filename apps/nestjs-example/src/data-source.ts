@@ -1,6 +1,8 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { config } from 'dotenv';
+import { resolve } from 'path';
 import { DataSource } from 'typeorm';
+
+config({ path: resolve(__dirname, '../.env') });
 
 export default new DataSource({
   type: 'postgres',
@@ -13,7 +15,8 @@ export default new DataSource({
   dropSchema: false,
   logging: false,
   logger: 'file',
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  migrations: ['src/migrations/**/*.ts'],
+  entities: ['src/**/**.entity{.ts,.js}'],
+  migrations: ['src/migrations/**/*{.ts,.js}'],
+  subscribers: ['src/subscriber/**/*{.ts,.js}'],
   migrationsTableName: 'migration_table'
 });

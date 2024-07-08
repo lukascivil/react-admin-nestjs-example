@@ -16,11 +16,11 @@ import { UsersModule } from './users/users.module';
 // Health
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
-
-ConfigModule.forRoot();
+import { SeederModule } from './database/seeds/seeder.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
     TerminusModule,
     HealthModule,
     TypeOrmModule.forRoot({
@@ -39,7 +39,8 @@ ConfigModule.forRoot();
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: 'schema.gql',
       driver: ApolloDriver
-    })
+    }),
+    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService, ParseListQueryPipe]
