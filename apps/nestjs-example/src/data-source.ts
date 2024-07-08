@@ -4,6 +4,7 @@ import { DataSource } from 'typeorm';
 
 config({ path: resolve(__dirname, '../.env') });
 
+// Used only for migrations
 export default new DataSource({
   type: 'postgres',
   host: process.env.DATABASE_HOST,
@@ -15,8 +16,8 @@ export default new DataSource({
   dropSchema: false,
   logging: false,
   logger: 'file',
-  entities: ['src/**/**.entity{.ts,.js}'],
-  migrations: ['src/migrations/**/*{.ts,.js}'],
-  subscribers: ['src/subscriber/**/*{.ts,.js}'],
+  entities: ['dist/**/**.entity{.ts,.js}'],
+  migrations: ['dist/migrations/**/*{.ts,.js}'],
+  subscribers: ['dist/subscriber/**/*{.ts,.js}'],
   migrationsTableName: 'migration_table'
 });

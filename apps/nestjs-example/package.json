@@ -20,7 +20,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate ./src/migrations/schema-update -d ./src/data-source.ts",
+    "typeorm": "yarn build && npx typeorm -d dist/data-source.js",
+    "migration:generate": "npm run typeorm -- migration:generate src/migrations",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./src/data-source.ts"
   },
