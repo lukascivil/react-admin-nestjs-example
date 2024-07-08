@@ -13,8 +13,8 @@ export class GetListQuery {
   })
   @IsObject()
   @IsNotEmpty()
-  @Transform(value => {
-    return JSON.parse(value);
+  @Transform((transformFnParams) => {
+    return JSON.parse(transformFnParams.value);
   })
   @Validate(FilterValidator)
   filter: { [key: string]: string } | { id: Array<number> };
@@ -26,8 +26,8 @@ export class GetListQuery {
   @IsOptional()
   @ArrayMinSize(2)
   @ArrayMaxSize(2)
-  @Transform(value => {
-    return JSON.parse(value);
+  @Transform((transformFnParams) => {
+    return JSON.parse(transformFnParams.value);
   })
   range?: [number, number];
 
@@ -36,8 +36,8 @@ export class GetListQuery {
     example: '[createdAt, "ASC"]'
   })
   @IsOptional()
-  @Transform(value => {
-    return JSON.parse(value);
+  @Transform((transformFnParams) => {
+    return JSON.parse(transformFnParams.value);
   })
   @Validate(SortValidator)
   sort?: [string, Order];

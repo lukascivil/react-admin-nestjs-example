@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TerminusModule } from '@nestjs/terminus';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 // Pipes
 import { ParseListQueryPipe } from './shared/pipes/parse-list-query.pipe';
@@ -35,8 +36,9 @@ ConfigModule.forRoot();
     TasksModule,
     UsersModule,
     AuthModule,
-    GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gql'
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      autoSchemaFile: 'schema.gql',
+      driver: ApolloDriver
     })
   ],
   controllers: [AppController],

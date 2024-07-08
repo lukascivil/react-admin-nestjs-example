@@ -36,7 +36,7 @@ describe('TaskService', () => {
     taskService
       .getOne(selectedId)
       .pipe(take(1))
-      .subscribe(task => {
+      .subscribe((task) => {
         expect(task.data.id).toEqual(selectedId);
       });
   });
@@ -45,13 +45,14 @@ describe('TaskService', () => {
     const newTask: CreateTaskDto = {
       description: 'new task was created, and i have to study more',
       title: 'nest is supreme',
-      completed: false
+      completed: false,
+      user_id: 1
     };
 
     taskService
       .create(newTask)
       .pipe(take(1))
-      .subscribe(task => {
+      .subscribe((task) => {
         expect(task).toEqual(newTask);
       });
   });
@@ -62,7 +63,7 @@ describe('TaskService', () => {
     taskService
       .delete(selectedId)
       .pipe(take(1))
-      .subscribe(result => {
+      .subscribe((result) => {
         expect(result).toEqual(undefined);
       });
   });
