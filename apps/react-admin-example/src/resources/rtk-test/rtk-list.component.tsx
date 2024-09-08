@@ -12,26 +12,34 @@ import {
   TextInput,
   GetListParams,
   RecordContextProvider,
-  ResourceContextProvider
+  ResourceContextProvider,
+  ReferenceField,
+  ChipField,
+  SingleFieldList
 } from 'react-admin'
-import { useGetUsersQuery, User } from 'store/api/users-api'
+import { useGetManyUsersQuery, useGetUsersQuery, User } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
 import { useForm, FormProvider } from 'react-hook-form'
+import RtkReferenceField from './rtk-reference-field'
+import RtkQueryField from './rtk-query-field'
+import { cloneDeep } from 'lodash'
 
 type FormValues = GetListParams
+
+const defaultValues: GetListParams = {
+  filter: {},
+  pagination: { page: 1, perPage: 5 },
+  sort: { field: 'created_at', order: 'ASC' }
+}
 
 const RtkList: FC = () => {
   const methods = useForm<FormValues>({
     mode: 'all',
-    defaultValues: {
-      filter: { name: '' },
-      pagination: { page: 1, perPage: 5 },
-      sort: { field: 'created_at', order: 'ASC' }
-    }
+    defaultValues
   })
   const { watch } = methods
   const payload = watch()
-  const payload2 = useMemo(() => JSON.parse(JSON.stringify(payload)), [payload])
+  const payload2 = useMemo(() => cloneDeep(payload), [payload])
   const { data, isLoading } = useGetUsersQuery(payload2)
   const listContext = useList({ data: data?.data, isLoading })
 
@@ -57,6 +65,42 @@ const RtkList: FC = () => {
                 <DateField source="birthdate" showTime />
                 <DateField source="updated_at" showTime />
                 <DateField source="created_at" showTime />
+                {/* RtkQueryField example 1 */}
+                <RtkQueryField label="query" queryHook={() => useGetUsersQuery(payload2)}>
+                  <Datagrid rowClick={false} bulkActionButtons={false}>
+                    <TextField source="name" />
+                  </Datagrid>
+                </RtkQueryField>
+                {/* RtkQueryField example 2 */}
+                <RtkQueryField
+                  label="RtkQueryField"
+                  queryHook={record => useGetManyUsersQuery([record!.id], { skip: !record })}
+                >
+                  <SingleFieldList>
+                    <ChipField source="name" />
+                  </SingleFieldList>
+                </RtkQueryField>
+                {/* RtkReferenceField example 1 */}
+                <RtkReferenceField
+                  label="RtkReferenceField"
+                  source="id"
+                  reference="getManyUsers"
+                  rtkQuery={useGetManyUsersQuery}
+                  emptyText="Sem referência"
+                  queryOptions={{}}
+                >
+                  <TextField source="name" />
+                </RtkReferenceField>
+                {/* ReferenceField example 1 */}
+                <ReferenceField
+                  label="RaReferenceField"
+                  source="id"
+                  reference="users"
+                  emptyText="Sem referência"
+                  queryOptions={{}}
+                >
+                  <TextField source="name" />
+                </ReferenceField>
                 <FunctionField<User>
                   render={record => {
                     return (

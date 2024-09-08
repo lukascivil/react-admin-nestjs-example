@@ -1,7 +1,8 @@
 // Packages
 import { createApi } from '@reduxjs/toolkit/query/react'
+import httpClient from 'httpclient'
 import { httpClientBaseQuery } from 'httpclient-adapter'
-import { FilterPayload, GetListParams, Identifier } from 'react-admin'
+import { FilterPayload, GetListParams, GetManyParams, Identifier, RaRecord } from 'react-admin'
 
 export interface User {
   id: Identifier
@@ -11,6 +12,17 @@ export interface User {
   password: string
   created_at: string
   updated_at: string
+}
+
+const generateGetManyQuery = (params: GetManyParams, filter?: FilterPayload): string => {
+  const defaultQuery = {
+    filter: JSON.stringify({
+      id: params.ids,
+      ...filter
+    })
+  }
+
+  return new URLSearchParams(defaultQuery).toString()
 }
 
 const generateListQuery = (params: GetListParams, filter?: FilterPayload): string => {
@@ -26,6 +38,49 @@ const generateListQuery = (params: GetListParams, filter?: FilterPayload): strin
 
   return new URLSearchParams(defaultQuery).toString()
 }
+
+const batch = fn => {
+  let capturedArgs: any[] = []
+  let timeout: ReturnType<typeof setTimeout> | null = null
+  return (arg: any) => {
+    capturedArgs.push(arg)
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      timeout = null
+      fn([...capturedArgs])
+      capturedArgs = []
+    }, 0)
+  }
+}
+
+interface Call {
+  resolve: (value: any) => void
+  reject: (value: any) => void
+  ids: GetManyParams['ids']
+  dataProvider: (queryParam: string) => ReturnType<typeof httpClient>
+}
+
+const callGetManyQueries = batch(async (calls: Array<Call>) => {
+  console.log('chamei 3 callGetManyQueries')
+
+  console.log({ calls })
+  const dataProvider = calls[0].dataProvider
+  const ids = calls.map(call => call.ids).flat()
+  const queryParam = generateGetManyQuery({ ids })
+
+  const response = await dataProvider(queryParam)
+
+  calls.forEach(call => {
+    call.resolve(response.json)
+  })
+})
+
+const result = (dataProvider: any, ids: GetManyParams['ids']): Promise<any> =>
+  new Promise((resolve, reject) => {
+    console.log('chamei 2 result')
+
+    callGetManyQueries({ reject, resolve, ids, dataProvider })
+  })
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
@@ -51,6 +106,20 @@ export const usersApi = createApi({
         } catch {
           console.error('error')
         }
+      },
+      keepUnusedDataFor: 3
+    }),
+    getManyUsers: build.query<Array<RaRecord<Identifier>>, Array<Identifier>>({
+      queryFn: async arg => {
+        const promise = (queryParam: string) =>
+          httpClient(`http://localhost:3000/users?${queryParam}`, {
+            method: 'GET'
+          })
+
+        console.log('chamei 1 queryFn')
+        const result1: Array<RaRecord<Identifier>> = await result(promise, arg)
+
+        return { data: result1 }
       },
       keepUnusedDataFor: 3
     }),
@@ -117,4 +186,5 @@ export const usersApi = createApi({
   })
 })
 
-export const { useCreateUserMutation, useGetUserQuery, useUpdateUserMutation, useGetUsersQuery } = usersApi
+export const { useCreateUserMutation, useGetUserQuery, useUpdateUserMutation, useGetUsersQuery, useGetManyUsersQuery } =
+  usersApi
