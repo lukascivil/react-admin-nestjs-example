@@ -1,21 +1,36 @@
 import { Typography } from '@mui/material'
-import { TypedUseQueryHookResult } from '@reduxjs/toolkit/dist/query/react'
+import { SubscriptionOptions, TypedUseQueryHookResult } from '@reduxjs/toolkit/dist/query/react'
 import { ReactElement } from 'react'
-import { RecordContextProvider, LinearProgress, RaRecord, Identifier, useRecordContext } from 'react-admin'
+import { RecordContextProvider, LinearProgress, useRecordContext } from 'react-admin'
 import { Error as ErrorIcon } from '@mui/icons-material'
+import { usersApi } from 'store/api/users-api'
 
-interface RtkQueryFieldProps {
+interface RtkQueryFieldProps<RecordType extends Record<string, any> = any> {
   label: string
-  record?: RaRecord<Identifier>
+  record?: RecordType
   children: ReactElement
-  queryHook: (record?: RaRecord<Identifier>) => TypedUseQueryHookResult<any, any, any>
+  endpoint: string
   emptyText?: string
+  args: (record?: RecordType) => any
+  queryOptions?: SubscriptionOptions & {
+    skip?: boolean
+    refetchOnMountOrArgChange?: boolean | number
+  }
 }
 
-const RtkQueryField = (props: RtkQueryFieldProps) => {
-  const { children, emptyText, queryHook } = props
+const RtkQueryField = <RecordType extends Record<string, any> = any>(props: RtkQueryFieldProps<RecordType>) => {
+  const { children, emptyText, endpoint, args, queryOptions } = props
   const record = useRecordContext(props)
-  const { data: referenceRecord, isError, isLoading } = queryHook(record)
+  const {
+    data: referenceRecord,
+    isError,
+    isLoading
+  }: TypedUseQueryHookResult<RecordType, any, any> = usersApi.endpoints[endpoint].useQuery(args(record), {
+    skip: !args,
+    ...queryOptions
+  })
+
+  console.log({ referenceRecord })
 
   if (isError) {
     return <ErrorIcon role="presentation" color="error" fontSize="small" />

@@ -4,15 +4,8 @@ import httpClient from 'httpclient'
 import { httpClientBaseQuery } from 'httpclient-adapter'
 import { FilterPayload, GetListParams, GetManyParams, Identifier, RaRecord } from 'react-admin'
 
-export interface User {
-  id: Identifier
-  name: string
-  birthdate: string
-  email: string
-  password: string
-  created_at: string
-  updated_at: string
-}
+// Models
+import { User } from 'models/user.model'
 
 const generateGetManyQuery = (params: GetManyParams, filter?: FilterPayload): string => {
   const defaultQuery = {

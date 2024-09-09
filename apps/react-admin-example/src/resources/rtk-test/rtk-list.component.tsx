@@ -17,7 +17,7 @@ import {
   ChipField,
   SingleFieldList
 } from 'react-admin'
-import { useGetManyUsersQuery, useGetUsersQuery, User } from 'store/api/users-api'
+import { useGetManyUsersQuery, useGetUsersQuery, useLazyGetManyUsersQuery, User } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
 import { useForm, FormProvider } from 'react-hook-form'
 import RtkReferenceField from './rtk-reference-field'
@@ -57,7 +57,7 @@ const RtkList: FC = () => {
         <ResourceContextProvider value="postss">
           <RecordContextProvider value={data}>
             <ListContextProvider value={listContext}>
-              <Datagrid>
+              <Datagrid rowClick={false}>
                 <TextField source="id" />
                 <TextField source="name" />
                 <TextField source="password" />
@@ -66,15 +66,29 @@ const RtkList: FC = () => {
                 <DateField source="updated_at" showTime />
                 <DateField source="created_at" showTime />
                 {/* RtkQueryField example 1 */}
-                <RtkQueryField label="query" queryHook={() => useGetUsersQuery(payload2)}>
+                <RtkQueryField label="query" endpoint="getUsers" args={() => payload2}>
                   <Datagrid rowClick={false} bulkActionButtons={false}>
                     <TextField source="name" />
                   </Datagrid>
                 </RtkQueryField>
                 {/* RtkQueryField example 2 */}
-                <RtkQueryField
+                <RtkQueryField<User>
                   label="RtkQueryField"
-                  queryHook={record => useGetManyUsersQuery([record!.id], { skip: !record })}
+                  endpoint="getManyUsers"
+                  args={record => [record.id]}
+                  emptyText="cafe"
+                  queryOptions={{}}
+                >
+                  <SingleFieldList>
+                    <ChipField source="name" />
+                  </SingleFieldList>
+                </RtkQueryField>
+                {/* RtkQueryField example 3 */}
+                <RtkQueryField<User>
+                  label="RtkQueryField"
+                  endpoint="getManyUsers"
+                  args={record => [record.id]}
+                  queryOptions={{}}
                 >
                   <SingleFieldList>
                     <ChipField source="name" />

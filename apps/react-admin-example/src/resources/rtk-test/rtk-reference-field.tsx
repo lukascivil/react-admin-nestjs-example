@@ -26,7 +26,7 @@ const RtkReferenceField = (props: RtkReferenceFieldProps) => {
   //   any
   // > = usersApi.endpoints.getMany.useQuery([id])
 
-  // 1 way (Build the hook)
+  // 1 way (Build the hook) -> Good way without conditionals
   // const { data, isError, isLoading } = usersApi.endpoints[reference]
   //   ? usersApi.endpoints[reference].useQuery([id], queryOptions)
   //   : { data: null, isError: true, isLoading: false }
@@ -34,10 +34,10 @@ const RtkReferenceField = (props: RtkReferenceFieldProps) => {
   // 2 way (comes from above)
   const { data, isError, isLoading } = rtkQuery!([id])
 
-  // 3 way (very specific)
+  // 3 way (very specific) -> Bad way
   // const { data } = useGetManyQuery([id])
 
-  // 4 way (manual calls)
+  // 4 way (manual calls) -> Good way
   // const dispatch = useDispatch()
   // const [first, setfirst] = useState()
   //
