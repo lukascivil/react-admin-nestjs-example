@@ -17,7 +17,7 @@ import {
   ChipField,
   SingleFieldList
 } from 'react-admin'
-import { useGetManyUsersQuery, useGetUsersQuery, useLazyGetManyUsersQuery, User } from 'store/api/users-api'
+import { useGetManyUsersQuery, useGetUsersQuery, User } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
 import { useForm, FormProvider } from 'react-hook-form'
 import RtkReferenceField from './rtk-reference-field'
