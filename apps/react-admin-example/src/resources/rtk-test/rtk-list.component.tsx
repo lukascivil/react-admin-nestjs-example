@@ -17,12 +17,15 @@ import {
   ChipField,
   SingleFieldList
 } from 'react-admin'
-import { useGetManyUsersQuery, useGetUsersQuery, User } from 'store/api/users-api'
+import { useGetManyUsersQuery, useGetUsersQuery } from 'store/api/users-api'
 import { Stack, Box, Button } from '@mui/material'
 import { useForm, FormProvider } from 'react-hook-form'
 import RtkReferenceField from './rtk-reference-field'
 import RtkQueryField from './rtk-query-field'
 import { cloneDeep } from 'lodash'
+
+// Models
+import { User } from 'models/user.model'
 
 type FormValues = GetListParams
 
@@ -75,7 +78,7 @@ const RtkList: FC = () => {
                 <RtkQueryField<User>
                   label="RtkQueryField"
                   endpoint="getManyUsers"
-                  args={record => [record.id]}
+                  args={record => [record?.id]}
                   emptyText="cafe"
                   queryOptions={{}}
                 >
@@ -87,7 +90,7 @@ const RtkList: FC = () => {
                 <RtkQueryField<User>
                   label="RtkQueryField"
                   endpoint="getManyUsers"
-                  args={record => [record.id]}
+                  args={record => [record?.id]}
                   emptyText="cafe"
                   queryOptions={{}}
                 >
@@ -95,7 +98,7 @@ const RtkList: FC = () => {
                     <ChipField source="name" />
                   </SingleFieldList>
                 </RtkQueryField>
-                {/* RtkQueryField example 3 */}
+                {/* RtkQueryField example 4 */}
                 <RtkQueryField<Array<User>>
                   label="RtkQueryField Count"
                   endpoint="getUsers"

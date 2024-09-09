@@ -18,6 +18,13 @@ interface RtkQueryFieldProps<RecordType extends Record<string, any> = any> {
   }
 }
 
+/**
+ * RtkQueryField Component will be used to fetch data from the API and pass it to the children with record context.
+ * This component is similar to ReferenceField from react-admin, but not requires response pattern.
+ *
+ * @param props
+ * @returns
+ */
 const RtkQueryField = <RecordType extends Record<string, any> = any>(props: RtkQueryFieldProps<RecordType>) => {
   const { children, emptyText, endpoint, args, queryOptions } = props
   const record = useRecordContext(props)
