@@ -88,11 +88,25 @@ const RtkList: FC = () => {
                   label="RtkQueryField"
                   endpoint="getManyUsers"
                   args={record => [record.id]}
+                  emptyText="cafe"
                   queryOptions={{}}
                 >
                   <SingleFieldList>
                     <ChipField source="name" />
                   </SingleFieldList>
+                </RtkQueryField>
+                {/* RtkQueryField example 3 */}
+                <RtkQueryField<Array<User>>
+                  label="RtkQueryField Count"
+                  endpoint="getUsers"
+                  args={() => payload2}
+                  queryOptions={{}}
+                >
+                  <FunctionField<{ data: Array<User>; total: number }>
+                    render={record => {
+                      return record.total
+                    }}
+                  />
                 </RtkQueryField>
                 {/* RtkReferenceField example 1 */}
                 <RtkReferenceField
