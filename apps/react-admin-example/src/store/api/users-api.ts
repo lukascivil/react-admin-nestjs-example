@@ -91,15 +91,31 @@ export const usersApi = createApi({
       transformResponse: (response: Array<User>, meta: { contentRange?: number }) => {
         return { data: response, total: meta?.contentRange || 0 }
       },
-      onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
-        try {
-          ;(await cacheDataLoaded).data.data.forEach(user => {
-            dispatch(usersApi.util.upsertQueryData('getUser', user.id, user))
-          })
-        } catch {
-          console.error('error')
-        }
+      // To understand how to implement optimistic rendering in details
+      // see https://redux-toolkit.js.org/rtk-query/api/created-api/api-slice-utils#upsertqueryentries
+      // (1) Using upsertQueryEntries (The correct way)
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        const response = await queryFulfilled
+        const users = response.data.data
+        const actions = users.map(user => ({
+          endpointName: 'getUser' as const,
+          arg: user.id,
+          value: user
+        }))
+
+        // Pre-fill the individual user entries with the users list
+        await dispatch(usersApi.util.upsertQueryEntries(actions))
       },
+      // (2) Using upsertQueryData (Alternative, calling all endpoint stuff)
+      // onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
+      //   try {
+      //     ;(await cacheDataLoaded).data.data.forEach(user => {
+      //       dispatch(usersApi.util.upsertQueryData('getUser', user.id, user))
+      //     })
+      //   } catch {
+      //     console.error('error')
+      //   }
+      // },
       keepUnusedDataFor: 3
     }),
     getManyUsers: build.query<Array<RaRecord<Identifier>>, Array<Identifier>>({
