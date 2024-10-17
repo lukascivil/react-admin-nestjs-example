@@ -2626,6 +2626,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "@hookform/resolvers@npm:3.9.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 10c0/0e0e55f63abbd212cf14abbd39afad1f9b6105d6b25ce827fc651b624ed2be467ebe9b186026e0f032062db59ce2370b14e9583b436ae2d057738bdd6f04356c
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.10":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -13204,6 +13213,7 @@ __metadata:
     "@emotion/react": "npm:^11.10.5"
     "@emotion/styled": "npm:^11.10.5"
     "@handsontable/react": "npm:2.1.0"
+    "@hookform/resolvers": "npm:^3.9.0"
     "@mui/icons-material": "npm:^5.15.21"
     "@mui/lab": "npm:^5.0.0-alpha.106"
     "@mui/material": "npm:^5.10.12"
@@ -13249,6 +13259,7 @@ __metadata:
     vite: "npm:^5.3.2"
     vite-tsconfig-paths: "npm:^4.3.2"
     web-vitals: "npm:^4.2.1"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
@@ -16092,5 +16103,12 @@ __metadata:
   version: 1.2.0
   resolution: "zepto@npm:1.2.0"
   checksum: 10c0/e17e4d47ee27e79ea86ccad9d35a67ebeb7715adf5ae6f7c9b92ede8aa4d04a33ae40949c9931c15b95a8aec0d675d510da2b097c866a325771f9d3efbcf658d
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
   languageName: node
   linkType: hard
