@@ -1,19 +1,29 @@
 // Packages
 import { FC } from 'react'
-import { TextInput, useNotify, useRedirect, Form } from 'react-admin'
-import { Box, Button, Card } from '@mui/material'
+import { TextInput, useNotify, useRedirect, Form, Title, FormDataConsumer } from 'react-admin'
+import { Button, Card, CardContent, Container } from '@mui/material'
 import { useGetUserQuery, useUpdateUserMutation } from 'store/api/users-api'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { parse } from 'date-fns'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const schema = z.object({
+  id: z.number({ message: 'Required' }),
+  email: z.string().min(1, { message: 'Required' }),
+  name: z.string().min(1, { message: 'Required' }),
+  password: z.string().min(1, { message: 'Required' }),
+  birthdate: z.string().min(10, { message: 'Required' })
+})
 
 export const RtkEdit: FC = () => {
-  const location = useLocation()
-  const id = parseInt(location.pathname.split('/').reverse()[1])
+  const { id } = useParams()
   const notify = useNotify()
   const redirect = useRedirect()
   const [updateUser] = useUpdateUserMutation()
-  const { data: record } = useGetUserQuery(id, {
-    refetchOnMountOrArgChange: true
+  const { data: record } = useGetUserQuery(id || 0, {
+    refetchOnMountOrArgChange: true,
+    skip: !id
   })
 
   const handleSubmit = formValues => {
@@ -34,29 +44,26 @@ export const RtkEdit: FC = () => {
   }
 
   return (
-    <Card>
-      <Box m={2}>
-        <Form record={record} onSubmit={handleSubmit}>
-          <Box>
-            <TextInput disabled source="id" />
-          </Box>
-          <Box>
-            <TextInput disabled source="email" />
-          </Box>
-          <Box>
+    <Container>
+      <Title title={`RTK edit ${record?.name}`} />
+      <Card>
+        <CardContent>
+          <Form record={record} onSubmit={handleSubmit} resolver={zodResolver(schema)} disabled={!id}>
+            <TextInput readOnly source="id" />
+            <TextInput readOnly source="email" />
             <TextInput source="name" />
-          </Box>
-          <Box>
             <TextInput source="password" />
-          </Box>
-          <Box>
             <TextInput source="birthdate" />
-          </Box>
-          <Box>
-            <Button type="submit">Salvar</Button>
-          </Box>
-        </Form>
-      </Box>
-    </Card>
+            <FormDataConsumer<z.infer<typeof schema>>>
+              {({ formData }) => (
+                <Button type="submit" variant="contained" disabled={!formData.id}>
+                  Salvar
+                </Button>
+              )}
+            </FormDataConsumer>
+          </Form>
+        </CardContent>
+      </Card>
+    </Container>
   )
 }
