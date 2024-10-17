@@ -1,9 +1,18 @@
 // Packages
 import React, { FC } from 'react'
-import { DateInput, TextInput, useNotify, useRedirect, Form } from 'react-admin'
-import { Box, Button, Card } from '@mui/material'
+import { DateInput, TextInput, useNotify, useRedirect, Form, Title } from 'react-admin'
+import { Card, CardContent, Container, Button } from '@mui/material'
 import { useCreateUserMutation } from 'store/api/users-api'
 import { parse } from 'date-fns'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const schema = z.object({
+  email: z.string().min(1, { message: 'Required' }),
+  name: z.string().min(1, { message: 'Required' }),
+  password: z.string().min(1, { message: 'Required' }),
+  birthdate: z.string().min(10, { message: 'Required' })
+})
 
 export const RtkCreate: FC = () => {
   const notify = useNotify()
@@ -28,26 +37,19 @@ export const RtkCreate: FC = () => {
   }
 
   return (
-    <Card>
-      <Box m={2}>
-        <Form onSubmit={handleSubmit}>
-          <Box>
+    <Container>
+      <Title title="RTK create" />
+      <Card>
+        <CardContent>
+          <Form onSubmit={handleSubmit} resolver={zodResolver(schema)}>
             <TextInput source="email" />
-          </Box>
-          <Box>
             <TextInput source="name" />
-          </Box>
-          <Box>
             <TextInput source="password" />
-          </Box>
-          <Box>
             <DateInput source="birthdate" />
-          </Box>
-          <Box>
             <Button type="submit">Salvar</Button>
-          </Box>
-        </Form>
-      </Box>
-    </Card>
+          </Form>
+        </CardContent>
+      </Card>
+    </Container>
   )
 }
