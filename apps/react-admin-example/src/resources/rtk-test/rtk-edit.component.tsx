@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { parse } from 'date-fns'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { skipToken } from '@reduxjs/toolkit/query'
 
 const schema = z.object({
   id: z.number({ message: 'Required' }),
@@ -21,9 +22,8 @@ export const RtkEdit: FC = () => {
   const notify = useNotify()
   const redirect = useRedirect()
   const [updateUser] = useUpdateUserMutation()
-  const { data: record } = useGetUserQuery(id || 0, {
-    refetchOnMountOrArgChange: true,
-    skip: !id
+  const { data: record } = useGetUserQuery(id ?? skipToken, {
+    refetchOnMountOrArgChange: true
   })
 
   const handleSubmit = formValues => {
