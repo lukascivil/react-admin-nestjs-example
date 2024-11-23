@@ -23,20 +23,20 @@
     "@testing-library/user-event": "^12.7.1",
     "@types/lodash": "^4.17.6",
     "@types/react-redux": "^7.1.34",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
     "axios": "1.7.7",
     "date-fns": "^3.6.0",
-    "eslint": "^7.29.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-react-app": "^6.0.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "handsontable": "6.2.2",
     "lodash": "^4.17.21",
     "postcss-normalize": "^10.0.1",
@@ -54,12 +54,6 @@
     "web-vitals": "^4.2.1",
     "zod": "^3.23.8"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -73,13 +67,15 @@
     ]
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.3",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
     "@types/react": "^18.3.3",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^15.12.0",
     "vite": "^5.4.11",
     "vite-tsconfig-paths": "^5.1.3"
   }

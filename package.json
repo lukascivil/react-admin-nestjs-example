@@ -7,12 +7,6 @@
     "start": "yarn workspaces foreach --all --parallel --verbose --exclude 'react-admin-nestjs-example:.' run start",
     "up-yarn": "yarn set version latest"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
