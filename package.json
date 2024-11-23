@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "up": "yarn upgrade-interactive",
-    "start": "yarn workspaces foreach --all --parallel --verbose --exclude 'react-admin-nestjs-example:.' run start"
+    "start": "yarn workspaces foreach --all --parallel --verbose --exclude 'react-admin-nestjs-example:.' run start",
+    "up-yarn": "yarn set version latest"
   },
   "eslintConfig": {
     "extends": [
@@ -24,7 +25,7 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.5.2",
   "workspaces": [
     "apps/*"
   ]
