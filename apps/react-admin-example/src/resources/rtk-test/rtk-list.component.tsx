@@ -69,16 +69,16 @@ const RtkList: FC = () => {
                 <DateField source="updated_at" showTime />
                 <DateField source="created_at" showTime />
                 {/* RtkQueryField example 1 */}
-                <RtkQueryField label="query" endpoint="getUsers" args={() => payload2}>
+                <RtkQueryField label="RtkQueryField 1" endpoint="getUsers" args={() => payload2}>
                   <Datagrid rowClick={false} bulkActionButtons={false}>
                     <TextField source="name" />
                   </Datagrid>
                 </RtkQueryField>
                 {/* RtkQueryField example 2 */}
-                <RtkQueryField<User>
-                  label="RtkQueryField"
+                <RtkQueryField<'getManyUsers', User>
+                  label="RtkQueryField 2"
                   endpoint="getManyUsers"
-                  args={record => [record?.id]}
+                  args={record => (record ? [record.id] : undefined)}
                   emptyText="cafe"
                   queryOptions={{}}
                 >
@@ -87,10 +87,10 @@ const RtkList: FC = () => {
                   </SingleFieldList>
                 </RtkQueryField>
                 {/* RtkQueryField example 3 */}
-                <RtkQueryField<User>
-                  label="RtkQueryField"
+                <RtkQueryField<'getManyUsers', User>
+                  label="RtkQueryField 3"
                   endpoint="getManyUsers"
-                  args={record => [record?.id]}
+                  args={record => (record ? [record.id] : undefined)}
                   emptyText="cafe"
                   queryOptions={{}}
                 >
@@ -99,8 +99,8 @@ const RtkList: FC = () => {
                   </SingleFieldList>
                 </RtkQueryField>
                 {/* RtkQueryField example 4 */}
-                <RtkQueryField<Array<User>>
-                  label="RtkQueryField Count"
+                <RtkQueryField<'getUsers', Array<User>>
+                  label="RtkQueryField 4"
                   endpoint="getUsers"
                   args={() => payload2}
                   queryOptions={{}}
@@ -112,7 +112,7 @@ const RtkList: FC = () => {
                   />
                 </RtkQueryField>
                 {/* RtkReferenceField example 1 */}
-                <RtkReferenceField
+                {/* <RtkReferenceField
                   label="RtkReferenceField"
                   source="id"
                   reference="getManyUsers"
@@ -121,9 +121,9 @@ const RtkList: FC = () => {
                   queryOptions={{}}
                 >
                   <TextField source="name" />
-                </RtkReferenceField>
+                </RtkReferenceField> */}
                 {/* ReferenceField example 1 */}
-                <ReferenceField
+                {/* <ReferenceField
                   label="RaReferenceField"
                   source="id"
                   reference="users"
@@ -131,7 +131,7 @@ const RtkList: FC = () => {
                   queryOptions={{}}
                 >
                   <TextField source="name" />
-                </ReferenceField>
+                </ReferenceField> */}
                 <FunctionField<User>
                   render={record => {
                     return (
