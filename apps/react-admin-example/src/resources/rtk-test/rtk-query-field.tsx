@@ -24,7 +24,32 @@ type RtkQueryFieldProps<RecordType extends Record<string, any> = any, C extends 
 
 /**
  * RtkQueryField Component will be used to fetch data from the API and pass it to the children with record context.
- * This component is similar to ReferenceField from react-admin, but not requires response pattern.
+ * This component is similar to the ReferenceField from react-admin, but it does not require a request or response body pattern.
+ * It does require the arg prop passed to the redux toolkit endpoint to be valid.
+ *
+ * Example:
+ * ```tsx
+ *  // Simple use without accessing record
+ *  <RtkQueryField label="User name" endpoint="getUsers" args={() => payload2}>
+ *     <Datagrid rowClick={false} bulkActionButtons={false}>
+ *       <TextField source="name" />
+ *     </Datagrid>
+ *  </RtkQueryField>
+ *
+ *  // Use with record, we should pass two generics to the RtkQueryField
+ *  <RtkQueryField<'getUsers', Array<User>>
+ *    label="RtkQueryField 4"
+ *    endpoint="getUsers"
+ *    args={record => (record ? [record.id] : undefined)}
+ *    queryOptions={{}}
+ *  >
+ *    <FunctionField<{ data: Array<User>; total: number }>
+ *      render={record => {
+ *        return record.total
+ *      }}
+ *    />
+ *  </RtkQueryField>
+ * ```
  *
  * @param props
  * @returns
