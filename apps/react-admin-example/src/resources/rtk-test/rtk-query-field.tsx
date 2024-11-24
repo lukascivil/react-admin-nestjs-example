@@ -15,7 +15,7 @@ type RtkQueryFieldProps<RecordType extends Record<string, any> = any, C extends 
   children: ReactElement
   endpoint: C
   emptyText?: string
-  args: (record?: RecordType) => QueryArg<C>
+  args: (record?: RecordType) => QueryArg<C> | undefined
   queryOptions?: SubscriptionOptions & {
     skip?: boolean
     refetchOnMountOrArgChange?: boolean | number
@@ -29,29 +29,17 @@ type RtkQueryFieldProps<RecordType extends Record<string, any> = any, C extends 
  * @param props
  * @returns
  */
-const RtkQueryField = <
-  RecordType extends Record<string, any> = any,
-  C extends keyof typeof usersApi.endpoints = keyof typeof usersApi.endpoints
->(
-  props: RtkQueryFieldProps
+const RtkQueryField = <C extends Endpoints, RecordType extends Record<string, any> = any>(
+  props: RtkQueryFieldProps<RecordType, C>
 ) => {
   const { children, emptyText, endpoint, args, queryOptions } = props
   const record = useRecordContext(props)
-  const {
-    data: referenceRecord,
-    isError,
-    isLoading
-  }: TypedUseQueryHookResult<RecordType, any, any> = usersApi.endpoints[endpoint as C].useQuery(
-    args(record) as QueryArg<C>,
-    {
+  const { data: referenceRecord, isError, isLoading }: TypedUseQueryHookResult<RecordType, any, any> =
+    /* @ts-ignore */
+    usersApi.endpoints[endpoint].useQuery(args(record), {
       skip: !args,
       ...queryOptions
-    }
-  )
-
-  // const cafe: typeof usersApi.endpoints.getUsers.Types.QueryArg
-  // const cafe: Pick<typeof usersApi.endpoints, 'getUsers'>['getUsers']['Types']['QueryArg']
-  // const cafe: QueryArg<'getUsers'>
+    })
 
   console.log({ referenceRecord })
 
