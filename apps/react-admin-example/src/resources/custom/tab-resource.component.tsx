@@ -7,13 +7,7 @@ export const TabResource: FC = () => {
   return (
     <>
       {isLoading && <div>Loading...</div>}
-      {isSuccess && (
-        <div>
-          {data?.map(el => (
-            <p>el</p>
-          ))}
-        </div>
-      )}
+      {isSuccess && <div>{data?.map((el, index) => <p key={`${el}-${index}`}>el</p>)}</div>}
     </>
   )
 }
