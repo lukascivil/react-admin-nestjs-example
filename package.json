@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "up": "yarn upgrade-interactive",
-    "start": "yarn workspaces foreach --all --parallel --verbose --exclude 'react-admin-nestjs-example:.' run start",
+    "start": "yarn workspace postgres start && yarn workspaces foreach --all --parallel --verbose --exclude 'postgres:.' run start",
     "up-yarn": "yarn set version latest"
   },
   "browserslist": {
