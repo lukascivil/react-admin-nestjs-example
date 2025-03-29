@@ -1,5 +1,5 @@
 // Packages
-import React, { FC, useState, useMemo } from 'react'
+import React, { FC, useState, useMemo, SyntheticEvent } from 'react'
 import {
   ResourceContextProvider,
   Datagrid,
@@ -301,8 +301,7 @@ const CustomListBase = () => {
 const CustomList: FC<any> = () => {
   const [value, setValue] = useState('1')
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+  const handleChange = (_event: SyntheticEvent, newValue: string) => {
     setValue(newValue)
   }
 
