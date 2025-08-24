@@ -15695,6 +15695,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ra-ui-materialui@npm:5.8.4":
+  version: 5.8.4
+  resolution: "ra-ui-materialui@npm:5.8.4"
+  dependencies:
+    "@tanstack/react-query": "npm:^5.21.7"
+    autosuggest-highlight: "npm:^3.1.1"
+    clsx: "npm:^2.1.1"
+    css-mediaquery: "npm:^0.1.2"
+    dompurify: "npm:^3.2.4"
+    inflection: "npm:^3.0.0"
+    jsonexport: "npm:^3.2.0"
+    lodash: "npm:~4.17.5"
+    query-string: "npm:^7.1.3"
+    react-dropzone: "npm:^14.2.3"
+    react-error-boundary: "npm:^4.0.13"
+    react-transition-group: "npm:^4.4.5"
+  peerDependencies:
+    "@mui/icons-material": ^5.16.12 || ^6.0.0 || ^7.0.0
+    "@mui/material": ^5.16.12 || ^6.0.0 || ^7.0.0
+    "@mui/system": ^5.15.20 || ^6.0.0 || ^7.0.0
+    "@mui/utils": ^5.15.20 || ^6.0.0 || ^7.0.0
+    csstype: ^3.1.3
+    ra-core: ^5.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+    react-hook-form: "*"
+    react-is: ^18.0.0 || ^19.0.0
+    react-router: ^6.28.1 || ^7.1.1
+    react-router-dom: ^6.28.1 || ^7.1.1
+  checksum: 10c0/87780d489a3b995e7be0adb9ce2bbd2b0980be560a437610ddea88749f632cddbb12c22c1b3fdf9f8a6482b296b2f7e02a2dc25c9068e0d6e644940703e7da45
+  languageName: node
+  linkType: hard
+
 "ra-ui-materialui@npm:^5.8.4":
   version: 5.10.1
   resolution: "ra-ui-materialui@npm:5.10.1"
@@ -15808,7 +15841,7 @@ __metadata:
     ra-data-simple-rest: "npm:5.2.3"
     ra-input-rich-text: "npm:5.8.4"
     ra-language-english: "npm:5.8.4"
-    ra-ui-materialui: "npm:^5.8.4"
+    ra-ui-materialui: "npm:5.8.4"
     react: "npm:18.3.1"
     react-admin: "npm:5.8.4"
     react-dom: "npm:18.3.1"
