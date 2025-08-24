@@ -4905,13 +4905,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:^5.0.0-alpha.176":
-  version: 5.0.0-alpha.177
-  resolution: "@mui/lab@npm:5.0.0-alpha.177"
+"@mui/lab@npm:5.0.0-alpha.176":
+  version: 5.0.0-alpha.176
+  resolution: "@mui/lab@npm:5.0.0-alpha.176"
   dependencies:
     "@babel/runtime": "npm:^7.23.9"
     "@mui/base": "npm:5.0.0-beta.40-1"
-    "@mui/system": "npm:^5.18.0"
+    "@mui/system": "npm:^5.17.1"
     "@mui/types": "npm:~7.2.15"
     "@mui/utils": "npm:^5.17.1"
     clsx: "npm:^2.1.0"
@@ -4930,7 +4930,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 10c0/ccba45f3379e25dcf7c238e724d244962cdf13b9d6a5d5554af73e3da90ba548ffa300be7844229817a70fcf5d3dbf163300a1967e00a6cb5bf7c4ca80232523
+  checksum: 10c0/2ffe5e538dea5458f3450f1f1622388298826ace0e1adac13e6f7196099c535ba166dd605adb636f18fce4d1618f9b98af7aaf5587a77df2405ce9e653b9196e
   languageName: node
   linkType: hard
 
@@ -5049,7 +5049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.18.0":
+"@mui/system@npm:^5.17.1":
   version: 5.18.0
   resolution: "@mui/system@npm:5.18.0"
   dependencies:
@@ -15628,7 +15628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-data-simple-rest@npm:^5.2.3":
+"ra-data-simple-rest@npm:5.2.3":
   version: 5.2.3
   resolution: "ra-data-simple-rest@npm:5.2.3"
   dependencies:
@@ -15649,9 +15649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-input-rich-text@npm:^5.8.4":
-  version: 5.10.1
-  resolution: "ra-input-rich-text@npm:5.10.1"
+"ra-input-rich-text@npm:5.8.4":
+  version: 5.8.4
+  resolution: "ra-input-rich-text@npm:5.8.4"
   dependencies:
     "@tiptap/core": "npm:^2.0.3"
     "@tiptap/extension-color": "npm:^2.0.3"
@@ -15673,7 +15673,16 @@ __metadata:
     ra-ui-materialui: ^5.0.0
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
-  checksum: 10c0/e536545fb7400c065819ac44ce8b1121ac5605cdbf9e416bd141c3787e8471eb0677184731424cb06de728f191b04245e9ff2d1d990f63d6df8b2f4fedcbc082
+  checksum: 10c0/b9b443bebfabf477c94af33f945021eafb901a0b233cb7dff156b8ba201931612cd9da097ae9fb4683ff26bf631bdef44b08f0001372968e568c716d6ed83273
+  languageName: node
+  linkType: hard
+
+"ra-language-english@npm:5.8.4":
+  version: 5.8.4
+  resolution: "ra-language-english@npm:5.8.4"
+  dependencies:
+    ra-core: "npm:^5.8.4"
+  checksum: 10c0/e98d83ced6d732f28b7e427731189a3e77e4af1a6cb5d10fa9ae24d6f27509c1e30354a5332b314ef459f1b42e981b9fd54266c2b61f09af37bd947c6140204c
   languageName: node
   linkType: hard
 
@@ -15762,7 +15771,7 @@ __metadata:
     "@handsontable/react": "npm:2.1.0"
     "@hookform/resolvers": "npm:^3.9.0"
     "@mui/icons-material": "npm:6.0.0"
-    "@mui/lab": "npm:^5.0.0-alpha.176"
+    "@mui/lab": "npm:5.0.0-alpha.176"
     "@mui/material": "npm:7.3.1"
     "@reduxjs/toolkit": "npm:2.8.2"
     "@testing-library/jest-dom": "npm:^5.11.10"
@@ -15796,9 +15805,9 @@ __metadata:
     postcss-normalize: "npm:^10.0.1"
     prettier: "npm:^3.6.2"
     ra-core: "npm:5.8.4"
-    ra-data-simple-rest: "npm:^5.2.3"
-    ra-input-rich-text: "npm:^5.8.4"
-    ra-language-english: "npm:^5.8.4"
+    ra-data-simple-rest: "npm:5.2.3"
+    ra-input-rich-text: "npm:5.8.4"
+    ra-language-english: "npm:5.8.4"
     ra-ui-materialui: "npm:^5.8.4"
     react: "npm:18.3.1"
     react-admin: "npm:5.8.4"
