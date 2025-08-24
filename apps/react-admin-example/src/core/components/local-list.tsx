@@ -489,7 +489,7 @@ const LocalList = (props: Props & LocalListProps): ReactElement => {
               <Box mb={1}>
                 <Grid container spacing={1}>
                   {displayFilters.map((component, index) => (
-                    <Grid item key={index}>
+                    <Grid key={index}>
                       <Box minHeight={64} display="flex" alignItems="center">
                         {Boolean(props.hasFilterButton && !component.props.alwaysOn) && (
                           <IconButton
@@ -510,7 +510,7 @@ const LocalList = (props: Props & LocalListProps): ReactElement => {
                       </Box>
                     </Grid>
                   ))}
-                  <Grid item>
+                  <Grid>
                     <Box my={2}>
                       <LoadingButton
                         type="submit"
