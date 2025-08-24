@@ -3,7 +3,7 @@ import { SubscriptionOptions, TypedUseQuery, TypedUseQueryHookResult } from '@re
 import { ReactElement, useMemo, useState } from 'react'
 import { useFieldValue, RecordContextProvider, LinearProgress, RaRecord, Identifier } from 'react-admin'
 import { useDispatch } from 'react-redux'
-import { useGetManyQuery, usersApi } from 'store/api/users-api'
+// import { useGetManyQuery, usersApi } from 'store/api/users-api'
 import { Error as ErrorIcon } from '@mui/icons-material'
 
 interface RtkReferenceFieldProps {
