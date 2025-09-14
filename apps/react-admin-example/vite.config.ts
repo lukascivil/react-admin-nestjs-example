@@ -4,6 +4,9 @@ import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [viteTsconfigPaths(), react()],
+  build: {
+    cssMinify: false
+  },
   server: {
     open: true,
     port: 3001,

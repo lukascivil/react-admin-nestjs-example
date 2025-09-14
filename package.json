@@ -7,18 +7,6 @@
     "start": "yarn workspace postgres start && yarn workspaces foreach --all --parallel --verbose --exclude 'postgres:.' run start",
     "up-yarn": "yarn set version latest"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "packageManager": "yarn@4.9.4",
   "workspaces": [
     "apps/*"
