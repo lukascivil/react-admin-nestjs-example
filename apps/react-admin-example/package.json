@@ -30,6 +30,7 @@
     "axios": "^1.12.1",
     "casl": "^1.1.0",
     "date-fns": "^3.6.0",
+    "esbuild": "^0.25.9",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-config-react-app": "^7.0.1",

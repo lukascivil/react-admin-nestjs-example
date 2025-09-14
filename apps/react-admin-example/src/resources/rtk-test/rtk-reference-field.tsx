@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material'
-import { SubscriptionOptions, TypedUseQuery, TypedUseQueryHookResult } from '@reduxjs/toolkit/dist/query/react'
+import { SubscriptionOptions } from '@reduxjs/toolkit/query'
+import { TypedUseQuery } from '@reduxjs/toolkit/query/react'
 import { ReactElement, useMemo, useState } from 'react'
 import { useFieldValue, RecordContextProvider, LinearProgress, RaRecord, Identifier } from 'react-admin'
 import { useDispatch } from 'react-redux'

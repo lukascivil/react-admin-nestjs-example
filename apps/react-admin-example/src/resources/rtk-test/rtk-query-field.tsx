@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material'
-import { SubscriptionOptions, TypedUseQueryHookResult } from '@reduxjs/toolkit/dist/query/react'
 import { ReactElement } from 'react'
 import { RecordContextProvider, LinearProgress, useRecordContext } from 'react-admin'
 import { Error as ErrorIcon } from '@mui/icons-material'
 import { usersApi } from 'store/api/users-api'
+import { SubscriptionOptions, TypedUseQueryHookResult } from '@reduxjs/toolkit/query/react'
 
 type Endpoints = keyof typeof usersApi.endpoints
 

@@ -5,8 +5,8 @@ import viteTsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [viteTsconfigPaths(), react()],
   build: {
-    cssMinify: false,
-    outDir: '../../build/apps/react-admin-example'
+    outDir: '../../build/apps/react-admin-example',
+    cssMinify: 'esbuild'
   },
   server: {
     open: true,
