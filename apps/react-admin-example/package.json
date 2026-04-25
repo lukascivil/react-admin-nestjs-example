@@ -26,7 +26,6 @@
     "@typescript-eslint/parser": "^8.59.0",
     "axios": "^1.15.2",
     "date-fns": "^4.1.0",
-    "esbuild": "^0.28.0",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-react-app": "^7.0.1",
