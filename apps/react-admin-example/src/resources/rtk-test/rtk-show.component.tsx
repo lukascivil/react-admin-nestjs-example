@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { TextField, DateField, SimpleShowLayout, Title } from 'react-admin'
 import { Box, Card, CardContent, Container, Typography } from '@mui/material'
 import { useGetUserQuery } from 'store/api/users-api'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { skipToken } from '@reduxjs/toolkit/query'
 
 export const RtkShow: FC = () => {

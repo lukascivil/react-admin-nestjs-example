@@ -2,7 +2,7 @@
 import React, { FC, Suspense } from 'react'
 import { Admin, CustomRoutes, Resource, useResourceContext } from 'react-admin'
 import simpleRestProvider from 'ra-data-simple-rest'
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router'
 
 // Resources
 import { TasksList } from 'resources/tasks/task-list.component'
