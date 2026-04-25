@@ -4363,23 +4363,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@handsontable/react@npm:16.2.0":
-  version: 16.2.0
-  resolution: "@handsontable/react@npm:16.2.0"
+"@handsontable/react@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@handsontable/react@npm:2.1.0"
   peerDependencies:
-    handsontable: ">=16.0.0"
-  checksum: 10c0/803e8406bb691652070f91e1cd3064f34526a0e434c8e5dbffada92e8fc36229cdfc562c8f86c2020fc2e73932c8b90491b587b67b0447436d8fc9d777491c7b
+    handsontable: ">=6.0.0"
+  checksum: 10c0/138e8c8e1cbd4ca546f0224505b9f7b45efe281987ff414d7a72559347065b1b65f2506fadbef4da5f1d36519746020cb43ea3333ac54ee0eaccb301791bc3d8
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "@hookform/resolvers@npm:5.2.2"
-  dependencies:
-    "@standard-schema/utils": "npm:^0.3.0"
+"@hookform/resolvers@npm:^3.9.0":
+  version: 3.10.0
+  resolution: "@hookform/resolvers@npm:3.10.0"
   peerDependencies:
-    react-hook-form: ^7.55.0
-  checksum: 10c0/0692cd61dcc2a70cbb27b88a37f733c39e97f555c036ba04a81bd42b0467461cfb6bafacb46c16f173672f9c8a216bd7928a2330d4e49c700d130622bf1defaf
+    react-hook-form: ^7.0.0
+  checksum: 10c0/7ee44533b4cdc28c4fa2a94894c735411e5a1f830f4a617c580533321a9b901df0cc8c1e2fad81ad8d55154ebc5cb844cf9c116a3148ffae2bc48758c33cbb8e
   languageName: node
   linkType: hard
 
@@ -16765,7 +16763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-core@npm:^5.14.6":
+"ra-core@npm:^5.11.1, ra-core@npm:^5.14.6":
   version: 5.14.6
   resolution: "ra-core@npm:5.14.6"
   dependencies:
@@ -16788,14 +16786,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-data-simple-rest@npm:5.14.6":
-  version: 5.14.6
-  resolution: "ra-data-simple-rest@npm:5.14.6"
+"ra-data-simple-rest@npm:5.11.1":
+  version: 5.11.1
+  resolution: "ra-data-simple-rest@npm:5.11.1"
   dependencies:
     query-string: "npm:^7.1.3"
   peerDependencies:
     ra-core: ^5.0.0
-  checksum: 10c0/c095188c0d91fab6cb205384ddf2cd7ac967427c1a2b07bb511262a43cca53764c00a140dd13e82e637baf683e170b9ab04bb247cbeec17b8605c856eebb7dbd
+  checksum: 10c0/36d05547642a3d67581a849540e6025fa961a59a3910646fb462224ada86bd7dd5cafc7392e9309be138928a60cc9b93ba27877f51c6431f2ec111081bb70244
   languageName: node
   linkType: hard
 
@@ -16809,7 +16807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-input-rich-text@npm:^5.14.6":
+"ra-input-rich-text@npm:^5.11.1":
   version: 5.14.6
   resolution: "ra-input-rich-text@npm:5.14.6"
   dependencies:
@@ -16837,7 +16835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-language-english@npm:^5.14.6":
+"ra-language-english@npm:^5.11.1, ra-language-english@npm:^5.14.6":
   version: 5.14.6
   resolution: "ra-language-english@npm:5.14.6"
   dependencies:
@@ -16846,7 +16844,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ra-ui-materialui@npm:^5.14.6":
+"ra-ui-materialui@npm:^5.11.1, ra-ui-materialui@npm:^5.14.6":
   version: 5.14.6
   resolution: "ra-ui-materialui@npm:5.14.6"
   dependencies:
@@ -16922,8 +16920,8 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.1"
     "@eslint/compat": "npm:^2.0.5"
-    "@handsontable/react": "npm:16.2.0"
-    "@hookform/resolvers": "npm:^5.2.2"
+    "@handsontable/react": "npm:2.1.0"
+    "@hookform/resolvers": "npm:^3.9.0"
     "@mui/icons-material": "npm:6.0.0"
     "@mui/lab": "npm:5.0.0-alpha.176"
     "@mui/material": "npm:7.3.1"
@@ -16959,11 +16957,11 @@ __metadata:
     lodash: "npm:^4.18.1"
     postcss-normalize: "npm:^13.0.1"
     prettier: "npm:^3.8.3"
-    ra-core: "npm:^5.14.6"
-    ra-data-simple-rest: "npm:5.14.6"
-    ra-input-rich-text: "npm:^5.14.6"
-    ra-language-english: "npm:^5.14.6"
-    ra-ui-materialui: "npm:^5.14.6"
+    ra-core: "npm:^5.11.1"
+    ra-data-simple-rest: "npm:5.11.1"
+    ra-input-rich-text: "npm:^5.11.1"
+    ra-language-english: "npm:^5.11.1"
+    ra-ui-materialui: "npm:^5.11.1"
     react: "npm:18.3.1"
     react-admin: "npm:^5.11.1"
     react-dom: "npm:18.3.1"
