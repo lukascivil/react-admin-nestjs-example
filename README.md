@@ -58,7 +58,7 @@ open http://localhost:8080/
 
 ```bash
 # Health API with Terminus
-open http://localhost:3000/health
+open http://localhost:3001/health
 ```
 
 If you want to view the tables in the DBMS and the documents created, you can use a graphical tool to access.

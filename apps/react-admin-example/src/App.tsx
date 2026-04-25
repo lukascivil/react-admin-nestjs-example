@@ -29,7 +29,7 @@ import { CustomLayout } from 'config/layout/custom-layout'
 import { Provider } from 'react-redux'
 import { ExcelInputValidation } from 'resources/custom/excel-input-validation'
 
-const dataProvider = simpleRestProvider('http://localhost:3000', httpClient)
+const dataProvider = simpleRestProvider('http://localhost:3001', httpClient)
 
 const RtkList = React.lazy(() => import('./resources/rtk-test/rtk-list.component'))
 

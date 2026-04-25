@@ -61,7 +61,7 @@ $ yarn test:e2e
 
 ```bash
 # Swagger Docs
-open http://localhost:3000/api
+open http://localhost:3001/api
 ```
 
 ![image](https://user-images.githubusercontent.com/7409802/99883901-fcf1d600-2c08-11eb-9497-7b0f87562e7d.png)
@@ -82,7 +82,7 @@ open http://localhost:8080/
 
 ```bash
 # Health API with Terminus
-open http://localhost:3000/health
+open http://localhost:3001/health
 ```
 
 ## Running the client

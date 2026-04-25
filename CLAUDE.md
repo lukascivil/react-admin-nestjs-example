@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Yarn 4 (Berry) workspaces monorepo with three apps:
 
 - `apps/postgres` — Docker Compose wrapper for the Postgres 16 database the API depends on. DB `test`, user `cafe`, password `cafe`, port `5432`.
-- `apps/nestjs-example` — NestJS 11 REST API (port `3000`) with TypeORM, Postgres, JWT/Passport auth, Swagger (`/api`), Terminus health (`/health`), and an Apollo GraphQL endpoint (auto-generates `apps/nestjs-example/schema.gql`).
-- `apps/react-admin-example` — React 19 + react-admin 5 frontend (port `3001`) built with Vite (the `rolldown-vite` drop-in). Includes an experimental RTK Query playground under `src/resources/rtk-test`.
+- `apps/nestjs-example` — NestJS 11 REST API (port `3001`) with TypeORM, Postgres, JWT/Passport auth, Swagger (`/api`), Terminus health (`/health`), and an Apollo GraphQL endpoint (auto-generates `apps/nestjs-example/schema.gql`).
+- `apps/react-admin-example` — React 19 + react-admin 5 frontend (port `3000`) built with Vite (the `rolldown-vite` drop-in). Includes an experimental RTK Query playground under `src/resources/rtk-test`.
 
 ## Common commands
 
@@ -55,7 +55,7 @@ yarn workspace nestjs-example migration:revert
 ### React admin frontend (`apps/react-admin-example`)
 
 ```bash
-yarn workspace react-admin-example start    # vite dev server on :3001
+yarn workspace react-admin-example start    # vite dev server on :3000
 yarn workspace react-admin-example build    # tsc + vite build → ../../build/apps/react-admin-example
 yarn workspace react-admin-example preview
 ```
@@ -84,7 +84,7 @@ Passwords are stored and compared as plaintext in `AuthService.validateUser` —
 
 ### React-admin ↔ NestJS contract
 
-The frontend uses `ra-data-simple-rest` pointed at `http://localhost:3000`. That dialect drives several non-obvious conventions on the API side, all of which live in `apps/nestjs-example/src/shared/`:
+The frontend uses `ra-data-simple-rest` pointed at `http://localhost:3001`. That dialect drives several non-obvious conventions on the API side, all of which live in `apps/nestjs-example/src/shared/`:
 
 - **List queries** arrive as URL params `filter` (JSON object), `range` (JSON `[start, end]`), and `sort` (JSON `[field, order]`). `GetListQuery` (`shared/models/get-list-query.model.ts`) parses and validates them via `class-transformer` + `class-validator` (`SortValidator`, `FilterValidator`). Controllers branch on which fields are present to dispatch to `getList` vs `getMany`.
 - **List responses** must expose a `Content-Range` header (`resource start-end/total`). `ListPaginationInterceptor` (`shared/interceptors/list-pagination.interceptor.ts`) is applied per-controller (`@UseInterceptors`) and rewrites the response: it unwraps `{ data, contentRange }` into a bare array and sets the header, while leaving single-record `{ data }` responses to return the unwrapped record. New list endpoints must return the same `GetListResult` / `GetManyResult` / `GetOneResult` shapes for this interceptor to work.
@@ -95,7 +95,7 @@ When adding a new resource, mirror `tasks/` or `users/`: a module folder with `*
 ### Auth flow
 
 - `apps/nestjs-example/src/auth` exposes Passport `local` (login) and `jwt` (request guard) strategies. JWT secret is hardcoded in `auth.constant.ts` for the example; access token TTL is short (~45m), refresh token ~1h, and `/auth/refresh` accepts the refresh token in the body.
-- The frontend `authProvider.ts` posts credentials to `/auth/login`, stores the `{ access_token, refresh_token }` envelope in `localStorage` under the key `auth`, and the global `httpclient.ts` reads that key on every request to set `Authorization: Bearer ...`. On 401, `checkError` calls `/auth/refresh` and replaces the stored token. Anything that constructs requests outside `httpClient` (e.g. `authProvider` itself) hits `http://localhost:3000` directly.
+- The frontend `authProvider.ts` posts credentials to `/auth/login`, stores the `{ access_token, refresh_token }` envelope in `localStorage` under the key `auth`, and the global `httpclient.ts` reads that key on every request to set `Authorization: Bearer ...`. On 401, `checkError` calls `/auth/refresh` and replaces the stored token. Anything that constructs requests outside `httpClient` (e.g. `authProvider` itself) hits `http://localhost:3001` directly.
 - Controllers are guarded by `JwtAuthGuard` at the class level — new controllers should follow suit unless explicitly public.
 
 ### Frontend store

@@ -6,7 +6,7 @@ import { Health } from 'models/health.model'
 export const healthApi = createApi({
   reducerPath: 'healthApi',
   baseQuery: httpClientBaseQuery({
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'http://localhost:3001/'
   }),
   tagTypes: ['health'],
   refetchOnReconnect: true,

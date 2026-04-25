@@ -85,7 +85,7 @@ const result = (dataProvider: any, ids: GetManyParams['ids']): Promise<any> =>
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: httpClientBaseQuery({
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'http://localhost:3001/'
   }),
   tagTypes: ['users'],
   endpoints: build => ({
@@ -128,7 +128,7 @@ export const usersApi = createApi({
     getManyUsers: build.query<Array<RaRecord<Identifier>>, Array<Identifier>>({
       queryFn: async arg => {
         const promise = (queryParam: string) =>
-          httpClient(`http://localhost:3000/users?${queryParam}`, {
+          httpClient(`http://localhost:3001/users?${queryParam}`, {
             method: 'GET'
           })
 

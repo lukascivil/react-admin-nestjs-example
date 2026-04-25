@@ -6,7 +6,7 @@ import { Resource } from 'models/resource.model'
 export const resourcesApi = createApi({
   reducerPath: 'resourcesApi',
   baseQuery: httpClientBaseQuery({
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'http://localhost:3001/'
   }),
   tagTypes: ['resources'],
   refetchOnReconnect: true,
